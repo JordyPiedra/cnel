@@ -23,14 +23,14 @@
 <body>
 
 <main>
-  <div class="center-align z-depth-1">
+  <div class="center-align z-depth-1" id="jHeader">
     <img src="<?php echo URL;?>public/images/logo.png" class="responsive-img">
     <h6 class="center-align blue-text text-darken-4">Trabaja con nosostros</h6>
   </div>
 
-<div id="contentAccess">
-    
-</div>
+  <div id="contentAccess">
+      
+  </div>
 
 </main>
 <?php include_once SCRIPT_U;?>	

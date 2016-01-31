@@ -17,7 +17,7 @@
         </div>
 
         <div class="center-align col l12 m12 s12">
-          <a class="waves-effect waves-light btn blue send">Restablecer Contraseña</a>
+          <a class="waves-effect waves-light btn blue send" tabindex="0">Restablecer Contraseña</a>
           <br><br><br>
         </div>
       </div>
