@@ -490,6 +490,8 @@ Class Aspirante extends Controller{
 					"ELA_RELA"    => ["value"=>$_POST["ELRELA"], "type" => PDO::PARAM_STR], 
 					"ELA_TELE"    => ["value"=>$_POST["ELTELE"], "type" => PDO::PARAM_STR], 
 					"ELA_SECT"    => ["value"=>$_POST["ELSECT"], "type" => PDO::PARAM_STR], 
+					"ELA_FINI"    => ["value"=>$_POST["ELFINI"], "type" => PDO::PARAM_STR], 
+					"ELA_FFIN"    => ["value"=>$_POST["ELFFIN"], "type" => PDO::PARAM_STR], 
 
 					"ELA_FK_ARTR" => ["value"=>$_POST["ELARTR"], "type" => PDO::PARAM_INT],
 					"ELA_FK_ASPI" => ["value"=>Session::getValue("ID-ASPIRANTE"), "type" => PDO::PARAM_INT] 
