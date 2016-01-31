@@ -337,8 +337,9 @@ var controllerAS = {
                       controllerAS.idRow.find("td:eq(0)").html(d.ELNEMP);
                       controllerAS.idRow.find("td:eq(1)").html(d.ELARTR);
                       controllerAS.idRow.find("td:eq(2)").html(d.ELCARG);
-                      controllerAS.idRow.find("td:eq(3)").html(d.ELRELA);
-                      controllerAS.idRow.find("td:eq(4)").html(d.ELTELE);
+                      controllerAS.idRow.find("td:eq(3)").html(d.ELFINI);
+                      controllerAS.idRow.find("td:eq(4)").html(d.ELFFIN);
+                      controllerAS.idRow.find("td:eq(5)").html(d.ELTELE);
                   break;
 
 
@@ -470,6 +471,8 @@ var controllerAS = {
                     $("#ELCARG").val(d.ELCARG);
                     $("#ELTELE").val(d.ELTELE);
                     $("#ELRELA").val(d.ELRELA);
+                    $("#ELFINI").val(d.ELFINI);
+                    $("#ELFFIN").val(d.ELFFIN);
 
                     if(d.ELSECT=='P'){
                       $("#ELSECT1").prop("checked", true);

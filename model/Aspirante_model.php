@@ -457,6 +457,8 @@ Class Aspirante_model extends Model {
           "ELRELA" => $d["ELA_RELA"],
           "ELTELE" => $d["ELA_TELE"],
           "ELSECT" => $d["ELA_SECT"],
+          "ELFINI" => $d["ELA_FINI"],
+          "ELFFIN" => $d["ELA_FFIN"],
           "ELARTR" => $d["ELA_FK_ARTR"]
 
         ];
@@ -497,7 +499,8 @@ Class Aspirante_model extends Model {
                   '<td>'.$data["ELNEMP"].'</td>'.
                   '<td>'.$data["ELARTR"].'</td>'.
                   '<td>'.$data["ELCARG"].'</td>'.
-                  '<td>'.$data["ELRELA"].'</td>'.
+                  '<td>'.$data["ELFINI"].'</td>'.
+                  '<td>'.$data["ELFFIN"].'</td>'.
                   '<td>'.$data["ELTELE"].'</td>'.
                   '<td><a href="javascript:" class="delete"><i class="material-icons">delete</i></a><a href="javascript:" class="edit"><i class="material-icons">edit</i></a></td>'.
                   '</tr>';
