@@ -53,6 +53,8 @@ $("#ResultadoAspirantes_").append(fila);
   $('#aspirantesModal').openModal();//Abre el modal luego de cargar opciones
 }
 
+
+
 //_________________________FILTRO DE BUSQUEDA_______________________________
 //retorna los filtros de instruccion formal seleccionados
 function F_instruccion_formal(){
@@ -122,7 +124,6 @@ fajax({'IDCON_' : IDCONC }, URL+"/management/JSONgetAspirantesbyCONID", get_aspi
 function get_aspirantes_concurso_response(response){
 var obj = JSON.parse(response);
 console.log(obj);
-Materialize.toast(obj['Mensaje'],2000);
 $('#aspiranteConcruso_reclutado').empty();
   
   $.each(obj['AspirantesConcurso'], function (key, value) {
@@ -134,13 +135,25 @@ $('#aspiranteConcruso_reclutado').empty();
       fila += '<td>' + value[2] +' ' + value[3] +' ' + value[4] +' '+ value[5] + '</td>';
       fila += '<td>'+ value[6] +'</td>';
       fila += '<td><a onclick="ver_concurso(' +  value[0] + ')"> <i class="material-icons teal-text text-lighten-3  small">visibility</i></a>';
-      fila += '<a onclick="ver_concurso(' +  value[0] + ')"> <i class="material-icons teal-text text-lighten-3  small">delete</i></a></td></tr>';
+      fila += '<a onclick="eliminar_aspirante_concurso(' +  value[0] + ",'"+ value[7] +"'"+')"> <i class="material-icons teal-text text-lighten-3  small">delete</i></a></td></tr>';
 $("#aspiranteConcruso_reclutado").append(fila);
 
             });
   $('#preload').closeModal();
 
 }
+//eliminar aspirante reclutado    
+function eliminar_aspirante_concurso(id,token){
+fajax({'IDCON_' : IDCONC ,'CONTOKEN' : CONTOKEN ,'IDASP' : id, 'ASPTOKEN' : token  }, URL+"/management/eliminar_aspirante_concurso", eliminar_aspirante_concurso_response);
+}
 
 
-      
+//Respuesta desppues de solicitar los aspirantes del concurso actual
+function eliminar_aspirante_concurso_response(response){
+var obj = JSON.parse(response);
+//Actualizamos la tabla de aspirantes_concurso
+fajax({'IDCON_' : IDCONC }, URL+"/management/JSONgetAspirantesbyCONID", get_aspirantes_concurso_response);
+Materialize.toast(obj['Mensaje'],2000);
+console.log(obj);
+
+}

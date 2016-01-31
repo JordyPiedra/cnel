@@ -6,7 +6,7 @@
     <body>
 
     <?php include_once MENU_F; ?>
-    <?php $concurso = $this->data['Concurso'];?>
+    <?php $concurso = $this->data['Concurso']; ?>
 
     <div class="col l12 m12 s12 center-align ">
      <p class="blue-text text-darken-2">Poceso de Reclutamiento del Concruso <?= $concurso[0][5]; ?> Fecha de culminación <?= $concurso[0][11]; ?> </p>
@@ -148,7 +148,7 @@
 
                             <tbody id="aspiranteConcruso_reclutado" >
 <?php
-
+// var_dump($this->data['AspirantesConcurso'] );
 foreach ($this->data['AspirantesConcurso'] as $key => $value) {
 
 echo' 
@@ -161,7 +161,7 @@ echo'
 
 <td>
 <a onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
-<a onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">delete</i></a>
+<a onclick="eliminar_aspirante_concurso(' . $value[0] . ",'" . $value[7] ."'".')"> <i class="material-icons small">delete</i></a>
 </td>
 </tr>';
 }
@@ -296,7 +296,11 @@ echo' <tr class="center-align">
     <?php include_once SCRIPT_U; ?> 
 
     <?php// include_once JSPDF ?>
-    <script type="text/javascript">var IDCONC=<?=  $concurso[0][0];?></script>
+    <script type="text/javascript">
+    var IDCONC=<?=  $concurso[0][0];?>;
+    var CONTOKEN="<?=  $concurso[0][14];?>";
+
+    </script>
     <script type="text/javascript">var URL='<?=  URL;?>';</script>
     <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
     <script src="<?= URL . 'public/js/controllerGestionAspirante.js' ?>"></script>

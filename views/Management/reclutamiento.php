@@ -63,7 +63,7 @@ echo'
 
         <form action="<?php echo URL; ?>management/reclutar" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
-            <input type="hidden" name="TOKEN" id="token_" value=""> 
+            <input type="hidden" name="CONTOKEN" id="token_" value=""> 
             <input type="submit" id="reclutar" style="display: none;"> 
         </form>
 
