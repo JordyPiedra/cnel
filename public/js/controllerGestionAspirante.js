@@ -7,9 +7,11 @@
     $("#IDCON_").val(id); 
     $("#ejecutar").trigger("click");
   }
-    function reclutamiento(id)
+    function reclutamiento(id,token)
   {
+    console.log(token);
     $("#IDCON_2").val(id); 
+    $("#token_").val(token); 
     $("#reclutar").trigger("click");
   }
 

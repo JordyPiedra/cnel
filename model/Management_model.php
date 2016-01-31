@@ -26,7 +26,7 @@ Class Management_model extends Model {
     //Obtener todos los concursos
     public function getallConcurso($where="") {
       
-         return $data = ["Mensaje" => "Concursos obtenidos", "Concursos" => $this->db->select('*', 'SSP_CONCURSO ',$where, PDO::FETCH_NUM)];
+         return $data = ["Mensaje" => "Concursos obtenidos", "Concursos" => $this->db->select('*, tokenGenerator(CON_ID) TOKEN', 'SSP_CONCURSO ',$where, PDO::FETCH_NUM)];
     }
 
     //Obtener concurso segun ID
@@ -178,5 +178,11 @@ Class Management_model extends Model {
          return $this->db->insert('SSP_ASPIRANTE_CONCURSO', $ASP_DATOS);
         else
             return false;
+    }
+
+
+       //Función que LLAMA la funcion sql tokenGenerator
+     public function tokengenerate_($identificador) {
+          return $this->db->select("tokenGenerator('$identificador')", 'DUAL', "", PDO::FETCH_NUM);
     }
 }

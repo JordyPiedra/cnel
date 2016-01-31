@@ -32,6 +32,7 @@
 
                             <tbody >
 <?php
+
 foreach ($this->data['Concursos'] as $key => $value) {
 
 echo' 
@@ -44,7 +45,7 @@ echo'
 <td>' . $value[11] . '</td>
 <td>
 <a onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
-&nbsp;<a onclick="reclutamiento(' . $value[0] . ')"><i class="material-icons small" >person_add</i></a></td>
+&nbsp;<a onclick="reclutamiento(' . $value[0] .",'".$value[13]."'".');"><i class="material-icons small" >person_add</i></a></td>
 </tr>';
 }
 ?>   
@@ -62,6 +63,7 @@ echo'
 
         <form action="<?php echo URL; ?>management/reclutar" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
+            <input type="hidden" name="TOKEN" id="token_" value=""> 
             <input type="submit" id="reclutar" style="display: none;"> 
         </form>
 
