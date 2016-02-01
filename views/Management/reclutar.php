@@ -160,8 +160,8 @@ echo'
 <td>'. $value[6] .'</td>
 
 <td>
-<a onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
-<a onclick="eliminar_aspirante_concurso(' . $value[0] . ",'" . $value[7] ."'".')"> <i class="material-icons small">delete</i></a>
+<a onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons teal-text text-lighten-3  small">visibility</i></a>
+<a onclick="eliminar_aspirante_concurso(' . $value[0] . ",'" . $value[7] ."'".')"> <i class="material-icons teal-text text-lighten-3  small">delete</i></a>
 </td>
 </tr>';
 }
@@ -190,7 +190,9 @@ echo'
                                     <th data-field="id">Cédula</th>
                                     <th data-field="price">Nombre</th>
                                     <th data-field="name">Fecha Nacimiento</th>
-                                    <th data-field="name"></th>
+                                    <th data-field="name">
+                                    <input type="checkbox" id="selectAll" />
+                                    <label for="selectAll">Todos</label></th>
 
 
                                 </tr>

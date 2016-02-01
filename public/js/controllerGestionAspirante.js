@@ -50,6 +50,7 @@ $("#ResultadoAspirantes_").append(fila);
 
             });
   $('#preload').closeModal();
+   $('#selectAll').prop('checked', '');
   $('#aspirantesModal').openModal();//Abre el modal luego de cargar opciones
 }
 
@@ -157,3 +158,10 @@ Materialize.toast(obj['Mensaje'],2000);
 console.log(obj);
 
 }
+
+ $('#selectAll').click(function(){
+if($('#selectAll').prop('checked')==true)
+   $('td input:checkbox','#ResultadoAspirantes_').prop('checked', 'checked');
+ else
+  $('td input:checkbox','#ResultadoAspirantes_').prop('checked', '');
+ });

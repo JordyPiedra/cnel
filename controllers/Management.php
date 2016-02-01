@@ -53,8 +53,8 @@ Class Management extends Controller {
             $this->view->data += ['AspirantesConcurso' => $this->model->getAspirantesbyCONID($_POST['IDCON_'])];
             $this->view->render($this, 'reclutar');
         }
-        // else
-        // $this->index_management();
+        else
+         $this->index_management();
 
     }
      //Cargamos vista de concursos por calificar

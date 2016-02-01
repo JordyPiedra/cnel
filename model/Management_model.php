@@ -169,7 +169,7 @@ Class Management_model extends Model {
     //Función complemenadora para la busqueda de aspirantes donde where es el filtro completo de busqueda
      public function filter_getAspirantes($where) {
     
-        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA', 'SSP_ASPIRANTE', "ASP_APRO='S' ".$where, PDO::FETCH_NUM);
+        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA', 'SSP_ASPIRANTE', "ASP_APRO='S' ".$where.' AND ASP_ID NOT IN (select ASP_ID from aspirantes_en_concurso)', PDO::FETCH_NUM);
     }
 
     //Función que inserta SSP_ASPIRANTE_CONCURSO
