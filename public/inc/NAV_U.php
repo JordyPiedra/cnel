@@ -1,6 +1,6 @@
 <ul id="user" class="dropdown-content">
   <li><a href="javascript:">Perfil</a></li>
-  <li><a href="javascript:">Descargar PDF</a></li>
+  <li><a href="javascript:" id="hvPDF" onclik="get_concursoPDF();">Ver Hoja de Vida (PDF)</a></li>
   <li><a href="javascript:">Cambiar contraseña</a></li>  
   <li class="divider"></li>
   <li><a href="javascript:">Cerrar sessión</a></li>

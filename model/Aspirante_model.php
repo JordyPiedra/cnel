@@ -11,11 +11,11 @@ Class Aspirante_model extends Model {
       $data = null;
 
       if($country){
-        $data["country"] = $this->db->select('LOC_ID, LOC_NOMB','SSP_LOCALIDAD', 'FK_LOID = 1 ORDER BY LOC_NOMB', PDO::FETCH_NUM);        
+        $data["country"] = $this->db->select('LOC_ID, LOC_NOMB','SSP_LOCALIDAD', 'LOC_FK_LOID = 1 ORDER BY LOC_NOMB', PDO::FETCH_NUM);        
       }
 
       if($province){
-        $data["province"] = $this->db->select('LOC_ID, LOC_NOMB','SSP_LOCALIDAD', 'FK_LOID = 2 ORDER BY LOC_NOMB', PDO::FETCH_NUM);        
+        $data["province"] = $this->db->select('LOC_ID, LOC_NOMB','SSP_LOCALIDAD', 'LOC_FK_LOID = 2 ORDER BY LOC_NOMB', PDO::FETCH_NUM);        
       }
 
       return $data;
@@ -317,7 +317,6 @@ Class Aspirante_model extends Model {
     }
 
     public function CreateUpdateLanguageApplicant($data, $idASP = false, $idRow = false) {
-
       if(!$data){
         $output = ["STATUS" => "FAIL", "MSG" => "ERROR: Datos incorrectos."];
         return json_encode($output);
@@ -534,7 +533,46 @@ Class Aspirante_model extends Model {
     }
 
 
-    
+    public function getDataCandidate2($id) {
+      return $this->db->select('
+        ASP_CEDU, 
+        ASP_NOM1, 
+        ASP_NOM2, 
+        ASP_APE1, 
+        ASP_APE2,
+        ASP_DISC,
+        ASP_ETNI,
+        ASP_ESCI,
+        ASP_FENA,
+        ASP_GENE,
+        ASP_EMAP,
+        ASP_EMAI,
+          ASP_ESTA,
+          ASP_PESO,
+        ASP_TEL1,
+        ASP_TEL2,
+          ASP_TILI,
+          ASP_TISA,
+        ASP_CAPR,
+        ASP_CASE,
+        ASP_NCAS,
+        ASP_SECT,
+        ASP_REFE,
+        ASP_R1AP,
+        ASP_R1NO, 
+        ASP_R1TE, 
+        ASP_R1CO, 
+        ASP_R2AP, 
+        ASP_R2NO, 
+        ASP_R2TE, 
+        ASP_R2CO,
+        ASP_FCRE,
+        ASP_FMOD,
+        ASP_FK_ENCA,
+        ASP_FK_LOCN,
+        ASP_FK_LOCD',
+        'SSP_ASPIRANTE', 'ASP_ID = '.$id, PDO::FETCH_NUM);   
+    }
 
 
 }

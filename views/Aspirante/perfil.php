@@ -155,6 +155,8 @@
   </div>
 </div>
 
+<iframe id="applicantResume" class="modal" frameborder="0" style="width=100%;"></iframe>
+
 
    
 </main>
@@ -162,6 +164,9 @@
 <?php include_once SCRIPT_U;?>
 <script>var URL = '<?=URL?>';</script>
 <script src="<?=URL.'public/js/controllerAspirante.js'?>"></script>
+<?php include_once JSPDF ?>
+<script src="<?=URL.'public/js/controllerApplicantResume.js'?>"></script>
+
 
 </body>
 </html>

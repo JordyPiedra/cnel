@@ -522,10 +522,71 @@ Class Aspirante extends Controller{
 	}
 
 	public function curriculumVitae(){
-		require_once './libs/FPDF/fpdf.php';
 
 
-		$candidate = $this->model->getDataCandidate(Session::getValue("ID-ASPIRANTE"))[0];
+		$candidate = $this->model->getDataCandidate2(Session::getValue("ID-ASPIRANTE"))[0];
+
+		/*$n = $this->model->db->prepare("call get_localidad(".$candidate[34].", 'N');");
+		$n->execute();
+		$candidate[34] = $n->fetchAll(PDO::FETCH_NUM);*/
+
+		$n = $this->model->db->prepare("call get_localidad(".$candidate[35].", 'D');");
+		$n->execute();
+		$candidate[35] = $n->fetchAll(PDO::FETCH_NUM);
+
+
+
+		$n = $this->model->db->prepare("call get_formal_education(".Session::getValue("ID-ASPIRANTE").");");
+		$n->execute();
+
+		$candidate["fe"] = $n->fetchAll(PDO::FETCH_NUM);
+
+
+		$n = $this->model->db->prepare("call get_languages_applicant(".Session::getValue("ID-ASPIRANTE").");");
+		$n->execute();
+
+		$candidate["la"] = $n->fetchAll(PDO::FETCH_NUM);
+
+		$n = $this->model->db->prepare("call get_candidate_training(".Session::getValue("ID-ASPIRANTE").");");
+		$n->execute();
+
+		$candidate["ct"] = $n->fetchAll(PDO::FETCH_NUM);
+
+		$n = $this->model->db->prepare("call get_work_experience(".Session::getValue("ID-ASPIRANTE").");");
+		$n->execute();
+
+		$candidate["we"] = $n->fetchAll(PDO::FETCH_NUM);
+
+		
+
+		
+
+
+
+
+
+
+
+		$output  =  ["c" => $candidate];
+
+
+		
+
+
+
+
+		
+
+		//echo "<pre>";
+		//print_r($candidate);
+
+		//echo "<pre>";
+		//print_r($output);
+		echo json_encode($output);
+
+
+
+		/*#
 
 		$name = $candidate["ASP_APE1"]." ".$candidate["ASP_APE2"]." ".$candidate["ASP_NOM1"]." ".$candidate["ASP_NOM2"];
 
@@ -576,7 +637,7 @@ Class Aspirante extends Controller{
 
 		$mipdf->Ln(5);
 		//$mipdf->sectionF();
-		$mipdf->Output();
+		$mipdf->Output();*/
 	}
 
 
