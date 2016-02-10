@@ -26,12 +26,12 @@ Class Management_model extends Model {
     //Obtener todos los concursos
     public function getallConcurso($where="") {
       
-         return $data = ["Mensaje" => "Concursos obtenidos", "Concursos" => $this->db->select('*', 'SSP_CONCURSO ',$where, PDO::FETCH_NUM)];
+         return $data = ["Mensaje" => "Concursos obtenidos", "Concursos" => $this->db->select('*, tokenGenerator(CON_ID) TOKEN', 'SSP_CONCURSO ',$where, PDO::FETCH_NUM)];
     }
 
     //Obtener concurso segun ID
     public function get_concurso($CON_ID) {
-        return $data = ["Mensaje" => "Concurso obtenido", "Concurso" => $this->db->select('C.* ,PTR_PADR ', 'SSP_CONCURSO C ,SSP_PUESTO_TRABAJO P'," C.PTR_ID = P.PTR_ID AND CON_ID= '$CON_ID'", PDO::FETCH_NUM)];
+        return $data = ["Mensaje" => "Concurso obtenido", "Concurso" => $this->db->select("C.* ,PTR_PADR ,tokenGenerator(C.CON_ID) token", 'SSP_CONCURSO C ,SSP_PUESTO_TRABAJO P'," C.PTR_ID = P.PTR_ID AND CON_ID= '$CON_ID'", PDO::FETCH_NUM)];
     }
 
 
@@ -132,7 +132,7 @@ Class Management_model extends Model {
 
     //OBTENER LAS FASES DE UN CONCURSO
     public function getall_faseconcurso($DATOS) {
-        return $this->db->select('*', 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID AND CON_ID=' . $DATOS['CON_ID'], PDO::FETCH_NUM);
+        return $this->db->select("*", 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID AND CON_ID=' . $DATOS['CON_ID'], PDO::FETCH_NUM);
     }
 
     //OBTENER LAS FASES 
@@ -160,7 +160,7 @@ Class Management_model extends Model {
 
      //LISTA DE ASPIRANTES EN UN CONCURSO
     public function getAspirantesbyCONID($CON_ID) {
-        return $this->db->select('A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA', 'SSP_ASPIRANTE A, SSP_ASPIRANTE_CONCURSO C ', "A.ASP_ID = C.ASP_ID AND C.CON_ID='$CON_ID'", PDO::FETCH_NUM);
+        return $this->db->select("A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA, tokenGenerator(A.ASP_ID) TOKEN", 'SSP_ASPIRANTE A, SSP_ASPIRANTE_CONCURSO C ', "A.ASP_ID = C.ASP_ID AND C.CON_ID='$CON_ID'", PDO::FETCH_NUM);
     }
      //LISTA DE ASPIRANTES FILTRO POR APROBACIÒN
     public function getAspirantesbyApro($ASP_APRO) {
@@ -169,7 +169,7 @@ Class Management_model extends Model {
     //Función complemenadora para la busqueda de aspirantes donde where es el filtro completo de busqueda
      public function filter_getAspirantes($where) {
     
-        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA', 'SSP_ASPIRANTE', "ASP_APRO='S' ".$where, PDO::FETCH_NUM);
+        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA', 'SSP_ASPIRANTE', "ASP_APRO='S' ".$where.' AND ASP_ID NOT IN (select ASP_ID from aspirantes_en_concurso)', PDO::FETCH_NUM);
     }
 
     //Función que inserta SSP_ASPIRANTE_CONCURSO
@@ -178,5 +178,15 @@ Class Management_model extends Model {
          return $this->db->insert('SSP_ASPIRANTE_CONCURSO', $ASP_DATOS);
         else
             return false;
+    }
+    //Función que elimina registro de  SSP_ASPIRANTE_CONCURSO
+     public function delete_aspirante_concurso($ASP_CON_DATOS) {
+         return $this->db->delete('SSP_ASPIRANTE_CONCURSO', "CON_ID=".$ASP_CON_DATOS['CON_ID']." and ASP_ID=".$ASP_CON_DATOS['ASP_ID']);
+    }
+
+
+       //Función que LLAMA la funcion sql tokenGenerator
+     public function tokengenerate_($identificador) {
+          return $this->db->select("tokenGenerator('$identificador')", 'DUAL', "", PDO::FETCH_NUM);
     }
 }

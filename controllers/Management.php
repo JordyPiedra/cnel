@@ -40,7 +40,8 @@ Class Management extends Controller {
     }
     //Cargamos vista de reclutamiento de personal
     public function reclutar() {
-        if(isset($_POST['IDCON_']))
+        //echo $_POST['TOKEN'];
+        if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         { 
           $this->castModel('Aspirante');
              $this->view->data =$this->datos_concurso($_POST['IDCON_']);
@@ -52,6 +53,9 @@ Class Management extends Controller {
             $this->view->data += ['AspirantesConcurso' => $this->model->getAspirantesbyCONID($_POST['IDCON_'])];
             $this->view->render($this, 'reclutar');
         }
+        else
+         $this->index_management();
+
     }
      //Cargamos vista de concursos por calificar
     public function calificaciones() {
@@ -404,8 +408,33 @@ Class Management extends Controller {
         echo json_encode(['puestos' => $this->model->getallCargos($data)]);
     }
 
-  
+    //Funcion que elimina un aspirante del concurso
+    public function eliminar_aspirante_concurso() {
+      
+       if($_POST['CONTOKEN']== $this->tokengenerate($_POST['IDCON_'])
+        && $_POST['ASPTOKEN']== $this->tokengenerate($_POST['IDASP'])
+        )
+       {
+        if($this->model->delete_aspirante_concurso(['CON_ID' => $_POST['IDCON_'] , 'ASP_ID' =>$_POST['IDASP']]))
+             echo json_encode(['Mensaje' => 'Registro Eliminado']);
+         else
+            echo json_encode(['Mensaje' => 'Error al Eliminar']);
+       }
+       else
+        $this->index_management();
+        
+    }
 
+
+    //Función que genera el token para un identificador
+    private function tokengenerate($identificador){
+        $token=$this->model->tokengenerate_($identificador);
+        return  $token[0][0];
+    }
+    //Función que genera el token para un identificador
+    private function index_management(){
+        header('Location: '.URL.'management/index');
+    }
     private function Mayus($variable) {
         $variable = strtr(strtoupper($variable), "àèìòùáéíóúçñäëïöü", "ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
         return $variable;

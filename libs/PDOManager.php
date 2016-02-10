@@ -230,7 +230,7 @@ class PDOManager extends PDO{
 		$where = ($where != '' ||  $where != null) ? "WHERE ".$where : '';
 		$sql = "SELECT ".$attr." FROM ".$table." ".$where.";";
 		$result = $this->prepare($sql);
-	
+		//echo($sql);
 		if($result->execute()){
 	       if ($result->rowCount() > 0)
 	        	return true;
