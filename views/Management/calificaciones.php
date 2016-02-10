@@ -33,26 +33,25 @@
                             </thead>
 
                             <tbody id="">
-                                <?php
-                                foreach ($this->DATA['Concursos'] as $key => $value) {
+<?php
 
-                                    echo' 
+foreach ($this->data['Concursos'] as $key => $value) {
+
+echo' 
 <tr class="center-align">
 <td><i class="material-icons light-green-text text-accent-3 small ">label</i></td>
 <td>' . $value[5] . '</td>
 <td>' . $value[1] . '</td>
-<td>Reclutamiento</td>
+<td>Exámenes</td>
 <td>' . $value[10] . '</td>
 <td>' . $value[11] . '</td>
+<td>
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar concurso" onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
+&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Calificar personal" onclick="calificar(' . $value[0] .",'".$value[13]."'".');"><i class="material-icons small" >playlist_add_check</i></a></td>
 
-<td></td><td>
-
-<a onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
-&nbsp;  
-<a onclick="calificar(' . $value[0] . ')"><i class="material-icons small" >input</i></a></td>
 </tr>';
-                                }
-                                ?>   
+}
+?>   
 
                             </tbody>
                         </table>
@@ -69,7 +68,8 @@
             <input type="submit" id="ejecutar" style="display: none;"> 
         </form>
         <form action="<?php echo URL; ?>management/calificar" method="POST"> 
-            <input type="hidden" name="IDCON__" id="IDCON__" value=""> 
+            <input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
+            <input type="hidden" name="CONTOKEN" id="token_" value=""> 
             <input type="submit" id="calificar_" style="display: none;"> 
         </form>
 

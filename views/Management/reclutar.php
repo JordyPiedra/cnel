@@ -144,7 +144,7 @@
            
             </div>    
             <div class="col l3 m12 s12 left-align">
-                <a class="waves-effect waves-light btn  light-blue darken-3"  onclick=""><i class="material-icons left">exit_to_app</i>Terminar  </a>
+                <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="$('#terminar_proceso').trigger('click');"><i class="material-icons left">exit_to_app</i>Terminar  </a>
             </div>    
             </div>             
         <table class="striped highlight " >
@@ -219,6 +219,7 @@ echo'
                             <tbody id="ResultadoAspirantes_" >
                             
 <?php
+
 $hoy = date('yyy-mm-dd');
 foreach ($this->data['Aspirantes'] as $key => $value) {
 
@@ -312,6 +313,15 @@ echo' <tr class="center-align">
     </div>
     </div>
 </div>
+
+
+
+<form style="display: none;" action="<?php echo URL; ?>management/processStateConcurso" method="POST"> 
+            <input type="hidden" name="IDCON_" id="IDCON_2" value="<?= $concurso[0][0]; ?>"> 
+            <input type="hidden" name="CONTOKEN" id="token_" value="<?= $concurso[0][14]; ?>"> 
+            <input type="submit" id="terminar_proceso" style="display: none;"> 
+</form>
+
 
     <?php include_once SCRIPT_U; ?> 
 

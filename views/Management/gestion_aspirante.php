@@ -15,7 +15,7 @@
                     <div class="col  s12  m12 l12 z-depth-1">
                         <div class="container " style="padding-bottom:100px;">
                             <div class="col l12 m12 s12 center-align ">
-                                        <h5 class="blue-text text-darken-2">Poceso de Reclutamiento</h5>
+                                        <h5 class="blue-text text-darken-2">Aprobación de Perfiles</h5>
                                     </div>
                             <br>
                             <br>
@@ -69,6 +69,18 @@ echo'
                     </div>
                 </div>
          </div>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content center-align">
+      <h4>Perfil Aprobado</h4>
+       </div>
+    <div class="modal-footer  center-align">
+     <a class="center-align waves-effect waves-light btn blue" onclick="location.reload();">Aceptar</a>
+
+   
+    </div>
+  </div>
 
 <form action="<?php echo URL; ?>management/creaconcurso_1" method="POST"> 
 <input type="hidden" name="IDCON_" id="IDCON_" value=""> 

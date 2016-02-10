@@ -131,8 +131,8 @@ Class Management_model extends Model {
     }
 
     //OBTENER LAS FASES DE UN CONCURSO
-    public function getall_faseconcurso($DATOS) {
-        return $this->db->select("*", 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID AND CON_ID=' . $DATOS['CON_ID'], PDO::FETCH_NUM);
+    public function getall_faseconcurso($DATOS, $BCO_ESTA="") {
+        return $this->db->select("BCO_ID,CON_ID,f.FMO_ID,BCO_VALO,BCO_FINI,BCO_FFIN,f.FMO_ID,FMO_NOMB,FMO_TFAS,FMO_TDES,BCO_ESTA", 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID  AND CON_ID=' . $DATOS['CON_ID'].'AND b.BCO_ESTA LIKE "%'.$BCO_ESTA.'"', PDO::FETCH_NUM);
     }
 
     //OBTENER LAS FASES 
@@ -144,7 +144,7 @@ Class Management_model extends Model {
     public function updateDepartamento($PTR_DATOS) {
 
 
-        $this->db->update('SSP_PUESTO_TRABAJO', $PTR_DATOS, "PTR_ID=" . $PTR_DATOS['PTR_ID']);
+        $this->db->update('SSP_PUESTO_TRABAJO', $PTR_DATOS, false,"PTR_ID=" . $PTR_DATOS['PTR_ID']);
         return $data = ["Mensaje" => "uPDATE Correctamente"];
     }
 
@@ -197,6 +197,11 @@ Class Management_model extends Model {
        //Función que actualiza estado del aspirante
      public function update_estadoperfilAspirante($ASP_ID,$data) {
            return $this->db->update('SSP_ASPIRANTE',$data,false,"ASP_ID='$ASP_ID'");
+    }
+
+           //Función que actualiza estado del concurso
+     public function update_estadoConcurso($CON_ID,$data) {
+           return $this->db->update('SSP_CONCURSO',$data,false,"CON_ID='$CON_ID'");
     }
 
 

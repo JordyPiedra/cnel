@@ -44,52 +44,27 @@
 
                             <tbody >
 <?php
-//var_dump($this->DATA);
-foreach ($this->DATA['Concursos'] as $key => $value) {
-  $totipmsj="";
- 
-  switch ($value[12]) {
 
-      case 'C':
-          $colorlbl='blue-text text-darken-3';
-          $estado='Creado';
-          $totipmsj="Cambiar a Inicializado";
-          break;
-      case 'I':
-          $colorlbl='light-green-text text-accent-3';
-          $estado='Inicializado';
-          $totipmsj="Cambiar a En proceso";
-          break;
-      case 'P':
-          $colorlbl='orange-text text-darken-4';
-          $estado='En proceso';
-          $totipmsj="Cambiar a Finalizado";
-          break; 
-      case 'F':
-          $colorlbl='red-text text-accent-4';
-          $estado='Finalizado';
-          break; 
-      default:
-          $colorlbl="";
-          break;
-  }
- 
-   echo' 
+foreach ($this->data['Concursos'] as $key => $value) {
+
+echo' 
 <tr class="center-align">
-<td><i class="material-icons '. $colorlbl.' small ">label</i></td>
-<td>'.$value[5].'</td>
-<td>'.$value[1].'</td>
-<td>'.$value[10].'</td>
-<td>'.$value[11].'</td>
-<td>'. $estado.'</td>
-<td></td><td>
+<td><i class="material-icons light-green-text text-accent-3 small ">label</i></td>
+<td>' . $value[5] . '</td>
+<td>' . $value[1] . '</td>
+<td>Reclutamiento</td>
+<td>' . $value[10] . '</td>
+<td>' . $value[11] . '</td>
+<td>
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar concurso" onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
+&nbsp;<a onclick="ejecuta_boton('.$value[0].')"> <i class="material-icons small">open_in_new</i></a>&nbsp;
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Iniciar Concurso" onclick="inicializar(' . $value[0] .",'".$value[13]."'".');"><i class="material-icons small" >near_me</i></a></td>
 
-<a onclick="concursoPDF('.$value[0].')"> <i class="material-icons small">visibility</i></a>
-<a onclick="ejecuta_boton('.$value[0].')"> <i class="material-icons small">open_in_new</i></a>
-<a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="'.$totipmsj.'"><i class="material-icons small" >input</i></a>
 </tr>';
 }
-?>   
+?>  
+
+
 
                             </tbody>
                         </table>
@@ -102,6 +77,12 @@ foreach ($this->DATA['Concursos'] as $key => $value) {
 <input type="submit" id="ejecutar" style="display: none;"> 
 </form>
 
+<form style="display: none;" action="<?php echo URL; ?>management/inicialStateConcurso" method="POST"> 
+<input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
+<input type="hidden" name="CONTOKEN" id="token_" value=""> 
+<input type="submit" id="inicializar" style="display: none;"> 
+</form>
+
   <!-- Modal Trabajo -->
   <iframe id="showconcuro" class="modal " frameborder="0" width="100%" height="900"></iframe>
 
@@ -112,12 +93,6 @@ foreach ($this->DATA['Concursos'] as $key => $value) {
 <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
 <?php include_once JSPDF ?>
 <script type="text/javascript">
- 
-  $( document ).ready(function(){
-             $(".button-collapse").sideNav();
-             $("#mconcursos").attr("class","active");
-  })
-
 
 
   function concursoPDF(id)
@@ -193,6 +168,21 @@ foreach ($this->DATA['Concursos'] as $key => $value) {
 </script>
 <script type="text/javascript">
   //Post Editar
+
+ 
+  $( document ).ready(function(){
+             $(".button-collapse").sideNav();
+             $("#mconcursos").attr("class","active");
+  })
+
+   function inicializar(id,token)
+  {
+    console.log(token);
+    $("#IDCON_2").val(id); 
+    $("#token_").val(token); 
+    $("#inicializar").trigger("click");
+  }
+
   function ejecuta_boton(id)
   {
     $("#IDCON_").val(id); 
