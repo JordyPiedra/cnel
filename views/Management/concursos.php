@@ -46,21 +46,24 @@
 <?php
 //var_dump($this->DATA);
 foreach ($this->DATA['Concursos'] as $key => $value) {
-  
+  $totipmsj="";
  
   switch ($value[12]) {
 
       case 'C':
           $colorlbl='blue-text text-darken-3';
           $estado='Creado';
+          $totipmsj="Cambiar a Inicializado";
           break;
       case 'I':
           $colorlbl='light-green-text text-accent-3';
           $estado='Inicializado';
+          $totipmsj="Cambiar a En proceso";
           break;
       case 'P':
           $colorlbl='orange-text text-darken-4';
           $estado='En proceso';
+          $totipmsj="Cambiar a Finalizado";
           break; 
       case 'F':
           $colorlbl='red-text text-accent-4';
@@ -83,7 +86,7 @@ foreach ($this->DATA['Concursos'] as $key => $value) {
 
 <a onclick="concursoPDF('.$value[0].')"> <i class="material-icons small">visibility</i></a>
 <a onclick="ejecuta_boton('.$value[0].')"> <i class="material-icons small">open_in_new</i></a>
-<a onclick="eliminar_fase_concurso('.$value[12].')"><i class="material-icons small" >input</i></a></td>
+<a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="'.$totipmsj.'"><i class="material-icons small" >input</i></a>
 </tr>';
 }
 ?>   

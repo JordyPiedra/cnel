@@ -126,10 +126,28 @@
         <div class="col l8 m12 s12 center-align ">
 
         <p class="blue-text text-darken-2">Lista de Aspirantes Aceptados</p>
-            <div class="col l8 m12 s12 left-align">
-            <a class="waves-effect waves-light btn"  onclick="get_aspirantes();"><i class="material-icons left">person_add</i>Agregar Aspirantes</a>
+            <div class="col l12 m12 s12 left-align">
+              <div class="col l3 m12 s12 left-align">
+                <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="get_aspirantes();"><i class="material-icons left">person_add</i>Agregar Aspirantes</a>
+            </div>    
+            <div class="col l6 m12 s12 left-align search">
+            
+
+
+       <div class="input-field col l12 s6">
+          <input id="last_name" type="search" class="validate">
+       
+
+        </div>
+
+
+           
+            </div>    
+            <div class="col l3 m12 s12 left-align">
+                <a class="waves-effect waves-light btn  light-blue darken-3"  onclick=""><i class="material-icons left">exit_to_app</i>Terminar  </a>
+            </div>    
             </div>             
-        <table class="striped highlight ">
+        <table class="striped highlight " >
                           
  
                             <thead>

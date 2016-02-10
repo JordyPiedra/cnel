@@ -14,9 +14,25 @@ Class Management extends Controller {
     }
     //Cargamos la vista gestion_aspirante
     public function gestion_aspirante() {
-
+        $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('N')];
         $this->view->render($this, 'gestion_aspirante');
     }
+    //Cargamos la vista gestion_aspirante
+    public function aprobar_perfil() {
+        if(isset($_POST["IDASP"]))
+        {
+            $data = ["ASP_APRO" => "'S'"];
+            $ASP_ID=$_POST["IDASP"];
+            
+               echo($this->model->update_estadoperfilAspirante($ASP_ID, $data));
+               /* echo json_encode(['Aspirantes' => 'asdsad']);
+               else
+                echo 'false';*/
+        }
+       else 
+        echo 'error';
+    }
+
     //Cargamos vista de concursos
     public function concursos() {
         $this->view->DATA=$this->model->getallConcurso();
