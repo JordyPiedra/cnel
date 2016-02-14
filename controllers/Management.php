@@ -519,7 +519,7 @@ Class Management extends Controller {
             $this->index_management();
     }
 
-
+//funcion que asigna la calificacion de un aspirante
       public function save_calificacion_aspirante(){
        //echo json_encode($_POST);
      if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
@@ -530,22 +530,27 @@ Class Management extends Controller {
             $errores=0;
             $correcto=0;
             $BCON_ID=$_POST["IDBCON"];
+            $valorMaximo= $this->model->get_valor_baseconcurso($BCON_ID);
             foreach ($data as $key => $value) {
             $data=['BCO_ID' => $BCON_ID , 'ASP_ID' => $value['name'] , 'CAL_VALO' =>"'" .  $value['value'] . "'" ];
+            if($value['value']>=0 && $value['value'] <=$valorMaximo[0][0]) //Que se encuentre entre el rango de calificacion
+               {
                 if ($this->model->insert_ssp_calificaciones($data))
                     $correcto++;
                 else if ($this->model->update_ssp_calificaciones($data))
                     $correcto++;
                 else
                     $errores++;
+                }else
+                $errores++;  
             }
             echo json_encode(['Mensaje' => $correcto.' Registros insertados - '.$errores.' Sin cambios']);
         }
         else
             $this->index_management();
     }
-
-          public function finaliza_fase(){
+//Funcion que cambia de estado la fase de un concurso
+   public function finaliza_fase(){
        //echo json_encode($_POST);
      if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         { 

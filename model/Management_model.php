@@ -223,6 +223,11 @@ Class Management_model extends Model {
         $data=['BCO_ESTA' => "'".$BCO_ESTA."'"];
         return $this->db->update('SSP_BASE_CONCURSO',$data,false ,"BCO_ID='$BCO_ID'");
     }
+    
+        //OBTIENE EL VALOR ASIGNADO SSP_BASE_CONCURSO 
+    public function get_valor_baseconcurso($BCO_ID) {
+        return $this->db->select("BCO_VALO", 'SSP_BASE_CONCURSO', "BCO_ID='$BCO_ID'", PDO::FETCH_NUM);
+    }
 
 
 }
