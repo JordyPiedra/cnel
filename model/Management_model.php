@@ -132,7 +132,7 @@ Class Management_model extends Model {
 
     //OBTENER LAS FASES DE UN CONCURSO
     public function getall_faseconcurso($DATOS, $BCO_ESTA="") {
-        return $this->db->select("BCO_ID,CON_ID,f.FMO_ID,BCO_VALO,BCO_FINI,BCO_FFIN,f.FMO_ID,FMO_NOMB,FMO_TFAS,FMO_TDES,BCO_ESTA", 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID  AND CON_ID=' . $DATOS['CON_ID'].'AND b.BCO_ESTA LIKE "%'.$BCO_ESTA.'"', PDO::FETCH_NUM);
+        return $this->db->select("BCO_ID,CON_ID,f.FMO_ID,BCO_VALO,BCO_FINI,BCO_FFIN,f.FMO_ID,FMO_NOMB,FMO_TFAS,FMO_TDES,BCO_ESTA,tokenGenerator(b.BCO_ID) TOKEN", 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID  AND CON_ID=' . $DATOS['CON_ID'].'AND b.BCO_ESTA LIKE "%'.$BCO_ESTA.'"', PDO::FETCH_NUM);
     }
 
     //OBTENER LAS FASES 
@@ -202,6 +202,20 @@ Class Management_model extends Model {
            //Función que actualiza estado del concurso
      public function update_estadoConcurso($CON_ID,$data) {
            return $this->db->update('SSP_CONCURSO',$data,false,"CON_ID='$CON_ID'");
+    }
+
+     //Función que inserta la calificacion por fase del aspirante
+     public function insert_ssp_calificaciones($data) {
+           return $this->db->insert('SSP_CALIFICACIONES',$data);
+    }
+    //Función que actualiza la calificacion por fase del aspirante
+    public function update_ssp_calificaciones($data) {
+           return $this->db->update('SSP_CALIFICACIONES',['CAL_VALO'=>$data['CAL_VALO']],false,"ASP_ID=".$data['ASP_ID']." and BCO_ID=".$data['BCO_ID']);
+    }
+    
+     //LISTA DE ASPIRANTES EN UN CONCURSO y CALIFICACIONES POR FASE 
+    public function getAspirantesbyCONIDBCONID($BCO_ID) {
+        return $this->db->select("A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA, tokenGenerator(A.ASP_ID) TOKEN,CAL_VALO VALOR", 'SSP_ASPIRANTE A, ssp_calificaciones C', "A.ASP_ID = c.ASP_ID  AND C.Bco_ID='$BCO_ID'", PDO::FETCH_NUM);
     }
 
 

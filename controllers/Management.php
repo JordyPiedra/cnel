@@ -83,21 +83,32 @@ Class Management extends Controller {
         if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         {
             //echo $_POST['IDCON__'];
-            $this->view->data =$this->datos_concurso($_POST['IDCON_']);
-              $this->view->data += ['AspirantesConcurso' => $this->model->getAspirantesbyCONID($_POST['IDCON_'],'I')];
+            $this->view->data =$this->datos_concurso_calificaciones($_POST['IDCON_']);
             $this->view->render($this, 'calificar');
-        
+                
         }else
         $this->index_management();
 
     }
 //______________________________________________________________________//
     //Obtenemos los datos y fases de un concurso en base a su ID
+    public function datos_concurso_calificaciones($CON_ID,$BCO_ESTA="") {
+            $datoConid=['CON_ID' => "'" . $CON_ID . "'"];
+            $DATA = $this->model->get_concurso($CON_ID);
+            $DATA += ['fasesConcurso' => $this->model->getall_faseconcurso($datoConid,$BCO_ESTA)];    
+            foreach ($DATA['fasesConcurso'] as $key => $value) {
+               
+           $DATA['fasesConcurso'][$key] += ['AspirantesConcurso' => $this->model->getAspirantesbyCONIDBCONID($value[0])];
+            }
+            return $DATA;
+    }
+    
+    //Obtenemos los datos y fases de un concurso en base a su ID
     public function datos_concurso($CON_ID,$BCO_ESTA="") {
             $datoConid=['CON_ID' => "'" . $CON_ID . "'"];
             $DATA = $this->model->get_concurso($CON_ID);
             $DATA += ['fasesConcurso' => $this->model->getall_faseconcurso($datoConid,$BCO_ESTA)];    
-
+            
             return $DATA;
     }
 
@@ -499,23 +510,25 @@ Class Management extends Controller {
 
 
       public function save_calificacion_aspirante(){
-       echo json_encode($_POST);
+       //echo json_encode($_POST);
      if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         { 
 
             $data = $_POST["data"];
             $CON_ID=$_POST["IDCON_"];
-            $errores="";
-            $correcto="";
+            $errores=0;
+            $correcto=0;
+            $BCON_ID=$_POST["IDBCON"];
             foreach ($data as $key => $value) {
-                $DATA={'CFA_ID' =>}
-            if($this->model->insert_value_aspirante_concurso($CON_ID, $data))
-               
-             echo $value['name'];
-             echo $value['value'];
+            $data=['BCO_ID' => $BCON_ID , 'ASP_ID' => $value['name'] , 'CAL_VALO' =>"'" .  $value['value'] . "'" ];
+                if ($this->model->insert_ssp_calificaciones($data))
+                    $correcto++;
+                else if ($this->model->update_ssp_calificaciones($data))
+                    $correcto++;
+                else
+                    $errores++;
             }
-              
-
+            echo json_encode(['Mensaje' => $correcto.' Registros insertados - '.$errores.' Sin cambios']);
         }
         else
             $this->index_management();

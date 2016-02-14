@@ -1,4 +1,4 @@
-  var IFAS;
+
   function ver_concurso(id)
   {
     $("#IDCON_").val(id); 
@@ -18,23 +18,26 @@
     
   });
   //////////View- CALIFICAR
-  function valores_maximo(IDFAS,vmax){
-
-$("#base").html('/'+vmax);
-IFAS=IDFAS;
+  function mostrar_menufa(IDBCON_,IDBCONTOKEN_){
+$('form').hide();
+$('#aspfas'+IDBCON_).show();
+IDBCON=IDBCON_;
+IDBCONTOKEN=IDBCONTOKEN_;
   }
   
   function agregar_calificacion(){
 
-    var data= $('form').serializeArray();
+    var data= $('#aspfas'+IDBCON).serializeArray();
     console.log(data);
 
-    fajax({'IDCON_': IDCONC , 'CONTOKEN':CONTOKEN, 'data': data}, URL+"/management/save_calificacion_aspirante", save_calificacion_aspirante_response);
+
+    fajax({'IDCON_': IDCONC , 'CONTOKEN':CONTOKEN,'IDBCON':IDBCON,'IDBCONTOKEN':IDBCONTOKEN, 'data': data}, URL+"/management/save_calificacion_aspirante", save_calificacion_aspirante_response);
 
   }
 
   function save_calificacion_aspirante_response(response){
-   // var obj = JSON.parse(response);
+    var obj = JSON.parse(response);
+    Materialize.toast(obj['Mensaje'],3000);
     console.log(response);
 //console.log(obj);
   }

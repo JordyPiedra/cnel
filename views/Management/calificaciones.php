@@ -34,7 +34,7 @@
 
                             <tbody id="">
 <?php
-
+var_dump($this->data);
 foreach ($this->data['Concursos'] as $key => $value) {
 
 echo' 
