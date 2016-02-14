@@ -217,6 +217,12 @@ Class Management_model extends Model {
     public function getAspirantesbyCONIDBCONID($BCO_ID) {
         return $this->db->select("A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA, tokenGenerator(A.ASP_ID) TOKEN,CAL_VALO VALOR", 'SSP_ASPIRANTE A, ssp_calificaciones C', "A.ASP_ID = c.ASP_ID  AND C.Bco_ID='$BCO_ID'", PDO::FETCH_NUM);
     }
+    
+    //CAMBIA ESTADO DE LA TABLA SSP_BASE_CONCURSO 
+    public function update_estado_baseConcurso($BCO_ID,$BCO_ESTA) {
+        $data=['BCO_ESTA' => "'".$BCO_ESTA."'"];
+        return $this->db->update('SSP_BASE_CONCURSO',$data,false ,"BCO_ID='$BCO_ID'");
+    }
 
 
 }

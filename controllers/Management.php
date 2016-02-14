@@ -83,7 +83,10 @@ Class Management extends Controller {
         if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         {
             //echo $_POST['IDCON__'];
-            $this->view->data =$this->datos_concurso_calificaciones($_POST['IDCON_']);
+            $this->view->data =$this->datos_concurso_calificaciones($_POST['IDCON_'],'I');
+            if(empty($this->view->data['fasesConcurso']))
+            $this->finalStateConcurso($_POST['IDCON_'],$_POST['CONTOKEN']);
+            else
             $this->view->render($this, 'calificar');
                 
         }else
@@ -507,6 +510,14 @@ Class Management extends Controller {
         else
             $this->index_management();
     }
+     //Función que cambia el estado a en FINALIZADO "F"
+    private function finalStateConcurso($CON_ID,$CON_IDTOKEN){
+            $data = ["CON_ESTA" => "'F'"];
+            if($this->model->update_estadoConcurso($CON_ID, $data))
+            header('Location: '.URL.'management/reportes');
+            else
+            $this->index_management();
+    }
 
 
       public function save_calificacion_aspirante(){
@@ -534,7 +545,24 @@ Class Management extends Controller {
             $this->index_management();
     }
 
-    
+          public function finaliza_fase(){
+       //echo json_encode($_POST);
+     if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        { 
+            if(isset($_POST['IDBCON']) && $_POST['IDBCONTOKEN']==$this->tokengenerate($_POST['IDBCON']))
+            {
+                $IDBCON=$_POST['IDBCON'];
+                if($this->model->update_estado_baseConcurso($IDBCON,'F'))
+                echo true;
+                else
+                echo false;
+            }
+                
+        }
+        else
+            $this->index_management();
+    }
+
  
          
 }

@@ -55,7 +55,7 @@
                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="agregar_calificacion();"><i class="material-icons left">done</i>Calificar  </a>
                         </div>
                          <div class="col l6 m12 s12 right-align">
-                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick=""><i class="material-icons left">exit_to_app</i>Terminar  </a>
+                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="$('#final_fase').openModal();"><i class="material-icons left">exit_to_app</i>Terminar  </a>
                         </div>
            </div>   
 <?php
@@ -114,6 +114,28 @@ foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
             </div>
 
         </div>
+        
+        <!-- Modal Departamento -->
+        <div id="final_fase" class="modal">
+            <div class="modal-content center-align">
+                <h5>Finalizar Fase</h5>
+            </div>
+            <div class="modal-content center-align">
+               
+                                    <div class="center-align col l12 m6 s6">
+                                        <div class="center-align col l6 m12 s12">
+                                            <a class=" center-align waves-effect waves-light btn blue" onclick="finaliza_fase();" id="guardar_D" >Guardar</a>
+
+                                        </div> 
+                                        <div class="center-align col l6 m12 s12">
+                                            <a class=" center-align waves-effect waves-light btn blue" onclick=" $('#final_fase').closeModal()">Cancelar</a>
+
+                                        </div>
+
+
+                                    </div>
+            </div>
+        </div>        
         <?php include_once SCRIPT_U; ?> 
         <?php include_once JSPDF ?>
         <script type="text/javascript">
