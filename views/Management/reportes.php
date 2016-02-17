@@ -24,11 +24,11 @@
         <i class="large     material-icons ">person</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
-        <a target="_blank" href="<?= URL.'management/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
         <p>Aspirantes inscritos</p>
         </div>
         <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'management/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
+        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
         <p>Listado de todos los aspirantes inscritos al sistema</p>
         </div>
     </div>
@@ -40,11 +40,11 @@
         <i class="large     material-icons ">person</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
-        <a target="_blank" href="<?= URL.'management/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
         <p>Aspirantes inscritos</p>
         </div>
         <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'management/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
+        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
         <p>Listado de todos los aspirantes inscritos al sistema</p>
         </div>
     </div>
@@ -55,11 +55,11 @@
         <i class="large     material-icons ">person</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
-        <a target="_blank" href="<?= URL.'management/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
         <p>Aspirantes inscritos</p>
         </div>
         <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'management/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
+        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
         <p>Listado de todos los aspirantes inscritos al sistema</p>
         </div>
     </div>
@@ -69,12 +69,12 @@
             </div>
         </div>
 
-        <form action="<?php echo URL; ?>management/creaconcurso" method="POST"> 
+        <form action="<?php echo URL; ?>reportes/creaconcurso" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
             <input type="submit" id="ejecutar" style="display: none;"> 
         </form>
 
-        <form action="<?php echo URL; ?>management/reclutar" method="POST"> 
+        <form action="<?php echo URL; ?>reportes/reclutar" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
             <input type="hidden" name="CONTOKEN" id="token_" value=""> 
             <input type="submit" id="reclutar" style="display: none;"> 
