@@ -93,6 +93,11 @@ Class Management extends Controller {
         $this->index_management();
 
     }
+    
+    //Cargamos la vista de reportes
+    public function reportes(){
+         $this->view->render($this, 'reportes');
+    }
 //______________________________________________________________________//
     //Obtenemos los datos y fases de un concurso en base a su ID
     public function datos_concurso_calificaciones($CON_ID,$BCO_ESTA="") {
