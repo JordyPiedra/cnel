@@ -37,10 +37,10 @@
 <div class="col l4 "> 
     <div class="card z-depth-2">
         <div class="card-image waves-effect waves-block waves-light center-align">
-        <i class="large     material-icons ">person</i>
+        <i class="large     material-icons ">assignment_turned_in</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
-        <a target="" href="<?= URL.'management/concurso_finalizado' ?>">Concursos Finalizados<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+            <a target="" href="<?= URL.'management/concurso_finalizado' ?>">Concursos Finalizados<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
         <p>Informe de Selección</p>
         </div>
         <div class="card-reveal">
@@ -52,7 +52,8 @@
 <div class="col l4 "> 
     <div class="card z-depth-2">
         <div class="card-image waves-effect waves-block waves-light center-align">
-        <i class="large     material-icons ">person</i>
+        <i class="large     material-icons ">assignment_turned_in
+</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
         <a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
