@@ -93,7 +93,11 @@ Class Management extends Controller {
         $this->index_management();
 
     }
-    
+      //Cargamos la vista de concursos finalizados
+    public function concurso_finalizado(){
+         $this->view->data=$this->model->getallConcurso("CON_ESTA='F'"); //Devuelve concursos inicializados
+         $this->view->render($this, 'concurso_finalizado');
+    }
     //Cargamos la vista de reportes
     public function reportes(){
          $this->view->render($this, 'reportes');
