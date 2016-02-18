@@ -10,7 +10,7 @@
                 <div class="col  s12  m12 l12 ">
                     <div class="container z-depth-1" style="padding: 10px;">
                         <div class="col l12 m12 s12 center-align ">
-                            <h5 class="blue-text text-darken-2">Poceso de Reclutamiento</h5>
+                            <h5 class="blue-text text-darken-2">Concursos Finalizados</h5>
                         </div>
                         <br>
                         <br>
@@ -37,7 +37,7 @@ foreach ($this->data['Concursos'] as $key => $value) {
 
 echo' 
 <tr class="center-align">
-<td><i class="material-icons light-green-text text-accent-3 small ">label</i></td>
+<td><i class="material-icons red-text text-darkred-4 small ">label</i></td>
 <td>' . $value[5] . '</td>
 <td>' . $value[1] . '</td>
 <td>Finalizado</td>
