@@ -59,7 +59,7 @@ echo'
 
         <form target="_blank" action="<?php echo URL; ?>reportes/informe_final" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
-            <input type="hidden" name="CONTOKEN" id="token_" value=""> 
+            <input type="hidden" name="CONTOKEN" id="CONTOKEN" value=""> 
             <input type="submit" id="informe" style="display: none;"> 
         </form>
 
