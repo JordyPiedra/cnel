@@ -4,8 +4,10 @@
  class PDF extends FPDF
 {
 // Cabecera de página
+public $headerData;
 function Header1($data)
 {
+    $data=$this->headerData;
     // Logo URL.public/images/logo.png
     $this->Image(URL.'public/images/logo.png',10,15,40);
     // Arial bold 15
@@ -102,7 +104,7 @@ function Footer()
     $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 }
 
-function FancyTable($header, $data,$Cmo)
+function FancyTable($header, $data,$Cmo,$inicial)
 {
     // Colores, ancho de línea y fuente en negrita
     $this->SetFillColor(31,73,125);
@@ -148,27 +150,33 @@ function FancyTable($header, $data,$Cmo)
     $this->SetFont('');
     // Datos
     $fill = false;
+   
+   
     foreach ($data as $key => $row) 
     {
+         if($key>=$inicial)
+         
          $this->Cell($w[0],6,$key+1,'LR',0,'L',$fill);
          
-        foreach ($row as $key => $value) {
-            if($key>=1 && $key<= ($Cmo[0]+$Cmo[1]))
+        foreach ($row as $key1 => $value) {
+            
+            if($key1>=1 && $key1<= ($Cmo[0]+$Cmo[1]))
             $ww=$ColMO;
-            else if($key> ($Cmo[0]+$Cmo[1]))
+            else if($key1> ($Cmo[0]+$Cmo[1]))
             $ww=$w[4];
             else 
-            $ww=$w[$key+1];
+            $ww=$w[$key1+1];
             
              $this->Cell($ww,6,utf8_decode($value),'LR',0,'L',$fill);
                
         }
        
-          
+          if($key==$inicial+17)
+               break;
         $this->Ln();
         $fill = !$fill;
     }
-    
+  
     
     // Línea de cierre
     $this->Cell(array_sum($w),1,'','T');
@@ -193,13 +201,19 @@ $numcolumO=count($this->data['oposicion']);
 $Cmo = array($numcolumM,$numcolumO);
 // Carga de datos
 $data = $this->data['AspirantesROW'];
-
+$npages=ceil(count($data)/18);
+$inicial=0;
+$headerData=$this->data['Concurso'];
+$pdf->headerData=$headerData;
+for ($i=1; $i <=$npages ; $i++) { 
 $pdf->AddPage();
-$pdf->Header1($this->data['Concurso']);
+$pdf->Header1($headerData);
 $pdf->SetFont('Arial','B',9);
-//$pdf->Cell(40,10,'¡Hola, Mundo!');
-$pdf->FancyTable($header,$data,$Cmo);
+$pdf->FancyTable($header,$data,$Cmo,$inicial);
 $pdf->AliasNbPages();
+$inicial+=17;
+}
+
 $pdf->Output();
 //Alcansan 18
 ?>
