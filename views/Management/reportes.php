@@ -40,12 +40,12 @@
         <i class="large     material-icons ">person</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
-        <a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-        <p>Aspirantes inscritos</p>
+        <a target="" href="<?= URL.'management/concurso_finalizado' ?>">Concursos Finalizados<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <p>Informe de Selección</p>
         </div>
         <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
-        <p>Listado de todos los aspirantes inscritos al sistema</p>
+        <span class="card-title grey-text text-darken-4"><a target="" href="<?= URL.'management/concurso_finalizado' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
+        <p>Listado de los concursos finalizados con informe de selección</p>
         </div>
     </div>
 </div>
@@ -82,7 +82,7 @@
 
         <?php include_once SCRIPT_U; ?> 
 
-        <?php include_once JSPDF ?>
+
         <script src="<?= URL . 'public/js/controllerReportes.js' ?>"></script>
     </body>
 

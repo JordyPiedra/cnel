@@ -469,7 +469,7 @@ Class Management extends Controller {
 
 
     //Función que genera el token para un identificador
-    private function tokengenerate($identificador){
+    public function tokengenerate($identificador){
         $token=$this->model->tokengenerate_($identificador);
         return  $token[0][0];
     }
