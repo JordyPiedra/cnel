@@ -1,0 +1,189 @@
+  $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+
+//departamentos
+function dep_selected(){
+  if($('#PUESTO').val()=='NULL') 
+   $('#dep_edit').hide();
+  else
+    {
+    $('#dep_edit').show();
+ 
+   fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+
+  
+    }
+}
+//Enlista los Puestos de trabajo
+function cargar_puestos_trabajo(response) {
+    console.log(response);
+    var obj = JSON.parse(response);
+    $("#CARGO").empty();
+
+    $.each(obj['puestos'], function (key, value) {
+        if(value[3]=='H')
+        estado='Habilitado';
+        else
+        estado='Deshabilitado';
+        var fila = '<tr><td>'+(key+1)+'</td><td>' + value[1] + '</td><td>' +  estado + '</td>'+
+        '<td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar Cargo" onclick="actualizar_cargo('+value[0]+",'"+value[1]+"','"+value[2]+"'"+')"> <i class="material-icons small">edit</i></a>'+
+        '<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar Cargo" onclick="elimina_cargo('+value[0]+')"> <i class="material-icons small">delete</i></a></td></tr>';
+
+        $("#CARGO").append(fila);
+
+    });
+
+}
+//Crea los puestos de trabajo
+function create_departamento(){
+    $('#DNOMB').val('');
+    $('#DESTA').prop('checked', 'true');
+    $('#guardar_D').attr('onclick', "insert_departamento()");
+    $("#departamento_modal").openModal();
+
+}
+//Inserta el departamento establecido
+function insert_departamento(){
+     var frmdep = $('#frmDepartamento :input').serialize();
+     frmdep += "&TIPO=D";
+    // console.log(frmdep);
+    fajax(frmdep, URL+'management/crea_departamento', insert_departamento_response);
+}
+//
+function insert_departamento_response(response){
+     var obj = JSON.parse(response);
+     Materialize.toast(obj['Mensaje'],2000);
+     $("#departamento_modal").closeModal();
+  fajax({}, URL+'management/get_allDepartamentosjson', actualiza_alldepartamentos);
+}
+
+//Edita los puestos de trabajo
+function edit_departamento(){
+    
+    $('#lDNOMB').attr('class','active');
+    $('#DNOMB').val('');
+    $('#DNOMB').val($('#PUESTO option:selected').text());
+    
+    $('#DESTA').prop('checked', '');
+    if($('#PUESTO option:selected').attr('estado')=='H')
+    $('#DESTA').prop('checked', 'true');
+    iddep=$('#PUESTO').val();
+    $('#guardar_D').attr('onclick', "update_departamento("+iddep+")");
+    $("#departamento_modal").openModal();
+
+}
+//Guardar departamento editado
+function update_departamento(id){
+   var frmdep = $('#frmDepartamento :input').serialize();
+    frmdep += "&DID="+id; 
+     frmdep += "&TIPO=D";
+     //console.log(frmdep);
+    fajax(frmdep, URL+'management/actualiza_departamento', update_departamento_response);
+}
+function update_departamento_response(response){
+      $('#departamento_modal').closeModal();
+            var obj = JSON.parse(response);
+            fajax($('#frmDepartamento :input').serialize(), URL+'management/get_allDepartamentosjson', actualiza_alldepartamentos);
+            Materialize.toast(obj['Mensaje'], 2000);
+    
+}
+
+//Actualiza lista departamentos
+        function actualiza_alldepartamentos(response) {
+            var obj = JSON.parse(response);
+            $("#PUESTO").empty();
+             var fila = '<option value="NULL" selected>Elija Departamento</option>';
+            $("#PUESTO").append(fila);
+            $.each(obj['departamentos'], function (key, value) {
+
+                var fila = '<option estado="'+ value[3] + '" value= "' + value[0] + '">' + value[1] + '</option>';
+
+                $("#PUESTO").append(fila);
+
+            });
+          
+
+            $("#CPADR").html($("#PUESTO").html());
+        }
+
+
+//Actualiza Departamento
+function create_cargo(){
+     $('#CNOMB').val('');
+    $('#guardar_C').attr('onclick','insert_cargo();');
+    $('#estCarg').hide();
+    $('#CPADR').val($('#PUESTO').val());
+    
+     $('#cargo_trabajo').openModal();
+}
+function insert_cargo(){
+     var frmdep = $('#frmCargo :input').serialize();
+    frmdep += "&TIPO=P";
+    console.log(frmdep);
+    frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
+    console.log(frmdep);
+    fajax(frmdep, URL+'management/crea_departamento', insert_cargo_response);
+}
+//CREA CARGO 
+function insert_cargo_response(response) {
+    $('#cargo_trabajo').closeModal();
+    var obj = JSON.parse(response);
+    obj['Mensaje']=obj['Mensaje'].replace('departamento', 'cargo')
+    Materialize.toast(obj['Mensaje'], 2000);
+
+    if ($('#PUESTO').val() != "NULL")
+        fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+
+}
+
+//Actualiza Cargo
+function actualizar_cargo(id,nombre,padre) {
+    $('#CNOMB').val(nombre);
+    $('#CPADR').val(padre);
+    $('#guardar_C').attr('onclick','update_cargo('+id+');');
+     $('#lDNOMB2').attr('class','active');
+    $('#cargo_trabajo').openModal();
+
+}
+
+//Actualiza Cargo
+function update_cargo(id) {
+  var frmdep = $('#frmCargo :input').serialize();
+    frmdep += "&TIPO=P";
+        frmdep += "&DID="+id; 
+         frmdep += "&DESTA=H"; 
+   
+    console.log(frmdep);
+    frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
+    console.log(frmdep);
+     fajax(frmdep, URL+'management/actualiza_departamento', update_cargo_response);
+   
+
+}
+function update_cargo_response(response){
+     $('#cargo_trabajo').closeModal();
+    var obj = JSON.parse(response);
+    obj['Mensaje']=obj['Mensaje'].replace('departamento', 'cargo')
+    Materialize.toast(obj['Mensaje'], 2000);
+     if ($('#PUESTO').val() != "NULL")
+        fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+}
+
+
+//Actualiza Cargo - elimina cargo
+function elimina_cargo(id){
+    $('#elimina_C').attr('onclick','delete_cargo('+id+');');
+     $('#mensaje_cargo').openModal();
+}
+function delete_cargo(id) {
+  
+     fajax({'DID': id}, URL+'management/actualiza_departamento', delete_cargo_response);
+}
+
+function delete_cargo_response(response){
+     $('#mensaje_cargo').closeModal();
+    Materialize.toast('Cargo eliminado...', 2000);
+    $('#elimina_C').attr('onclick','');
+    fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+}
