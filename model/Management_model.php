@@ -87,7 +87,7 @@ Class Management_model extends Model {
 
     //Consulta todos los departamentos
     public function getallDepartamentos($PTR_ESTA = "H") {
-        return $this->db->select('PTR_ID, PTR_NOMB ,PTR_PADR , PTR_ESTA', 'SSP_PUESTO_TRABAJO', "PTR_TIPO = 'D' AND PTR_ESTA IN ('$PTR_ESTA')", PDO::FETCH_NUM);
+        return $this->db->select('PTR_ID, PTR_NOMB ,PTR_PADR , PTR_ESTA', 'SSP_PUESTO_TRABAJO', "PTR_TIPO = 'D' AND PTR_ESTA LIKE '$PTR_ESTA'", PDO::FETCH_NUM);
     }
 
     //Consulta un departamento por ID
