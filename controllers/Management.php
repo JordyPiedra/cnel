@@ -12,6 +12,15 @@ Class Management extends Controller {
     public function index() {
         $this->view->render($this, 'index');
     }
+     //Cargamos la vista de configuraciones
+    public function configuracion() {
+        $this->view->render($this, 'configuracion');
+    }
+     //Cargamos la vista de configuraciones
+    public function configuracion_departamentos() {
+        $this->view->data = $this->get_allDepartamentos();
+        $this->view->render($this, 'configuracion_departamentos');
+    }
     //Cargamos la vista gestion_aspirante
     public function gestion_aspirante() {
         $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('N')];
@@ -40,7 +49,7 @@ Class Management extends Controller {
     }
     //Cargamos vista de creacion de concurso
     public function creaconcurso() {
-        $this->view->data = $this->get_allDepartamentos();
+        $this->view->data = $this->get_allDepartamentos('H');
         if(isset($_POST['IDCON_']))
         { 
             $datoConid=['CON_ID' => "'" . $_POST["IDCON_"] . "'"];
@@ -257,11 +266,8 @@ Class Management extends Controller {
     //__________________________________________________________________//
     //___________Creamos el registro en SSP_PUESTO_TRABAJO_______________//
     public function crea_departamento() {
-        $estado = "D";
-
-        if ($_POST["DESTA"] = "on")
-            $estado = "H";
-
+        $estado = "H";
+        
         if (empty($_POST["DPADR"]) || $_POST["DPADR"] == "NULL") {
             $data = [
                 "PTR_NOMB" => "'" . $this->Mayus($_POST["DNOMB"]) . "'",
@@ -286,7 +292,7 @@ Class Management extends Controller {
     public function actualiza_departamento() {
         $estado = "D";
 
-        if ($_POST["DESTA"] = "on")
+        if (isset($_POST["DESTA"]))
             $estado = "H";
 
         if (empty($_POST["DPADR"]) || $_POST["DPADR"] == "NULL") {
@@ -309,7 +315,17 @@ Class Management extends Controller {
 
         echo json_encode($this->model->updateDepartamento($data));
     }
+    
+    public function elimina_cargo() {
+        $estado = "D";
 
+            $data = [
+                "PTR_ESTA" => "'" . $estado . "'",
+                "PTR_ID" => $_POST["DID"]
+            ];
+
+        echo json_encode($this->model->updateDepartamento($data));
+    }
     //__________________________________________________________________//
     //___________Buscamos el registro en SSP_PUESTO_TRABAJO_______________//
     public function busca_departamento() {
@@ -437,12 +453,12 @@ Class Management extends Controller {
 
 
     //___________obtenemos todos los departamentos en SSP_PUESTO_TRABAJO_______________//
-    public function get_allDepartamentos() {
-        return ['departamentos' => $this->model->getallDepartamentos()];
+    public function get_allDepartamentos($PTR_ESTA='%') {
+        return ['departamentos' => $this->model->getallDepartamentos($PTR_ESTA)];
     }
 
-    public function get_allDepartamentosjson() {
-        echo json_encode(['departamentos' => $this->model->getallDepartamentos()]);
+    public function get_allDepartamentosjson($PTR_ESTA='%') {
+        echo json_encode(['departamentos' => $this->model->getallDepartamentos($PTR_ESTA)]);
     }
 
     public function get_allCargos() {
