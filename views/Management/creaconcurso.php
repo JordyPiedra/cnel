@@ -11,13 +11,10 @@
                 <div class="row z-depth-1 hide-on-med-and-down fixed">
                     <div class="col l12 m12 s12 ">
                         <ul class="tabs" style="width: 100%;">
-                            <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active">
-                                    <i class="material-icons">work</i><br>Crear Concurso</a></li>
-                            <li class="tab"><a section="parametros" onclick="seccionS('PC');" class="">
-                                    <i class="material-icons">recent_actors</i><br>Parámetros</a></li>
-                            <li class="tab"><a section="instruccion-formal" onclick="seccionS('FC');" class="">
-                                    <i class="material-icons">school</i><br>Perfiles</a></li>
-
+                            <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >
+                                    <i class="material-icons " style="padding-right: 10px;">work</i>Crear concurso</a></li>
+                            <li class="tab" id="tabparametros" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">
+                                    <i class="material-icons" style="padding-right: 10px;">recent_actors</i>Parámetros</a></li>
                             <div class="indicator" style="right: 669px; left: 669px;"></div></ul>
                     </div>
 
@@ -51,7 +48,7 @@
                                 <div class="col l6 m6 s12">
 
 
-                                    <div class="input-field col l11 m11 s11">
+                                    <div class="input-field col l12 m11 s11">
 
 
                                         <select id="PUESTO" name="PUESTO" class="browser-default" required onchange ="SelectController($('option:selected', this));" require>
@@ -64,25 +61,18 @@
                                              }
                                             ?>
 
-                                            <option value="NULL" >Crear - Editar</option>
+                                       
                                         </select>
 
                                     </div>
-                                    <div class="input-field col l1 m1 s1"  >
-                                        <a id="logo_departamento" ><i class="material-icons small" >open_in_new</i></a>  
-                                    </div>
-                                    <div class="input-field col l11 m11 s11">
+                                    <div class="input-field col l12 m11 s11">
 
                                         <select id="CARGO" name="CARGO" class="browser-default" required onchange ="SelectController2($('option:selected', this));" require>
                                             <option value="NULL" selected >Puesto de Trabajo</option>
                                             <div id="CARGOcontainer">
                                             </div>
-                                            <option value="NULL" >Crear - Editar</option>
-
+                                        
                                         </select>
-                                    </div>
-                                    <div class="input-field col l1 m1 s1"  >
-                                        <a id="logo_oferta" ><i class="material-icons small" >open_in_new</i></a>  
                                     </div>
                                 </div>
 
@@ -492,6 +482,8 @@
         function crea_cabconcurso(response) {
             var obj = JSON.parse(response);
             CONCID_ = obj['Concurso_'];
+            if(CONCID_)
+            $('#tabparametros').show();
             console.log(obj);
             Materialize.toast(obj['Mensaje'],2000);
         }
@@ -565,9 +557,6 @@
                 $("#CFASE").append(fila);
 
             });
-            $("#CFASE").append('<option value="NULL" >Crear - Editar</option>');
-
-
         }
 
 //Actualiza fases
@@ -634,33 +623,13 @@
 
         });
 
-////////////////////////////////////////
-        function SelectController3(valueSe) {
-            if (valueSe.text() == 'Crear - Editar')
-            {
-                limpiaForm($('#form_fases'));
-                if ($('#TDES').val() != 'NULL')
-                    $('#IFTDES').val($('#TDES').val());
-                $('#parametros').openModal();
-                $('#logo_param').show();
-            }
-            else if (valueSe.val() == 'NULL')
-                $('#logo_param').hide();
-            else
-            {
-
-
-                $('#logo_param').show();
-            }
-        }
-
 //____________________________________________________________
 //Cargar contenido
 
         function seccionS(param) {
             $('#cabeceraConcurso').hide();
             $('#parametrosConcurso').hide();
-            $('#perfilesConcurso').hide();
+           
 
             switch (param)
             {
@@ -676,10 +645,7 @@
 
                     $('#parametrosConcurso').show();
                     break;
-                case 'FC':
-
-                    $('#perfilesConcurso').show();
-                    break;
+               
 
             }
         }
@@ -702,128 +668,6 @@
 
 
         });
-
-///cargo
-        function SelectController2(valueSe) {
-            if (valueSe.text() == 'Crear - Editar')
-            {
-                limpiaForm($('#frmCargo'));
-                $('#CPADR').val($('#PUESTO').val());
-                $('#cargo_trabajo').openModal();
-                $('#logo_oferta').show();
-            }
-            else if (valueSe.val() == 'NULL')
-                $('#logo_oferta').hide();
-            else
-            {
-
-
-
-                $('#logo_oferta').show();
-            }
-        }
-
-
-
-
-        function SelectController(valueSe) {
-            if (valueSe.text() == 'Crear - Editar')
-            {
-                limpiaForm($('#frmDepartamento'));
-                $('#departamento_modal').openModal();
-                $('#logo_departamento').show();
-            }
-            else if (valueSe.val() == 'NULL')
-                $('#logo_departamento').hide();
-            else
-            {
-
-
-                $('#logo_departamento').show();
-            }
-        }
-
-        function buscar_departamento(response) {
-
-
-
-            var obj = JSON.parse(response);
-            //console.log(response);
-            Materialize.toast(obj['Mensaje'], 2000);
-            $('#DNOMB').attr('class', 'active');
-            $('#lDNOMB').attr('class', 'active');
-
-
-            $('#DNOMB').attr('Did', obj['Departamento'][0]);
-            $('#DNOMB').val(obj['Departamento'][1]);
-
-            if (obj['Departamento'][2] == null)
-                $('#DPADR').val('NULL');
-            else
-                $('#DPADR').val(obj['Departamento'][2]);
-
-
-            if (obj['Departamento'][3] == "H")
-            {
-                //console.log($('#DESTA'));
-                $('#DESTA').prop('checked', true);
-            }
-            else
-                $('#DESTA').prop('checked', false);
-
-
-        }
-
-
-//CREA DEPARTAMENTO 
-        function guardar_departamento(response) {
-            $('#departamento_modal').closeModal();
-            var obj = JSON.parse(response);
-            Materialize.toast(obj['Mensaje'], 2000);
-            fajax("", '<?php echo URL; ?>/management/get_allDepartamentosjson', actualiza_alldepartamentos);
-        }
-
-//CREA CARGO 
-        function guardar_cargo(response) {
-            $('#cargo_trabajo').closeModal();
-            var obj = JSON.parse(response);
-            Materialize.toast(obj['Mensaje'], 2000);
-
-            if ($('#PUESTO').val() != "NULL")
-                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>/management/get_allCargos', cargar_puestos_trabajo);
-
-        }
-
-//busca cargo
-        function buscar_cargo(response) {
-            //$('#departamento_modal').closeModal();
-            var obj = JSON.parse(response);
-
-            console.log(obj);
-            Materialize.toast(obj['Mensaje'], 2000);
-            $('#CNOMB').attr('class', 'active');
-            $('#lCNOMB').attr('class', 'active');
-
-
-            $('#CNOMB').attr('Did', obj['Departamento'][0]);
-            $('#CNOMB').val(obj['Departamento'][1]);
-
-            if (obj['Departamento'][2] == null)
-                $('#CPADR').val('NULL');
-            else
-                $('#CPADR').val(obj['Departamento'][2]);
-
-
-            if (obj['Departamento'][3] == "H")
-            {
-                //console.log($('#DESTA'));
-                $('#CESTA').prop('checked', true);
-            }
-            else
-                $('#CESTA').prop('checked', false);
-
-
-        }
 
 //Actualiza Departamento
         function actualiza_departamento(response) {
@@ -858,8 +702,6 @@
                 $("#PUESTO").append(fila);
 
             });
-            $("#PUESTO").append('<option value="NULL" >Crear - Editar</option>');
-
             $("#CPADR").html($("#PUESTO").html());
         }
 
@@ -878,8 +720,6 @@
                 $("#CARGO").append(fila);
 
             });
-
-            $("#CARGO").append('<option value="NULL" >Crear - Editar</option>');
             if (opdepartamento != "")
                 $("#CARGO").val(opdepartamento);
         }
@@ -900,71 +740,6 @@
         });
 
 
-//event heandler click guardar departamento
-        $("#guardar_D").click(function () {
-            var frmdep = $('#frmDepartamento :input').serialize();
-            frmdep += "&TIPO=D";
-            if ($('#DNOMB').attr('Did') == "") //Actualiza
-            {
-                console.log(frmdep);
-                fajax(frmdep, '<?php echo URL; ?>/management/crea_departamento', guardar_departamento);
-
-            }
-            else
-            {
-                frmdep += "&DID=" + $('#DNOMB').attr('Did'); //AGREGAMOS EL ID PARA SU EDICION
-                console.log(frmdep);
-                fajax(frmdep, '<?php echo URL; ?>/management/actualiza_departamento', actualiza_departamento);
-
-            }
-
-
-
-        });
-
-//event heandler click guardar cargo
-        $("#guardar_C").click(function () {
-            var frmdep = $('#frmCargo :input').serialize();
-            frmdep += "&TIPO=P";
-            frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
-            if ($('#CNOMB').attr('Did') == "") //Actualiza
-            {
-
-                console.log(frmdep);
-                fajax(frmdep, '<?php echo URL; ?>/management/crea_departamento', guardar_cargo);
-            } else
-            {
-                frmdep += "&DID=" + $('#CNOMB').attr('Did'); //AGREGAMOS EL ID PARA SU EDICION
-                console.log(frmdep);
-                fajax(frmdep, '<?php echo URL; ?>/management/actualiza_departamento', actualiza_cargo);
-
-            }
-
-
-
-        });
-
-
-        $("#logo_oferta").click(function () {
-            if ($('#CARGO').val() != "NULL")
-            {
-                var carg = $('#CARGO').serialize();
-                carg = carg.replace('CARGO', 'PUESTO');
-                console.log(carg);
-                fajax(carg, '<?php echo URL; ?>/management/busca_departamento', buscar_cargo);
-
-                $('#cargo_trabajo').openModal();
-            }
-        });
-
-
-        $("#logo_departamento").click(function () {
-            if ($('#PUESTO').val() != "NULL")
-                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>/management/busca_departamento', buscar_departamento);
-
-            $('#departamento_modal').openModal();
-
-        });
 
         function limpiaForm(miForm) {
 // recorremos todos los campos que tiene el formulario
