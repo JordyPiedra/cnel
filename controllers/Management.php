@@ -21,6 +21,10 @@ Class Management extends Controller {
         $this->view->data = $this->get_allDepartamentos();
         $this->view->render($this, 'configuracion_departamentos');
     }
+     //Cargamos la vista de fases
+    public function configuracion_fases() {
+        $this->view->render($this, 'configuracion_fases');
+    }
     //Cargamos la vista gestion_aspirante
     public function gestion_aspirante() {
         $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('N')];
