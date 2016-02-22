@@ -1,5 +1,5 @@
 $(function(){
-  Materialize.toast('<i class="material-icons white-text">mood</i>&nbsp;Bienvenido', 2500, 'rounded');
+  //Materialize.toast('<i class="material-icons white-text">mood</i>&nbsp;Bienvenido', 2500, 'rounded');
   $(".dropdown-button").dropdown();
   $(".button-collapse").sideNav();
   handleDate();
