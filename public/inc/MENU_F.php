@@ -7,7 +7,7 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <div class="col l10">
       <ul class="right hide-on-med-and-down">
-        <li id="mconcursos" ><a href="<?php echo URL; ?>management/configuracion">&nbsp;&nbsp;Configuración&nbsp;&nbsp;</a></li>
+        <li id="mconfiguracion" ><a href="<?php echo URL; ?>management/configuracion">&nbsp;&nbsp;Configuración&nbsp;&nbsp;</a></li>
         <li id="mconcursos" ><a href="<?php echo URL; ?>management/concursos">&nbsp;&nbsp;Concursos&nbsp;&nbsp;</a></li>
         <li id="maspirante"><a href="<?php echo URL; ?>management/gestion_aspirante">&nbsp;&nbsp;&nbsp;&nbsp;Aspirantes</a></li>
         <li id="mreclutamiento"><a href="<?php echo URL; ?>management/reclutamiento">&nbsp;&nbsp;&nbsp;&nbsp;Reclutamiento</a></li>

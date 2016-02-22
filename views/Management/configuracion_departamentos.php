@@ -23,7 +23,9 @@
                     
                     <form id="cabeceraConcurso" style="display: hide;">
                         <div class="col  s12  m12 l12 z-depth-1">
-                               
+                                  <div class="col l12 m12 s12 center-align ">
+                                    <h5 class="blue-text text-darken-2">Departamentos del Sistema</h5>
+                                </div>
                                     <div class="input-field col l6 m11 s11">
                                         <select id="PUESTO" name="PUESTO" class="browser-default" required onchange ="dep_selected();" require>
                                             <option value="NULL" selected>Elija Departamento</option>
@@ -200,7 +202,8 @@ echo '<option estado="'.$value[3].'" value="' . $value[0] . '">' . $value[1] . '
 <!-- Modal Alerta-->
 <div id="mensaje_cargo" class="modal">
 <div class="modal-content center-align">
-<h5>Seguro desea eliminar cargo</h5>
+<h5>Seguro desea eliminar el cargo</h5>
+<h5 id="nombcargmsj"></h5>
 </div>
 <div class="modal-content center-align">
 <div class="row ">

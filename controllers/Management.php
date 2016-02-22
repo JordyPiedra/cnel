@@ -23,6 +23,7 @@ Class Management extends Controller {
     }
      //Cargamos la vista de fases
     public function configuracion_fases() {
+        $this->view->data=($this->model->getallFase(["FMO_TDES" => "'" . '%' . "'"]));
         $this->view->render($this, 'configuracion_fases');
     }
     //Cargamos la vista gestion_aspirante
@@ -156,13 +157,7 @@ Class Management extends Controller {
         $this->view->render($this, 'login');
     }
 
-    //_______________CARGAMOS LOS DEPARTAMENTOS_______________//
-    private function getDepartamentos_() {
-        
-    }
-
-    //__________________________________________________________________//
-    
+ 
     //___________Eliminamos el registro en SSP_FASE_CONCURSO_______________//
     public function delete_faseConcurso() {
 
@@ -180,24 +175,39 @@ Class Management extends Controller {
     //__________________________________________________________________//
     //___________Creamos el registro en SSP_FASE_MO_______________//
     public function crea_fase() {
-
         $data = [
-
             "FMO_NOMB" => "'" . $this->Mayus($_POST["IFNOMB"]) . "'",
             "FMO_TFAS" => "'" . $_POST["IFTFAS"] . "'",
             "FMO_TDES" => "'" . $_POST["IFTDES"] . "'"
         ];
-
-
         echo json_encode($this->model->insertFase($data));
     }
-
     public function getall_fase() {
         $data = ["FMO_TDES" => "'" . $_POST["TDES"] . "'"];
-
+        
+        //echo $_POST["TDES"];
         echo json_encode($this->model->getallFase($data));
     }
-
+    public function update_fase() {
+        
+        if(isset($_POST["DID"]) &&  isset($_POST["IFNOMB"]) && isset($_POST["IFTFAS"]) && isset($_POST["IFTDES"]) )
+        {$data = [
+            "FMO_NOMB" => "'" . $this->Mayus($_POST["IFNOMB"]) . "'",
+            "FMO_TFAS" => "'" . $_POST["IFTFAS"] . "'",
+            "FMO_TDES" => "'" . $_POST["IFTDES"] . "'"
+        ];
+        echo json_encode($this->model->update_sspfasemo($data,$_POST["DID"]));
+        }
+    }
+    public function delete_fase() {
+        
+        if(isset($_POST["DID"]) &&  isset($_POST["ESTA"]) )
+        {$data = [
+            "FMO_ESTA" => "'" .'D' . "'"
+        ];
+        echo json_encode($this->model->update_sspfasemo($data,$_POST["DID"]));
+        }
+    }
     //__________________________________________________________________//
     //_______________Buscamos el registro en SSP_BASE_CONCURSO_______________//
     public function getall_fase_concurso() {

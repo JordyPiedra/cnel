@@ -1,5 +1,23 @@
+  document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.getElementsByTagName("INPUT");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                e.target.setCustomValidity("This field cannot be left blank");
+            }
+        };
+        elements[i].oninput = function(e) {
+            e.target.setCustomValidity("");
+        };
+    }
+})
+  
   $(document).ready(function(){
+        $("#mconfiguracion").attr("class","active");
     $('.tooltipped').tooltip({delay: 50});
+    
+    
   });
 
 //departamentos
@@ -28,7 +46,7 @@ function cargar_puestos_trabajo(response) {
         estado='Deshabilitado';
         var fila = '<tr><td>'+(key+1)+'</td><td>' + value[1] + '</td><td>' +  estado + '</td>'+
         '<td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar Cargo" onclick="actualizar_cargo('+value[0]+",'"+value[1]+"','"+value[2]+"'"+')"> <i class="material-icons small">edit</i></a>'+
-        '<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar Cargo" onclick="elimina_cargo('+value[0]+')"> <i class="material-icons small">delete</i></a></td></tr>';
+        '<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar Cargo" onclick="elimina_cargo('+value[0]+",'"+value[1]+"'"+')"> <i class="material-icons small">delete</i></a></td></tr>';
 
         $("#CARGO").append(fila);
 
@@ -91,6 +109,7 @@ function update_departamento_response(response){
 
 //Actualiza lista departamentos
         function actualiza_alldepartamentos(response) {
+            $('#dep_edit').hide();
             var obj = JSON.parse(response);
             $("#PUESTO").empty();
              var fila = '<option value="NULL" selected>Elija Departamento</option>';
@@ -172,7 +191,8 @@ function update_cargo_response(response){
 
 
 //Actualiza Cargo - elimina cargo
-function elimina_cargo(id){
+function elimina_cargo(id,nombre){
+     $('#nombcargmsj').html(nombre);
     $('#elimina_C').attr('onclick','delete_cargo('+id+');');
      $('#mensaje_cargo').openModal();
 }
@@ -186,4 +206,91 @@ function delete_cargo_response(response){
     Materialize.toast('Cargo eliminado...', 2000);
     $('#elimina_C').attr('onclick','');
     fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+}
+//___________________________CONFIGURACION FASES__________________________________
+function nueva_fase(){
+   $('#IFNOMB').val('');
+    $('#IFTFAS').val('');
+    $('#IFTDES').val('');
+    $('#lblIFNOMB').attr('class',''); 
+     $('#fas_guardar').attr('onclick','create_fase();');
+}
+function actualizar_fase(id,name,merops,tipo){
+    $('#IFNOMB').val(name);
+    $('#IFTFAS').val(merops);
+    $('#IFTDES').val(tipo);
+    $('#lblIFNOMB').attr('class','active');
+    $('#fas_guardar').attr('onclick','update_fase('+id+');');
+    
+}
+function update_fase(id){
+     var frmser = $('#form_fases :input').serialize();
+     frmser += "&DID="+id; 
+     console.log(frmser);
+          fajax(frmser, URL+'management/update_fase', update_fase_response);
+}
+function update_fase_response(response){
+     console.log(response);
+     var obj = JSON.parse(response);
+  
+    Materialize.toast(obj['Mensaje'], 2000);
+    actualizar_tabla_fases();
+}
+
+function create_fase(){
+     var frmser = $('#form_fases :input').serialize();
+     fajax(frmser, URL+'management/crea_fase', create_fase_response);
+}
+function create_fase_response(response){
+     console.log(response);
+     var obj = JSON.parse(response);
+    Materialize.toast(obj['Mensaje'], 2000);
+    actualizar_tabla_fases();
+}
+function elimina_fase(id,nombre){
+    $('#nombfase').html(nombre);
+    $('#mensaje_fase').openModal();
+    $('#elimina_F').attr('onclick','delete_fase('+id+');');
+    
+}
+function delete_fase(id){
+     fajax({'DID':id,'ESTA':'D'}, URL+'management/delete_fase',delete_fase_response);
+}
+function delete_fase_response(){
+    Materialize.toast('Fase eliminada..',2000);
+    $('#mensaje_fase').closeModal();
+    actualizar_tabla_fases();
+}
+function actualizar_tabla_fases(){
+     fajax({'TDES': '%'}, URL+'management/getall_fase', actualizar_tabla_fases_response);
+     
+}
+function actualizar_tabla_fases_response(response){
+    
+      var obj = JSON.parse(response);
+    $("#FASES").empty();
+
+    $.each(obj, function (key, value) {
+            tipo="";
+      switch (value[3]) {
+          case 'P':
+             tipo="Prueba";
+              break;
+          case 'E':
+             tipo="Entrevista";
+              break;
+          case 'R':
+             tipo="Requerimiento";
+              break;
+
+      }
+        
+        var fila = '<tr><td>'+(key+1)+'</td><td>' + value[1] + '</td><td>' + value[2] + '</td>'+'</td><td>' + tipo+ '</td><td>'+
+       '<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar fase" onclick="actualizar_fase('+value[0]+",'"+value[1]+"','"+value[2]+"','"+value[3]+"'"+')"> <i class="material-icons small">edit</i></a>'+
+         '<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Elimina fase" onclick="elimina_fase('+value[0]+",'"+value[1]+"'"+')"> <i class="material-icons small">delete</i></a></td></tr>';
+        $("#FASES").append(fila);
+
+    });
+
+    
 }
