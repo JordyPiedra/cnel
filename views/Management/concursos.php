@@ -6,6 +6,18 @@
     </head>
     <body>
           <?php include_once MENU_F; ?>
+          
+             <!--<nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li class="active"><a onclick="location.href='<?php echo URL; ?>management/creaconcurso';">Crear
+                        <i class="material-icons right">send</i></a></li>
+        <li><a href="configuracion_departamentos">Departamentos</a></li>
+        <li><a href="configuracion_fases">Fases</a></li>
+      </ul>
+    </div>
+  </nav>-->
             <div class="row ">
                 <div class="container ">
                     <button class="btn waves-effect waves-light" type="submit" name="action" onclick="location.href='<?php echo URL; ?>management/creaconcurso';">Crear

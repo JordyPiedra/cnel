@@ -13,167 +13,29 @@
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li class="active"><a href="configuracion">General</a></li>
+        <li class="active"><a href="configuracion">Configuraciones</a></li>
         <li><a href="configuracion_departamentos">Departamentos</a></li>
         <li><a href="configuracion_fases">Fases</a></li>
       </ul>
     </div>
   </nav>
                 <div id="formContainer">
-                    
-                    <form id="cabeceraConcurso" style="display: hide;">
                         <div class="col  s12  m12 l12 z-depth-1">
-
-                         
-
-                                <div class="col l12 m12 s12 center-align ">
-                                    <h5 class="blue-text text-darken-2">Bases del concurso</h5>
-                                </div>
-
-                                <div class="input-field col l4 m4 s12">
-                                    <input id="CODI" name="CODI" type="text" class="validate" <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; ?>  require>
-                                    <label for="CODI" <?php if ($concurso != "") echo'class="active"'; ?> >Código </label>
-                                </div>
-                                <div class="input-field col l6 m4 s12">
-                                    <input id="NOMB" name="NOMB" type="text" class="validate" <?php if ($concurso != "") echo'value="' . $concurso[0][1] . '"'; ?> require> 
-                                    <label for="NOMB" <?php if ($concurso != "") echo'class="active"'; ?> >Nombre</label>
-
-                                </div>
-                                <div class="input-field col l2 m4 s7">
-                                    <input id="NVAC" name="NVAC" type="number" value="1"  class="validate " <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; ?> require>
-                                    <label for="NVAC" class="active" >N# Vacantes</label>
-
-                                </div>
-
-                                <div class="col l6 m6 s12">
-
-
-                                    <div class="input-field col l11 m11 s11">
-
-
-                                        <select id="PUESTO" name="PUESTO" class="browser-default" required onchange ="SelectController($('option:selected', this));" require>
-                                            <option value="NULL" selected>Elija Departamento</option>
-
-                                            <?php
-                                            //echo var_dump($this->data['departamentos']);
-                                            foreach ($this->data['departamentos'] as $key => $value) {
-                                                echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
-                                             }
-                                            ?>
-
-                                            <option value="NULL" >Crear - Editar</option>
-                                        </select>
-
-                                    </div>
-                                    <div class="input-field col l1 m1 s1"  >
-                                        <a id="logo_departamento" ><i class="material-icons small" >open_in_new</i></a>  
-                                    </div>
-                                    <div class="input-field col l11 m11 s11">
-
-                                        <select id="CARGO" name="CARGO" class="browser-default" required onchange ="SelectController2($('option:selected', this));" require>
-                                            <option value="NULL" selected >Puesto de Trabajo</option>
-                                            <div id="CARGOcontainer">
-                                            </div>
-                                            <option value="NULL" >Crear - Editar</option>
-
-                                        </select>
-                                    </div>
-                                    <div class="input-field col l1 m1 s1"  >
-                                        <a id="logo_oferta" ><i class="material-icons small" >open_in_new</i></a>  
-                                    </div>
-                                </div>
-
-                                <div class="col l6 m6 s12">
-                                    <div class="input-field col l6 m6 s6">
-                                        <input id="VALM"  name="VALM" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][3] . '"';
-                                            else echo'value="50"'; ?>  class="validate">
-                                        <label for="VALM" class="active">% Mérito</label>
-
-                                    </div>
-                                    <div class="input-field col l6 m6 s6">
-                                        <input id="VALO" name="VALO" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][4] . '"';
-                                            else echo'value="50"'; ?>  class="validate">
-                                        <label for="VALO" class="active">% Oposición</label>
-
-                                    </div>
-                                    <div class="input-field col l6 m6 s12">
-                                        <input id="CFINI" name="CFINI"  type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][10] . '"'; ?> >
-                                        <label class="active" for="CFINI">Fecha Inicial</label>
-                                    </div>
-                                    <div class="input-field col l6 m6 s12">
-                                        <input id="CFFIN" name="CFFIN" type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][11] . '"'; ?> >
-                                        <label class="active" for="CFFIN">Fecha Final</label>
-                                    </div>
-                                </div>
-
-                                <div class="input-field col l12 m6 s12">
-
-                                    <textarea id="DESC" name="DESC"  class="materialize-textarea"><?php if ($concurso != "") echo $concurso[0][2]; ?> </textarea>
-                                    <label for="DESC">Descripción</label>
-                                </div>
-
-                           
-
-
-                        </div>
-                    </form>
-                   
-
-
-
-                        <div class="col  s12  m12 l12 z-depth-1">
-                            <div class="container " style="padding-bottom:100px;">
-
-
-                                <table class="striped highlight ">
-                                    <thead>
-
-                                        <tr>
-                                            <th data-field="id">Fase</th>
-
-                                            <th data-field="price">Fecha Inicio</th>
-                                            <th data-field="name">Fecha Fin</th>
-                                            <th data-field="name">Mérito</th>
-                                            <th data-field="name">Oposición</th>
-                                            <th data-field="name"></th>
-
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody id="detalle_fases">
-                                        <?php
-                                        if ($concurso != "") {
-                                            foreach ($this->DATA['fasesConcurso'] as $key => $value) {
-                                                echo '
-<tr class="center-align"><td>' . $value[7] . '</td>
-<td>' . $value[4] . '</td><td>' . $value[5] . '</td>
-<td>' . $value[3] . '</td><td></td>
-<td><a onclick="eliminar_fase_concurso(' . $value[2] . ')"><i class="material-icons small" >delete</i></a></td>
-</tr>';
-                                            }
-                                        }
-                                        ?>  
-
-                                    </tbody>
-                                </table>
-
+                            
+                            <div>
+                                <a  id="fas_guardar" onclick="create_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">save</i> </a>
                             </div>
-
+                  
+  <a  id="fas_create" onclick="nueva_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">add</i> </a>
+             
 
                         </div>
-                    </form>
-
                 </div>  
             </div>
         </div>
 
 
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large red" id="save_all">
-                <i class="large material-icons">save</i>
-            </a>
-        </div>
+     
 
         <!-- Modal Fases -->
         <div id="parametros" class="modal">

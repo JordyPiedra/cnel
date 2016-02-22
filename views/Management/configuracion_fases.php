@@ -12,7 +12,7 @@
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="configuracion">General</a></li>
+        <li><a href="configuracion">Configuraciones</a></li>
         <li ><a href="configuracion_departamentos">Departamentos</a></li>
         <li class="active"><a href="configuracion_fases">Fases</a></li>
       </ul>

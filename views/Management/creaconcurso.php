@@ -8,7 +8,7 @@
         <?php isset($this->DATA['Concurso']) ? $concurso = $this->DATA['Concurso'] : $concurso = ""; ?>
         <div class="row ">
             <div class="container">
-                <div class="row z-depth-1 hide-on-med-and-down fixed">
+                <!--<div class="row z-depth-1 hide-on-med-and-down fixed">
                     <div class="col l12 m12 s12 ">
                         <ul class="tabs" style="width: 100%;">
                             <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >
@@ -18,8 +18,16 @@
                             <div class="indicator" style="right: 669px; left: 669px;"></div></ul>
                     </div>
 
-                </div>
-
+                </div>-->
+ <nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+         <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >General</a></li>
+         <li class="tab" id="tabparametros" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">Parámetros</a></li>
+      </ul>
+    </div>
+  </nav>
                 <div id="formContainer">
                     <form id="cabeceraConcurso" style="display: hide;">
                         <div class="col  s12  m12 l12 z-depth-1">
