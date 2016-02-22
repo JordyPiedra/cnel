@@ -115,7 +115,7 @@
             for ($i=0; $i < count($work_experience); $i++) { 
               $row.='<tr data-id="'.$work_experience[$i][0].'">'.
               '<td>'.$work_experience[$i][1].'</td>'.
-              '<td>'.$work_area[$work_experience[$i][6]-1][1].'</td>'.
+              '<td>'.$work_area[$work_experience[$i][9]-1][1].'</td>'.
               '<td>'.$work_experience[$i][2].'</td>'.
               '<td>'.$work_experience[$i][6].'</td>'.
               '<td>'.$work_experience[$i][7].'</td>'.
