@@ -174,11 +174,7 @@ Class Management_model extends Model {
     }
      //LISTA DE ASPIRANTES FILTRO POR APROBACIÒN
     public function getAspirantesbyApro($ASP_APRO) {
-<<<<<<< HEAD
-        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA,ASP_GENE', 'SSP_ASPIRANTE', "ASP_APRO='$ASP_APRO'", PDO::FETCH_NUM);
-=======
         return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA,ASP_GENE', 'SSP_ASPIRANTE', "ASP_APRO like '$ASP_APRO'", PDO::FETCH_NUM);
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
     }
     //Función complemenadora para la busqueda de aspirantes donde where es el filtro completo de busqueda
      public function filter_getAspirantes($where) {

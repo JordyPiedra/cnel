@@ -4,29 +4,6 @@
  class PDF extends FPDF
 {
 // Cabecera de página
-<<<<<<< HEAD
-function Header1($data)
-{
-    // Logo
-    //$this->Image('logo_pb.png',10,8,33);
-    // Arial bold 15
-    $this->SetFont('Arial','B',12);
-    // Movernos a la derecha
-    $this->Cell(80);
-    
-    
-    // Título
-    $this->SetTextColor(31,73,125);
-    $this->Cell(30,10,'Concurso: '.$data[0][1],0,0,'L');
-    $this->Ln(10);
-    $this->Cell(80);
-      $this->Cell(30,10,' Codigo:'.$data[0][5],0,0,'L');
-      $this->Ln(10);
-    $this->Cell(80);
-     $this->Cell(30,10,'Fecha Inicio: '.$data[0][10].'          Fecha Fin:'.$data[0][11],0,0,'L');
-    // Salto de línea
-    $this->Ln(20);
-=======
 public $headerData;
 function Header1($data)
 {
@@ -108,21 +85,17 @@ function Header1($data)
     // //  $this->Cell(30,10,'Fecha Inicio: '.$data[0][10].'          Fecha Fin:'.$data[0][11],0,0,'L');
     // // Salto de línea
     // $this->Ln(20);
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
 }
 
 // Pie de página
 function Footer()
 {
-<<<<<<< HEAD
-=======
     $this->SetY(-25);
     $this->SetFont('Arial','B',10);
     $this->Cell(0,7,'Elaborado por:_____________________________________________',0,0,'C');
     $this->SetFont('Arial','',9);
     $this->Ln(5);
     $this->Cell(0,7,utf8_decode('                         Firma del responsable de selección'),0,0,'C');
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
     // Posición: a 1,5 cm del final
     $this->SetY(-15);
     // Arial italic 8
@@ -131,11 +104,7 @@ function Footer()
     $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 }
 
-<<<<<<< HEAD
-function FancyTable($header, $data,$Cmo)
-=======
 function FancyTable($header, $data,$Cmo,$inicial)
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
 {
     // Colores, ancho de línea y fuente en negrita
     $this->SetFillColor(31,73,125);
@@ -148,21 +117,13 @@ function FancyTable($header, $data,$Cmo,$inicial)
     $ColMO =  200/$ColMO;
     $Mc=$ColMO * ($Cmo[0]); 
     $Oc=$ColMO * ($Cmo[1]);
-<<<<<<< HEAD
-    $w = array(10, 50, $Mc,$Oc ,20);
-=======
     $w = array(10, 60, $Mc,$Oc ,10);
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
     $h = array(21, 21, 7,7 ,14);
     foreach ($header['header'] as $key => $value) {
         $this->Cell($w[$key],$h[$key],$value,1,0,'C',true);
     }
     $this->Cell(1,7,'',0,1);
-<<<<<<< HEAD
-    $this->Cell(60,7,'',0,0);
-=======
     $this->Cell(70,7,'',0,0);
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
     $this->SetFillColor(83,141,213);
     $this->SetFont('Arial','',8);
     foreach ($header['meritos'] as $key => $value) {
@@ -172,11 +133,7 @@ function FancyTable($header, $data,$Cmo,$inicial)
         $this->Cell($ColMO,7,$value[0],1,0,'C',true);
     }
      $this->Cell(1,7,'',0,1);
-<<<<<<< HEAD
-    $this->Cell(60,7,'',0,0);
-=======
     $this->Cell(70,7,'',0,0);
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
     foreach ($header['meritos'] as $key => $value) {
         $this->Cell($ColMO,7,$value[1].'%',1,0,'C',true);
     }
@@ -193,19 +150,6 @@ function FancyTable($header, $data,$Cmo,$inicial)
     $this->SetFont('');
     // Datos
     $fill = false;
-<<<<<<< HEAD
-    foreach ($data as $key => $row) 
-    {
-         $this->Cell($w[0],6,$key+1,'LR',0,'L',$fill);
-         
-        foreach ($row as $key => $value) {
-            if($key>=1 && $key<= ($Cmo[0]+$Cmo[1]+1))
-            $ww=$ColMO;
-            else if($key> ($Cmo[0]+$Cmo[1]+1))
-            $ww=$w[4];
-            else if($key==0 )
-            $ww=$w[$key+1];
-=======
    
    
     foreach ($data as $key => $row) 
@@ -222,20 +166,11 @@ function FancyTable($header, $data,$Cmo,$inicial)
             $ww=$w[4];
             else 
             $ww=$w[$key1+1];
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
             
              $this->Cell($ww,6,utf8_decode($value),'LR',0,'L',$fill);
                
         }
        
-<<<<<<< HEAD
-          
-        $this->Ln();
-        $fill = !$fill;
-    }
-    // Línea de cierre
-    $this->Cell(array_sum($w),0,'','T');
-=======
           if($key==$inicial+17)
                break;
         $this->Ln();
@@ -245,7 +180,6 @@ function FancyTable($header, $data,$Cmo,$inicial)
     
     // Línea de cierre
     $this->Cell(array_sum($w),1,'','T');
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
 }
 
 // Una tabla más completa
@@ -267,17 +201,6 @@ $numcolumO=count($this->data['oposicion']);
 $Cmo = array($numcolumM,$numcolumO);
 // Carga de datos
 $data = $this->data['AspirantesROW'];
-<<<<<<< HEAD
-
-$pdf->AddPage();
-$pdf->Header1($this->data['Concurso']);
-$pdf->SetFont('Arial','B',10);
-//$pdf->Cell(40,10,'¡Hola, Mundo!');
-$pdf->FancyTable($header,$data,$Cmo);
-$pdf->AliasNbPages();
-$pdf->Output();
-
-=======
 $npages=ceil(count($data)/18);
 $inicial=0;
 $headerData=$this->data['Concurso'];
@@ -293,7 +216,6 @@ $inicial+=17;
 
 $pdf->Output();
 //Alcansan 18
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
 ?>
 
 

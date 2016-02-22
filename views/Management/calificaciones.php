@@ -6,10 +6,8 @@
     <body>
         <?php include_once MENU_F; ?>
         <div class="row ">
-            <div class="container ">
-
-                <div class="col  s12  m12 l12 z-depth-1">
-                    <div class="container " style="padding-bottom:100px;">
+                <div class="col  s12  m12 l12 ">
+                    <div class="container z-depth-1 " style="padding-bottom:100px;">
                         <div class="col l12 m12 s12 center-align ">
                             <h5 class="blue-text text-darken-2">Poceso de Calificación</h5>
                         </div>
@@ -34,9 +32,7 @@
 
                             <tbody id="">
 <?php
-var_dump($this->data);
 foreach ($this->data['Concursos'] as $key => $value) {
-
 echo' 
 <tr class="center-align">
 <td><i class="material-icons light-green-text text-accent-3 small ">label</i></td>
@@ -55,10 +51,6 @@ echo'
 
                             </tbody>
                         </table>
-
-
-
-                    </div>
                 </div>
             </div>
         </div>

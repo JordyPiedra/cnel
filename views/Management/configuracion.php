@@ -20,15 +20,38 @@
     </div>
   </nav>
                 <div id="formContainer">
-                        <div class="col  s12  m12 l12 z-depth-1">
+                        <div class="col  s12  m12 l12 z-depth-1 center-align">
                             
-                            <div>
-                                <a  id="fas_guardar" onclick="create_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">save</i> </a>
-                            </div>
-                  
-  <a  id="fas_create" onclick="nueva_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">add</i> </a>
-             
-
+ <div class="col l4 "> 
+    <div class="card z-depth-2">
+        <div class="card-image waves-effect waves-block waves-light center-align">
+        <i class="large     material-icons ">work</i>
+        </div>
+        <div class="card-content" style="padding-top: 0px;">
+        <a target="" href="configuracion_departamentos">Departamentos<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <p>Departamentos y cargos</p>
+        </div>
+        <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><a target="" href="configuracion_departamentos">Configuración departamentos y cargos<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
+        <p>Ventana de mantenimiento de departamentos y cargos</p>
+        </div>
+    </div>
+</div>
+<div class="col l4 "> 
+    <div class="card z-depth-2">
+        <div class="card-image waves-effect waves-block waves-light center-align">
+        <i class="large     material-icons ">list</i>
+        </div>
+        <div class="card-content" style="padding-top: 0px;">
+        <a target="" href="configuracion_fases">Fases<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <p>Configuración de fases</p>
+        </div>
+        <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><a target="" href="configuracion_fases">Configuración de fases<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
+        <p>Ventana de mantenimiento de las fases</p>
+        </div>
+    </div>
+</div>
                         </div>
                 </div>  
             </div>

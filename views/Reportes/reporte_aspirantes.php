@@ -24,9 +24,6 @@
 
                         <!--Reporte PDF-->
 <div class="col l12 " id="REPORTE">  
-<<<<<<< HEAD
-  
-=======
   <table id="myTable" class="tablesorter"> 
 <thead> 
 <tr> 
@@ -63,7 +60,6 @@ echo'
 ?>   
 </tbody> 
 </table> 
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
 </div>
    
                 </div>
@@ -83,12 +79,6 @@ echo'
 
         <?php include_once SCRIPT_U; ?> 
 
-<<<<<<< HEAD
-        <?php include_once JSPDF ?>
-        <script src="<?= URL . 'public/js/controllerReportes.js' ?>"></script>
-    </body>
-
-=======
       
         <script src="<?= URL . 'public/tablesorter/jquery.tablesorter.min.js' ?>"></script>
          <script src="<?= URL . 'public/tablesorter/jquery-latest.min.js' ?>"></script>
@@ -103,7 +93,6 @@ echo'
 ); 
    
     </script>
->>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
 </html>
 
 
