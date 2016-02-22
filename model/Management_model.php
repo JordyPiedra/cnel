@@ -87,7 +87,7 @@ Class Management_model extends Model {
 
     //Consulta todos los departamentos
     public function getallDepartamentos($PTR_ESTA = "H") {
-        return $this->db->select('PTR_ID, PTR_NOMB ,PTR_PADR , PTR_ESTA', 'SSP_PUESTO_TRABAJO', "PTR_TIPO = 'D' AND PTR_ESTA IN ('$PTR_ESTA')", PDO::FETCH_NUM);
+        return $this->db->select('PTR_ID, PTR_NOMB ,PTR_PADR , PTR_ESTA', 'SSP_PUESTO_TRABAJO', "PTR_TIPO = 'D' AND PTR_ESTA LIKE '$PTR_ESTA'", PDO::FETCH_NUM);
     }
 
     //Consulta un departamento por ID
@@ -120,14 +120,24 @@ Class Management_model extends Model {
     //Ingreso de una fase
     public function insertFase($FMO_DATOS) {
 
-        $result = $this->db->select('PTR_NOMB', 'SSP_FASE_MO', "FMO_NOMB LIKE " . $FMO_DATOS['FMO_NOMB'], PDO::FETCH_NUM);
+        $result = $this->db->select('*', 'SSP_FASE_MO', "FMO_NOMB LIKE " . $FMO_DATOS['FMO_NOMB'], PDO::FETCH_NUM);
 
         if (sizeof($result) > 0)
             return $data = ["Mensaje" => "Ingreso Incorrecto. La fase " . $FMO_DATOS['FMO_NOMB'] . " ya existe"];
         else
+            {
             $this->db->insert('SSP_FASE_MO', $FMO_DATOS);
-
-        return $data = ["Mensaje" => "Ingreso Correctamente"];
+            return $data = ["Mensaje" => "Ingreso Correctamente"];
+            }
+    }
+    
+    //Ingreso de una fase
+    public function update_sspfasemo($FMO_DATOS,$FMO_ID) {
+        if ($this->db->update('SSP_FASE_MO',$FMO_DATOS,false,"FMO_ID='$FMO_ID'"))
+            return $data = ["Mensaje" => "Fase " . $FMO_DATOS['FMO_NOMB'] . " actualizado correctamente"];
+        else
+            return $data = ["Mensaje" => "Error. al actualizar"];
+         
     }
 
     //OBTENER LAS FASES DE UN CONCURSO
@@ -137,7 +147,7 @@ Class Management_model extends Model {
 
     //OBTENER LAS FASES 
     public function getallFase($FMO_DATOS) {
-        return $this->db->select('*', 'SSP_FASE_MO', 'FMO_TDES=' . $FMO_DATOS['FMO_TDES'], PDO::FETCH_NUM);
+        return $this->db->select('FMO_ID,FMO_NOMB,FMO_TFAS,FMO_TDES', 'SSP_FASE_MO', "FMO_ESTA='H' AND FMO_TDES LIKE " . $FMO_DATOS['FMO_TDES'], PDO::FETCH_NUM);
     }
 
     //UPDATE de un departamento
@@ -164,7 +174,11 @@ Class Management_model extends Model {
     }
      //LISTA DE ASPIRANTES FILTRO POR APROBACIÒN
     public function getAspirantesbyApro($ASP_APRO) {
+<<<<<<< HEAD
         return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA,ASP_GENE', 'SSP_ASPIRANTE', "ASP_APRO='$ASP_APRO'", PDO::FETCH_NUM);
+=======
+        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA,ASP_GENE', 'SSP_ASPIRANTE', "ASP_APRO like '$ASP_APRO'", PDO::FETCH_NUM);
+>>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
     }
     //Función complemenadora para la busqueda de aspirantes donde where es el filtro completo de busqueda
      public function filter_getAspirantes($where) {

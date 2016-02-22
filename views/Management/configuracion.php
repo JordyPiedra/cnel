@@ -8,233 +8,34 @@
         <?php isset($this->DATA['Concurso']) ? $concurso = $this->DATA['Concurso'] : $concurso = ""; ?>
         <div class="row ">
             <div class="container">
-                <!--<div class="row z-depth-1 hide-on-med-and-down fixed">
-                    <div class="col l12 m12 s12 ">
-                        <ul class="tabs" style="width: 100%;">
-                            <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >
-                                    <i class="material-icons " style="padding-right: 10px;">work</i>Crear concurso</a></li>
-                            <li class="tab" id="tabparametros" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">
-                                    <i class="material-icons" style="padding-right: 10px;">recent_actors</i>Parámetros</a></li>
-                            <div class="indicator" style="right: 669px; left: 669px;"></div></ul>
-                    </div>
 
-                </div>-->
- <nav class="blue darken-1">
+   <nav class="blue darken-1">
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-         <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >General</a></li>
-         <li class="tab" id="tabparametros" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">Parámetros</a></li>
+        <li class="active"><a href="configuracion">Configuraciones</a></li>
+        <li><a href="configuracion_departamentos">Departamentos</a></li>
+        <li><a href="configuracion_fases">Fases</a></li>
       </ul>
     </div>
   </nav>
                 <div id="formContainer">
-                    <form id="cabeceraConcurso" style="display: hide;">
                         <div class="col  s12  m12 l12 z-depth-1">
-
-                            <div class="container " style="padding-bottom:100px;">
-
-                                <div class="col l12 m12 s12 center-align ">
-                                    <h5 class="blue-text text-darken-2">Bases del concurso</h5>
-                                </div>
-
-                                <div class="input-field col l4 m4 s12">
-                                    <input id="CODI" name="CODI" type="text" class="validate" <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; ?>  require>
-                                    <label for="CODI" <?php if ($concurso != "") echo'class="active"'; ?> >Código </label>
-                                </div>
-                                <div class="input-field col l6 m4 s12">
-                                    <input id="NOMB" name="NOMB" type="text" class="validate" <?php if ($concurso != "") echo'value="' . $concurso[0][1] . '"'; ?> require> 
-                                    <label for="NOMB" <?php if ($concurso != "") echo'class="active"'; ?> >Nombre</label>
-
-                                </div>
-                                <div class="input-field col l2 m4 s7">
-                                    <input id="NVAC" name="NVAC" type="number" value="1"  class="validate " <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; ?> require>
-                                    <label for="NVAC" class="active" >N# Vacantes</label>
-
-                                </div>
-
-                                <div class="col l6 m6 s12">
-
-
-                                    <div class="input-field col l12 m11 s11">
-
-
-                                        <select id="PUESTO" name="PUESTO" class="browser-default" required onchange ="SelectController($('option:selected', this));" require>
-                                            <option value="NULL" selected>Elija Departamento</option>
-
-                                            <?php
-                                            //echo var_dump($this->data['departamentos']);
-                                            foreach ($this->data['departamentos'] as $key => $value) {
-                                                echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
-                                             }
-                                            ?>
-
-                                       
-                                        </select>
-
-                                    </div>
-                                    <div class="input-field col l12 m11 s11">
-
-                                        <select id="CARGO" name="CARGO" class="browser-default" required onchange ="SelectController2($('option:selected', this));" require>
-                                            <option value="NULL" selected >Puesto de Trabajo</option>
-                                            <div id="CARGOcontainer">
-                                            </div>
-                                        
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col l6 m6 s12">
-                                    <div class="input-field col l6 m6 s6">
-                                        <input id="VALM"  name="VALM" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][3] . '"';
-                                            else echo'value="50"'; ?>  class="validate">
-                                        <label for="VALM" class="active">% Mérito</label>
-
-                                    </div>
-                                    <div class="input-field col l6 m6 s6">
-                                        <input id="VALO" name="VALO" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][4] . '"';
-                                            else echo'value="50"'; ?>  class="validate">
-                                        <label for="VALO" class="active">% Oposición</label>
-
-                                    </div>
-                                    <div class="input-field col l6 m6 s12">
-                                        <input id="CFINI" name="CFINI"  type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][10] . '"'; ?> >
-                                        <label class="active" for="CFINI">Fecha Inicial</label>
-                                    </div>
-                                    <div class="input-field col l6 m6 s12">
-                                        <input id="CFFIN" name="CFFIN" type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][11] . '"'; ?> >
-                                        <label class="active" for="CFFIN">Fecha Final</label>
-                                    </div>
-                                </div>
-
-                                <div class="input-field col l12 m6 s12">
-
-                                    <textarea id="DESC" name="DESC"  class="materialize-textarea"><?php if ($concurso != "") echo $concurso[0][2]; ?> </textarea>
-                                    <label for="DESC">Descripción</label>
-                                </div>
-
+                            
+                            <div>
+                                <a  id="fas_guardar" onclick="create_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">save</i> </a>
                             </div>
-
+                  
+  <a  id="fas_create" onclick="nueva_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">add</i> </a>
+             
 
                         </div>
-                    </form>
-                    <form id="parametrosConcurso" >
-                        <div class="col  s12  m12 l12 z-depth-1">
-                            <div class="container " style="padding-bottom:100px;">
-
-                                <div class="col l12 m12 s12 center-align ">
-                                    <h5 class="blue-text text-darken-2">Fases del concurso</h5>
-                                </div>
-
-                                <div class="input-field col l4 m4 s12">
-
-
-                                    <select id="TDES" name="TDES"  class="browser-default" required >
-                                        <option value="NULL" selected>Tipo Parámetro</option>
-                                        <option value="E" >Entrevista</option>
-                                        <option value="P">Prueba</option>
-                                        <option value="R">Requerimiento</option>
-
-
-                                    </select>
-
-                                </div>
-
-                                <div class="input-field col l4 m1 s12">
-
-                                    <select id="CFASE" name="CFASE" class="browser-default" required onchange ="SelectController3($('option:selected', this));" >
-                                        <option value="NULL" selected >Fase</option>
-
-
-                                        <option value="NULL" >Crear - Editar</option>
-
-                                    </select>
-                                </div>
-
-                                <div class="input-field col l4 m1 s1"  >
-                                    <a id="logo_param" onclick=""><i class="material-icons small" >open_in_new</i></a>  
-                                </div>
-
-                                <div class="input-field col l12 m12 s12">
-                                    <div class="input-field col l4 m4 s12">
-                                        <input id="BFINI" name="BFINI"  type="date" class="datepicker">
-                                        <label class="active" for="BFINI">Fecha Inicial</label>
-                                    </div>
-                                    <div class="input-field col l4 m4 s12">
-                                        <input id="BFFIN" name="BFFIN" type="date" class="datepicker">
-                                        <label class="active" for="BFFIN">Fecha Final</label>
-                                    </div>
-
-                                    <div class="input-field col l3 m4 s12">
-                                        <input id="BVALO" name="BVALO" type="number" class="validate">
-                                        <label for="last_name">Valor</label>
-                                    </div>
-
-                                    <div  class="input-field col l1 m1 s1"  >
-                                        <a id="G_fase" class="center-align" ><i class="material-icons small" >playlist_add</i></a>  
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-
-
-                        <div class="col  s12  m12 l12 z-depth-1">
-                            <div class="container " style="padding-bottom:100px;">
-
-
-                                <table class="striped highlight ">
-                                    <thead>
-
-                                        <tr>
-                                            <th data-field="id">Fase</th>
-
-                                            <th data-field="price">Fecha Inicio</th>
-                                            <th data-field="name">Fecha Fin</th>
-                                            <th data-field="name">Mérito</th>
-                                            <th data-field="name">Oposición</th>
-                                            <th data-field="name"></th>
-
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody id="detalle_fases">
-                                        <?php
-                                        if ($concurso != "") {
-                                            foreach ($this->DATA['fasesConcurso'] as $key => $value) {
-                                                echo '
-<tr class="center-align"><td>' . $value[7] . '</td>
-<td>' . $value[4] . '</td><td>' . $value[5] . '</td>
-<td>' . $value[3] . '</td><td></td>
-<td><a onclick="eliminar_fase_concurso(' . $value[2] . ')"><i class="material-icons small" >delete</i></a></td>
-</tr>';
-                                            }
-                                        }
-                                        ?>  
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-
-
-                        </div>
-                    </form>
-
                 </div>  
             </div>
         </div>
 
 
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large red" id="save_all">
-                <i class="large material-icons">save</i>
-            </a>
-        </div>
+     
 
         <!-- Modal Fases -->
         <div id="parametros" class="modal">
@@ -565,6 +366,9 @@
                 $("#CFASE").append(fila);
 
             });
+            $("#CFASE").append('<option value="NULL" >Crear - Editar</option>');
+
+
         }
 
 //Actualiza fases
@@ -631,6 +435,26 @@
 
         });
 
+////////////////////////////////////////
+        function SelectController3(valueSe) {
+            if (valueSe.text() == 'Crear - Editar')
+            {
+                limpiaForm($('#form_fases'));
+                if ($('#TDES').val() != 'NULL')
+                    $('#IFTDES').val($('#TDES').val());
+                $('#parametros').openModal();
+                $('#logo_param').show();
+            }
+            else if (valueSe.val() == 'NULL')
+                $('#logo_param').hide();
+            else
+            {
+
+
+                $('#logo_param').show();
+            }
+        }
+
 //____________________________________________________________
 //Cargar contenido
 
@@ -677,6 +501,128 @@
 
         });
 
+///cargo
+        function SelectController2(valueSe) {
+            if (valueSe.text() == 'Crear - Editar')
+            {
+                limpiaForm($('#frmCargo'));
+                $('#CPADR').val($('#PUESTO').val());
+                $('#cargo_trabajo').openModal();
+                $('#logo_oferta').show();
+            }
+            else if (valueSe.val() == 'NULL')
+                $('#logo_oferta').hide();
+            else
+            {
+
+
+
+                $('#logo_oferta').show();
+            }
+        }
+
+
+
+
+        function SelectController(valueSe) {
+            if (valueSe.text() == 'Crear - Editar')
+            {
+                limpiaForm($('#frmDepartamento'));
+                $('#departamento_modal').openModal();
+                $('#logo_departamento').show();
+            }
+            else if (valueSe.val() == 'NULL')
+                $('#logo_departamento').hide();
+            else
+            {
+
+
+                $('#logo_departamento').show();
+            }
+        }
+
+        function buscar_departamento(response) {
+
+
+
+            var obj = JSON.parse(response);
+            //console.log(response);
+            Materialize.toast(obj['Mensaje'], 2000);
+            $('#DNOMB').attr('class', 'active');
+            $('#lDNOMB').attr('class', 'active');
+
+
+            $('#DNOMB').attr('Did', obj['Departamento'][0]);
+            $('#DNOMB').val(obj['Departamento'][1]);
+
+            if (obj['Departamento'][2] == null)
+                $('#DPADR').val('NULL');
+            else
+                $('#DPADR').val(obj['Departamento'][2]);
+
+
+            if (obj['Departamento'][3] == "H")
+            {
+                //console.log($('#DESTA'));
+                $('#DESTA').prop('checked', true);
+            }
+            else
+                $('#DESTA').prop('checked', false);
+
+
+        }
+
+
+//CREA DEPARTAMENTO 
+        function guardar_departamento(response) {
+            $('#departamento_modal').closeModal();
+            var obj = JSON.parse(response);
+            Materialize.toast(obj['Mensaje'], 2000);
+            fajax("", '<?php echo URL; ?>/management/get_allDepartamentosjson', actualiza_alldepartamentos);
+        }
+
+//CREA CARGO 
+        function guardar_cargo(response) {
+            $('#cargo_trabajo').closeModal();
+            var obj = JSON.parse(response);
+            Materialize.toast(obj['Mensaje'], 2000);
+
+            if ($('#PUESTO').val() != "NULL")
+                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>/management/get_allCargos', cargar_puestos_trabajo);
+
+        }
+
+//busca cargo
+        function buscar_cargo(response) {
+            //$('#departamento_modal').closeModal();
+            var obj = JSON.parse(response);
+
+            console.log(obj);
+            Materialize.toast(obj['Mensaje'], 2000);
+            $('#CNOMB').attr('class', 'active');
+            $('#lCNOMB').attr('class', 'active');
+
+
+            $('#CNOMB').attr('Did', obj['Departamento'][0]);
+            $('#CNOMB').val(obj['Departamento'][1]);
+
+            if (obj['Departamento'][2] == null)
+                $('#CPADR').val('NULL');
+            else
+                $('#CPADR').val(obj['Departamento'][2]);
+
+
+            if (obj['Departamento'][3] == "H")
+            {
+                //console.log($('#DESTA'));
+                $('#CESTA').prop('checked', true);
+            }
+            else
+                $('#CESTA').prop('checked', false);
+
+
+        }
+
 //Actualiza Departamento
         function actualiza_departamento(response) {
             $('#departamento_modal').closeModal();
@@ -710,6 +656,8 @@
                 $("#PUESTO").append(fila);
 
             });
+            $("#PUESTO").append('<option value="NULL" >Crear - Editar</option>');
+
             $("#CPADR").html($("#PUESTO").html());
         }
 
@@ -728,6 +676,8 @@
                 $("#CARGO").append(fila);
 
             });
+
+            $("#CARGO").append('<option value="NULL" >Crear - Editar</option>');
             if (opdepartamento != "")
                 $("#CARGO").val(opdepartamento);
         }
@@ -748,6 +698,71 @@
         });
 
 
+//event heandler click guardar departamento
+        $("#guardar_D").click(function () {
+            var frmdep = $('#frmDepartamento :input').serialize();
+            frmdep += "&TIPO=D";
+            if ($('#DNOMB').attr('Did') == "") //Actualiza
+            {
+                console.log(frmdep);
+                fajax(frmdep, '<?php echo URL; ?>/management/crea_departamento', guardar_departamento);
+
+            }
+            else
+            {
+                frmdep += "&DID=" + $('#DNOMB').attr('Did'); //AGREGAMOS EL ID PARA SU EDICION
+                console.log(frmdep);
+                fajax(frmdep, '<?php echo URL; ?>/management/actualiza_departamento', actualiza_departamento);
+
+            }
+
+
+
+        });
+
+//event heandler click guardar cargo
+        $("#guardar_C").click(function () {
+            var frmdep = $('#frmCargo :input').serialize();
+            frmdep += "&TIPO=P";
+            frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
+            if ($('#CNOMB').attr('Did') == "") //Actualiza
+            {
+
+                console.log(frmdep);
+                fajax(frmdep, '<?php echo URL; ?>/management/crea_departamento', guardar_cargo);
+            } else
+            {
+                frmdep += "&DID=" + $('#CNOMB').attr('Did'); //AGREGAMOS EL ID PARA SU EDICION
+                console.log(frmdep);
+                fajax(frmdep, '<?php echo URL; ?>/management/actualiza_departamento', actualiza_cargo);
+
+            }
+
+
+
+        });
+
+
+        $("#logo_oferta").click(function () {
+            if ($('#CARGO').val() != "NULL")
+            {
+                var carg = $('#CARGO').serialize();
+                carg = carg.replace('CARGO', 'PUESTO');
+                console.log(carg);
+                fajax(carg, '<?php echo URL; ?>/management/busca_departamento', buscar_cargo);
+
+                $('#cargo_trabajo').openModal();
+            }
+        });
+
+
+        $("#logo_departamento").click(function () {
+            if ($('#PUESTO').val() != "NULL")
+                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>/management/busca_departamento', buscar_departamento);
+
+            $('#departamento_modal').openModal();
+
+        });
 
         function limpiaForm(miForm) {
 // recorremos todos los campos que tiene el formulario

@@ -10,6 +10,12 @@ Class Reportes extends Controller {
 //________________________VISTAS RENDERIZADAS___________________________//
     //Cargamos la vista reportes de aspirantes
     public function reporte_aspirantes() {
+<<<<<<< HEAD
+=======
+        require_once('Management.php');
+        $link= new Management();
+        $this->view->data = ['Aspirantes' => $link->model->getAspirantesbyApro('%')];
+>>>>>>> 4bf3e985e4abf77c7da03dee1de5094154da19e1
         $this->view->render($this, 'reporte_aspirantes');
     }   
         
