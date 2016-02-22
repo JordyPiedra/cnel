@@ -231,13 +231,6 @@ $(function(){
 
   }
 
-
-
-  /*for (var i = 0; i < 150; i++) {
-    pdf.text(x, y, " "+y);
-    y+=4;
-  }*/
-
   var string = pdf.output('datauristring');
 
   $('#applicantResume').attr('src', string);

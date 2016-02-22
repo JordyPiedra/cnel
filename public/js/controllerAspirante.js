@@ -3,11 +3,6 @@ $(function(){
   $(".dropdown-button").dropdown();
   $(".button-collapse").sideNav();
   handleDate();
-  
-
-  /*$("#containerHV").empty().load('http://' + document.location.hostname + '/cnel/views/aspirante/informacion-personal.php', function(){
-
-  });*/
 
   $(".subMA").on('click', function(){
     $("#user").css("width", "auto");
@@ -169,6 +164,9 @@ $(document).on("change", "#IPPROV, #DDPROV, #DDCANT", function(){
     enumerable:false,
     configurable:false
   });
+
+
+  $(".tabs a").first().click();
 
 
 });

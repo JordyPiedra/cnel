@@ -68,12 +68,6 @@ var ACCESS = {
         return false;
       }
 
-
-
-      //if(ACCESS.con > 3)
-      //  return false;
-      
-      //ACCESS.tab[0] = '';
       var form =$("form");
 
       if (!form[0].checkValidity()) {
@@ -200,16 +194,6 @@ var ACCESS = {
   return {
     nameX: nameObject
   };
-
-
-
-
-
-
-
-
-
-
 
 
 })();
