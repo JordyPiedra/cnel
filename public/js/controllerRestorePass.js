@@ -37,7 +37,7 @@ $(function(){
           $("main").prepend(load);
         },
         success: function(response){
-          console.log(response);
+          //console.log(response);
           var r= JSON.parse(response);
 
           if(r.STATUS === 'SUCCESS'){

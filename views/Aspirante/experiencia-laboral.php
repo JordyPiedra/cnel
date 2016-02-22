@@ -42,7 +42,7 @@
       </div>
 
       <div class="input-field col l2 m6 s6">
-        <input name="ELTELE" id="ELTELE" type="text" class="actI validate" required>
+        <input name="ELTELE" id="ELTELE" type="text" class="actI validate" required  pattern="[0-9]*"  title= "Solo acepta números">
         <label for="ELTELE" class="actL">Tel. Empresa</label>
       </div>
 

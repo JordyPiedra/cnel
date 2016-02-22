@@ -521,6 +521,12 @@ Class Aspirante extends Controller{
 		return $data;
 	}
 
+	public function logout(){
+		Session::unsetValue("ID-ASPIRANTE");
+		Session::unsetValue("EMAIL-ASPIRANTE");
+		echo '<script> window.location.href="'.URL.'"</script>';
+	}
+
 	public function curriculumVitae(){
 
 
@@ -558,86 +564,10 @@ Class Aspirante extends Controller{
 		$candidate["we"] = $n->fetchAll(PDO::FETCH_NUM);
 
 		
-
-		
-
-
-
-
-
-
-
 		$output  =  ["c" => $candidate];
-
-
-		
-
-
-
-
-		
-
-		//echo "<pre>";
-		//print_r($candidate);
-
-		//echo "<pre>";
-		//print_r($output);
+	
 		echo json_encode($output);
 
-
-
-		/*#
-
-		$name = $candidate["ASP_APE1"]." ".$candidate["ASP_APE2"]." ".$candidate["ASP_NOM1"]." ".$candidate["ASP_NOM2"];
-
-
-
-		$mipdf = new FPDF();
-		//$mipdf->SetAutoPageBreak(true,10);
-
-		$mipdf->SetFont('Times','',8);
-
-		$mipdf ->AddPage();
-		$mipdf->Cell(35,45,"",1,0,'C');
-		$mipdf->SetFont('Times','B',14);
-		$mipdf->Cell(0,5,$name,0,1,'C');
-
-		$mipdf->SetFont('Times','B',10);
-		$mipdf->Cell(40, 10);
-		$mipdf->Cell(50,10,"Datos personales",0,1,'L');
-
-		$mipdf->SetFont('Times','',10);
-
-		$mipdf->Cell(40, 5);
-		$mipdf->Cell(50, 5,utf8_decode("CÉDULA: "),0,0,'L');
-		$mipdf->Cell(0, 5,$candidate["ASP_CEDU"],1,1,'L');
-
-
-		$mipdf->Cell(40, 5);
-		$mipdf->Cell(50, 5,utf8_decode("ESTADO CIVIL: "),0,0,'L');
-		$mipdf->Cell(0, 5,$candidate["ASP_ESCI"],1,1,'L');
-
-		$mipdf->Cell(40, 5);
-		$mipdf->Cell(50, 5,utf8_decode("GÉNERO: "),0,0,'L');
-		$mipdf->Cell(0, 5,$candidate["ASP_GENE"],1,1,'L');
-
-		$mipdf->Cell(40, 5);
-		$mipdf->Cell(50, 5,utf8_decode("EMAIL: "),0,0,'L');
-		$mipdf->Cell(0, 5,$candidate["ASP_EMAP"],1,1,'L');
-
-		$mipdf->Cell(40, 5);
-		$mipdf->Cell(50, 5,utf8_decode("TELÉFONO (S): "),0,0,'L');
-		$mipdf->Cell(0, 5,$candidate["ASP_TEL1"] . " " .$candidate["ASP_TEL2"] ,1,1,'L');
-
-
-
-		$mipdf->SetFont('Times','',8);
-
-		$mipdf ->AliasNbPages();
-
-		$mipdf->Ln(5);
-		//$mipdf->sectionF();
-		$mipdf->Output();*/
 	}
 
 

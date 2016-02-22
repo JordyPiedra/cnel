@@ -45,7 +45,7 @@
         </div>
 
         <div class="input-field col offset-l1 l2 m4 s6">
-          <input name="DFFNAC" id="DFFNAC" type="text" maxlength="10" class="actI validate" placeholder="yyyy-mm-dd" required>
+          <input name="DFFNAC" id="DFFNAC" type="text" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2000-01-30">
           <label class="active" for="DFFNAC">Fecha nacimiento</label>
         </div>
 
@@ -94,12 +94,12 @@
         </div>
 
         <div class="input-field col l2 m4 s6">
-          <input name="DFTEL1" id="DFTEL1" type="text" class="actI validate" maxlength="15" required>
+          <input name="DFTEL1" id="DFTEL1" type="text" class="actI validate" maxlength="15" required pattern= "[0-9]*"  title= "Solo acepta números">
           <label for="DFTEL1" class="actL">Teléfono 1</label>
         </div>
 
         <div class="input-field col l2 m4 s6">
-          <input name="DFTEL2" id="DFTEL2" type="text" class="actI validate" maxlength="15" required>
+          <input name="DFTEL2" id="DFTEL2" type="text" class="actI validate" maxlength="15" required pattern= "[0-9]*"  title= "Solo acepta números">
           <label for="DFTEL2" class="actL">Teléfono 2</label>
         </div>
     

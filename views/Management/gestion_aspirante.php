@@ -15,7 +15,7 @@
                     <div class="col  s12  m12 l12 z-depth-1">
                         <div class="container " style="padding-bottom:100px;">
                             <div class="col l12 m12 s12 center-align ">
-                                        <h5 class="blue-text text-darken-2">Poceso de Reclutamiento</h5>
+                                        <h5 class="blue-text text-darken-2">Aprobación de Perfiles</h5>
                                     </div>
                             <br>
                             <br>
@@ -25,12 +25,13 @@
 
                                     <tr >
                                     <th data-field="id">#</th>
-                                    <th data-field="id">Código</th>
-                                    <th data-field="price">Nombre</th>
-                                    <th data-field="name">Estado</th>
-                                    <th data-field="date">Fecha Inicio</th>
-                                    <th data-field="date">Fecha Fin</th>
-                                    <th data-field="name"></th>
+                                    <th data-field="id">Cédula</th>
+                                    <th data-field="price">Nombres</th>
+                                    <th data-field="price">Apellidos</th>
+                                    <th data-field="name">Género</th>
+                                    <th data-field="date">Fecha Nacimiento</th>
+                                    <th data-field="date"></th>
+                                   
 
 
                                     </tr>
@@ -39,22 +40,22 @@
                                 <tbody id="">
 <?php
 
-foreach ($this->DATA['Concursos'] as $key => $value) {
+foreach ($this->data['Aspirantes'] as $key => $value) {
   
 echo' 
 <tr class="center-align">
-<td><i class="material-icons light-green-text text-accent-3 small ">label</i></td>
-<td>'.$value[5].'</td>
+<td><i class="material-icons light-blue-text text-accent-3 small ">person</i></td>
 <td>'.$value[1].'</td>
-<td>Reclutamiento</td>
-<td>'.$value[10].'</td>
-<td>'.$value[11].'</td>
+<td>'.$value[2].' '.$value[3].'</td>
+<td> '.$value[4].' '.$value[5].'</td>
+<td>'.$value[7].'</td>
+<td>'.$value[6].'</td>
 
 <td></td><td>
 
-<a onclick="ver_concurso('.$value[0].')"> <i class="material-icons small">visibility</i></a>
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_concurso('.$value[0].')"> <i class="material-icons small">visibility</i></a>
 &nbsp;  
-<a onclick="reclutamiento('.$value[0].')"><i class="material-icons small" >input</i></a></td>
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar_perfil('.$value[0].')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a></td>
 </tr>';
 }
 ?>   
@@ -69,6 +70,18 @@ echo'
                 </div>
          </div>
 
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content center-align">
+      <h4>Perfil Aprobado</h4>
+       </div>
+    <div class="modal-footer  center-align">
+     <a class="center-align waves-effect waves-light btn blue" onclick="location.reload();">Aceptar</a>
+
+   
+    </div>
+  </div>
+
 <form action="<?php echo URL; ?>management/creaconcurso_1" method="POST"> 
 <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
 <input type="submit" id="ejecutar" style="display: none;"> 
@@ -82,7 +95,10 @@ echo'
 <?php include_once SCRIPT_U; ?> 
 
 <?php include_once JSPDF ?>
-<script src="<?=URL.'public/js/controllerGestionAspirante.js'?>"></script>
+<script > var URL="<?php echo URL; ?>";</script>
+  <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
+  <script src="<?php echo URL; ?>/public/js/controlleraprobarAspirante.js"></script>
+
     </body>
     
 </html>

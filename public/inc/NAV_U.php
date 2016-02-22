@@ -1,9 +1,8 @@
 <ul id="user" class="dropdown-content">
   <li><a href="javascript:">Perfil</a></li>
   <li><a href="javascript:" id="hvPDF" onclik="get_concursoPDF();">Ver Hoja de Vida (PDF)</a></li>
-  <li><a href="javascript:">Cambiar contraseña</a></li>  
   <li class="divider"></li>
-  <li><a href="javascript:">Cerrar sessión</a></li>
+  <li><a href="<?=URL.'Aspirante/logout'?>">Cerrar sessión</a></li>
 </ul>
 
 <div class="navbar-fixed">
@@ -11,8 +10,8 @@
       <div class="nav-wrapper white z-depth-1">
         <a href="javascript:" class="brand-logo center"><img src="<?=URL?>public/images/logo.png" style="width:55%;margin-left:5px;" ></a>
         <a href="javascript:" data-activates="mobile-demo" class="button-collapse"><i class="material-icons blue-text text-darken-4">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a class="dropdown-button" href="javascript:" data-activates="user"><i class="material-icons blue-text text-darken-4">more_vert</i></a></li>
+        <ul class="right">
+          <li><a class="dropdown-button subMA" href="javascript:" data-activates="user"><i class="material-icons blue-text text-darken-4">more_vert</i></a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <!-- <li><a href="sass.html">...</a></li> -->

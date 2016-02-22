@@ -14,12 +14,28 @@ Class Management extends Controller {
     }
     //Cargamos la vista gestion_aspirante
     public function gestion_aspirante() {
-
+        $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('N')];
         $this->view->render($this, 'gestion_aspirante');
     }
+    //Cargamos la vista gestion_aspirante
+    public function aprobar_perfil() {
+        if(isset($_POST["IDASP"]))
+        {
+            $data = ["ASP_APRO" => "'S'"];
+            $ASP_ID=$_POST["IDASP"];
+            
+               if($this->model->update_estadoperfilAspirante($ASP_ID, $data))
+               echo true;
+               else
+                echo false;
+        }
+       else 
+        echo false;
+    }
+
     //Cargamos vista de concursos
     public function concursos() {
-        $this->view->DATA=$this->model->getallConcurso();
+        $this->view->data=$this->model->getallConcurso("CON_ESTA='C'"); //Devuelve concursos inicializados
         $this->view->render($this, 'concursos');
     }
     //Cargamos vista de creacion de concurso
@@ -40,7 +56,8 @@ Class Management extends Controller {
     }
     //Cargamos vista de reclutamiento de personal
     public function reclutar() {
-        if(isset($_POST['IDCON_']))
+        //echo $_POST['TOKEN'];
+        if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         { 
           $this->castModel('Aspirante');
              $this->view->data =$this->datos_concurso($_POST['IDCON_']);
@@ -52,29 +69,58 @@ Class Management extends Controller {
             $this->view->data += ['AspirantesConcurso' => $this->model->getAspirantesbyCONID($_POST['IDCON_'])];
             $this->view->render($this, 'reclutar');
         }
+        else
+         $this->index_management();
+
     }
      //Cargamos vista de concursos por calificar
     public function calificaciones() {
-        $this->view->DATA=$this->model->getallConcurso("CON_ESTA='P'"); //Devuelve concursos inicializados
+        $this->view->data=$this->model->getallConcurso("CON_ESTA='P'"); //Devuelve concursos inicializados
         $this->view->render($this, 'calificaciones');
     }
     //Cargamos vista de calificacion del personal
     public function calificar() {
-        if(isset($_POST['IDCON__']))
-        { 
-            echo $_POST['IDCON__'];
-            $this->view->data =$this->datos_concurso($_POST['IDCON__']);
+        if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        {
+            //echo $_POST['IDCON__'];
+            $this->view->data =$this->datos_concurso_calificaciones($_POST['IDCON_'],'I');
+            if(empty($this->view->data['fasesConcurso']))
+            $this->finalStateConcurso($_POST['IDCON_'],$_POST['CONTOKEN']);
+            else
             $this->view->render($this, 'calificar');
-        }
+                
+        }else
+        $this->index_management();
 
+    }
+      //Cargamos la vista de concursos finalizados
+    public function concurso_finalizado(){
+         $this->view->data=$this->model->getallConcurso("CON_ESTA='F'"); //Devuelve concursos inicializados
+         $this->view->render($this, 'concurso_finalizado');
+    }
+    //Cargamos la vista de reportes
+    public function reportes(){
+         $this->view->render($this, 'reportes');
     }
 //______________________________________________________________________//
     //Obtenemos los datos y fases de un concurso en base a su ID
-    public function datos_concurso($CON_ID) {
+    public function datos_concurso_calificaciones($CON_ID,$BCO_ESTA="") {
             $datoConid=['CON_ID' => "'" . $CON_ID . "'"];
             $DATA = $this->model->get_concurso($CON_ID);
-            $DATA += ['fasesConcurso' => $this->model->getall_faseconcurso($datoConid)];    
-
+            $DATA += ['fasesConcurso' => $this->model->getall_faseconcurso($datoConid,$BCO_ESTA)];    
+            foreach ($DATA['fasesConcurso'] as $key => $value) {
+               
+           $DATA['fasesConcurso'][$key] += ['AspirantesConcurso' => $this->model->getAspirantesbyCONIDBCONID($value[0])];
+            }
+            return $DATA;
+    }
+    
+    //Obtenemos los datos y fases de un concurso en base a su ID
+    public function datos_concurso($CON_ID,$BCO_ESTA="") {
+            $datoConid=['CON_ID' => "'" . $CON_ID . "'"];
+            $DATA = $this->model->get_concurso($CON_ID);
+            $DATA += ['fasesConcurso' => $this->model->getall_faseconcurso($datoConid,$BCO_ESTA)];    
+            
             return $DATA;
     }
 
@@ -404,11 +450,133 @@ Class Management extends Controller {
         echo json_encode(['puestos' => $this->model->getallCargos($data)]);
     }
 
-  
+    //Funcion que elimina un aspirante del concurso
+    public function eliminar_aspirante_concurso() {
+      
+       if($_POST['CONTOKEN']== $this->tokengenerate($_POST['IDCON_'])
+        && $_POST['ASPTOKEN']== $this->tokengenerate($_POST['IDASP'])
+        )
+       {
+        if($this->model->delete_aspirante_concurso(['CON_ID' => $_POST['IDCON_'] , 'ASP_ID' =>$_POST['IDASP']]))
+             echo json_encode(['Mensaje' => 'Registro Eliminado']);
+         else
+            echo json_encode(['Mensaje' => 'Error al Eliminar']);
+       }
+       else
+        $this->index_management();
+        
+    }
 
+
+    //Función que genera el token para un identificador
+    public function tokengenerate($identificador){
+        $token=$this->model->tokengenerate_($identificador);
+        return  $token[0][0];
+    }
+    //Función que genera el token para un identificador
+    private function index_management(){
+        header('Location: '.URL.'management/index');
+    }
     private function Mayus($variable) {
         $variable = strtr(strtoupper($variable), "àèìòùáéíóúçñäëïöü", "ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
         return $variable;
     }
 
+    //-----------------CAMBIIOS DE ESTADO DE PROCESO
+    
+     //Función que cambia el estado a en PROCESO "P"
+    public function processStateConcurso(){
+     if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        { 
+
+            $data = ["CON_ESTA" => "'P'"];
+            $CON_ID=$_POST["IDCON_"];
+            
+               if($this->model->update_estadoConcurso($CON_ID, $data))
+                    header('Location: '.URL.'management/calificaciones');
+                else
+                    $this->index_management();
+
+        }
+         else
+           $this->index_management();
+    }
+    
+       //Función que cambia el estado a en INICIALIZADO "I"
+    public function inicialStateConcurso(){
+     if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        { 
+
+            $data = ["CON_ESTA" => "'I'"];
+            $CON_ID=$_POST["IDCON_"];
+            
+               if($this->model->update_estadoConcurso($CON_ID, $data))
+               header('Location: '.URL.'management/reclutamiento');
+               else
+                 $this->index_management();
+
+        }
+        else
+            $this->index_management();
+    }
+     //Función que cambia el estado a en FINALIZADO "F"
+    private function finalStateConcurso($CON_ID,$CON_IDTOKEN){
+            $data = ["CON_ESTA" => "'F'"];
+            if($this->model->update_estadoConcurso($CON_ID, $data))
+            header('Location: '.URL.'management/reportes');
+            else
+            $this->index_management();
+    }
+
+//funcion que asigna la calificacion de un aspirante
+      public function save_calificacion_aspirante(){
+       //echo json_encode($_POST);
+     if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        { 
+
+            $data = $_POST["data"];
+            $CON_ID=$_POST["IDCON_"];
+            $errores=0;
+            $correcto=0;
+            $BCON_ID=$_POST["IDBCON"];
+            $valorMaximo= $this->model->get_valor_baseconcurso($BCON_ID);
+            foreach ($data as $key => $value) {
+            $data=['BCO_ID' => $BCON_ID , 'ASP_ID' => $value['name'] , 'CAL_VALO' =>"'" .  $value['value'] . "'" ];
+            if($value['value']>=0 && $value['value'] <=$valorMaximo[0][0]) //Que se encuentre entre el rango de calificacion
+               {
+                if ($this->model->insert_ssp_calificaciones($data))
+                    $correcto++;
+                else if ($this->model->update_ssp_calificaciones($data))
+                    $correcto++;
+                else
+                    $errores++;
+                }else
+                $errores++;  
+            }
+            echo json_encode(['Mensaje' => $correcto.' Registros insertados - '.$errores.' Sin cambios']);
+        }
+        else
+            $this->index_management();
+    }
+//Funcion que cambia de estado la fase de un concurso
+   public function finaliza_fase(){
+       //echo json_encode($_POST);
+     if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        { 
+            if(isset($_POST['IDBCON']) && $_POST['IDBCONTOKEN']==$this->tokengenerate($_POST['IDBCON']))
+            {
+                $IDBCON=$_POST['IDBCON'];
+                if($this->model->update_estado_baseConcurso($IDBCON,'F'))
+                echo true;
+                else
+                echo false;
+            }
+                
+        }
+        else
+            $this->index_management();
+    }
+
+ 
+         
 }

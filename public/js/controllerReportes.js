@@ -14,7 +14,7 @@
 
   $('document').ready(function(){
   $(".button-collapse").sideNav();
-  $("#mcalificaciones").attr("class","active");
+  $("#mreportes").attr("class","active");
     
   });
   //////////View- CALIFICAR

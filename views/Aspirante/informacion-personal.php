@@ -156,7 +156,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
 
   <div class="col l12 m12 s12">
     <div class="input-field col l3 m3 s6">                           
-      <input id="IPFENA" name="IPFENA" type="text" class="triggerI validate <?=$candidate["ASP_FENA"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_FENA"]?>' placeholder="dd/mm/yyyy" required>
+      <input id="IPFENA" name="IPFENA" type="text" class="triggerI validate <?=$candidate["ASP_FENA"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_FENA"]?>' placeholder="dd/mm/aaaa" required pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formato fecha: dd-mm-aaaa Ej. 1999-01-30">
       <label class="active">Fecha nacimiento</label>
     </div>
     <div class="input-field col l3 m3 s6">
@@ -311,12 +311,12 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
     </div>
 
     <div class="input-field col l3 m4 s6">
-      <input id="DDTEL1" name="DDTEL1" type="text" maxlength="15" class="validate <?=$candidate["ASP_TEL1"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_TEL1"]?>'>
+      <input id="DDTEL1" name="DDTEL1" type="text" maxlength="15" class="validate <?=$candidate["ASP_TEL1"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_TEL1"]?>' pattern= "[0-9]*"  title= "Solo acepta números">
       <label class="<?=$candidate["ASP_TEL1"] ? 'active' : ''?>" for="DDTEL1">Telf. Convencional</label>
     </div>
 
     <div class="input-field col l4 m4 s6">
-      <input id="DDTEL2" name="DDTEL2" type="text" maxlength="15" class="validate <?=$candidate["ASP_TEL2"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_TEL2"]?>' required>
+      <input id="DDTEL2" name="DDTEL2" type="text" maxlength="15" class="validate <?=$candidate["ASP_TEL2"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_TEL2"]?>' pattern= "[0-9]*"  title= "Solo acepta números" required>
       <label class="<?=$candidate["ASP_TEL2"] ? 'active' : ''?>" for="DDTEL2">Telf. Celular</label>
     </div>
   </div>
@@ -374,7 +374,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
       </div>
 
       <div class="input-field col l2 m3 s12">
-        <input id="DEPORC" name="DEPORC" type="text" maxlength="3" class="validate <?=$disability_candidate["ADI_PORC"] ? 'valid' : '' ?>"  <?=$disability_candidate["ADI_PORC"] ? 'value="'.$disability_candidate["ADI_PORC"].'"' : 'value=""' ?>>
+        <input id="DEPORC" name="DEPORC" type="number" min="0" max="100" maxlength="3" class="validate <?=$disability_candidate["ADI_PORC"] ? 'valid' : '' ?>"  <?=$disability_candidate["ADI_PORC"] ? 'value="'.$disability_candidate["ADI_PORC"].'"' : 'value=""' ?>>
         <label class="<?=$disability_candidate["ADI_PORC"] ? 'active' : ''?>" for="DEPORC">% de discapacidad</label>
       </div>
     </div>

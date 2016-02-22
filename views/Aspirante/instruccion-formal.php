@@ -45,7 +45,7 @@
       </div>
       <div class="col l4 m4 s12">
         <div class="input-field col l8 m12 s12">
-          <input id="IFTIEM1" name="IFTIEM1" type="text" maxlength="2" class="actI validate" placeholder="En años" value=''>
+          <input id="IFTIEM1" name="IFTIEM1" type="text" maxlength="2" class="actI validate" placeholder="En años" value='' pattern= "[0-9]*"  title= "Solo acepta números">
           <label class="active" for="IFTIEM1">Tiempo de estudio</label>
         </div>
       </div>
@@ -89,12 +89,12 @@
         <div class="col l12 m12 s12">
 
           <div class="input-field col l2 m6 s6">
-            <input name="IFTIEM" id="IFTIEM" type="text" maxlength="2" class="actI validate" placeholder="En años">
+            <input name="IFTIEM" id="IFTIEM" type="text" maxlength="2" class="actI validate" placeholder="En años" pattern= "[0-9]*"  title= "Solo acepta números">
             <label for="IFTIEM" class="active">Tiempo de estudio</label>
           </div>
 
           <div class="input-field col offset-l1 l2 m6 s6">
-            <input name="IFFGRA" id="IFFGRA" type="text" maxlength="10" class="actI validate" placeholder="yyyy-mm-dd">
+            <input name="IFFGRA" id="IFFGRA" type="text" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30">
             <label for="IFFGRA" class="active">Fecha de graduación</label>
           </div>
 

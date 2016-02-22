@@ -9,6 +9,10 @@ $(function(){
 
   });*/
 
+  $(".subMA").on('click', function(){
+    $("#user").css("width", "auto");
+  });
+
 $(document).on("change", 'input:radio[name="IPTLIC"]', function(){
     if ($(this).is(':checked') && ($(this).attr('id') == 'TLIC1')) {
       $(".TILI").show();
@@ -278,7 +282,7 @@ var controllerAS = {
             //$("#BE").prepend(controllerAS.loading());
           },
           success: function(response){
-            console.log(response);
+            //console.log(response);
             var r= JSON.parse(response);
             if (r.STATUS==='SUCCESS') {
                 //var d = r.DATA;
@@ -380,7 +384,7 @@ var controllerAS = {
             jTOKEN: token
           },
           success: function(response){
-            console.log(response);
+            //console.log(response);
             var r= JSON.parse(response);
             if (r.STATUS==='SUCCESS') {
               if(controllerAS.idAction==='D'){

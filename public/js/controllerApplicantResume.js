@@ -21,83 +21,9 @@ $(function(){
             //$("#BE").prepend(controllerAS.loading());
           },
           success: function(response){
-            console.log(response);
+            //console.log(response);
             var r= JSON.parse(response);
-            getCurriculumVitae(r);
-
-                 
-            /*if (r.STATUS==='SUCCESS') {
-                //var d = r.DATA;
-
-                if(!controllerAS.idAction){
-                      //controllerAS.tab[0] = '';
-                      $(".tableContent").fadeTo(400, 0.5, function(){
-                        $(this).prepend(r.ROW).fadeTo(100,1);
-                        //controllerAS.loadContent.call(".tabs").find(".active"));
-                      });
-                }else{
-                  
-                  d = r.DATA;
-                  switch(controllerAS.tab[1]){
-                  
-                  case 'datos-familiares':
-                      controllerAS.idRow.find("td:eq(0)").html(d.DFAPEL);
-                      controllerAS.idRow.find("td:eq(1)").html(d.DFNOMB);
-                      controllerAS.idRow.find("td:eq(2)").html(d.DFCEDU);
-                      controllerAS.idRow.find("td:eq(3)").html(d.DFFNAC);
-                      controllerAS.idRow.find("td:eq(4)").html(d.DFINST);
-                      controllerAS.idRow.find("td:eq(5)").html(d.DFFEME);
-                  break;
-
-                  case 'instruccion-formal':
-                      controllerAS.idRow.find("td:eq(0)").html(d.IFNSTR);
-                      controllerAS.idRow.find("td:eq(2)").html(d.IFNOMB);
-                      controllerAS.idRow.find("td:eq(3)").html(d.IFSENE);
-
-                      if(d.IFOINS){
-                        controllerAS.idRow.find("td:eq(1)").html(d.IFOINS);
-                      }else{
-                        instToString = $("select#IFINST").find("option[value="+d.IFINST+"]").html();
-                        controllerAS.idRow.find("td:eq(1)").html(instToString);
-                      }
-                  break;
-
-                  case 'idiomas':
-                      controllerAS.idRow.find("td:eq(0)").html(d.IDIDIO);
-                      controllerAS.idRow.find("td:eq(1)").html(d.IDNESC);
-                      controllerAS.idRow.find("td:eq(2)").html(d.IDNHAB);
-                  break;
-
-                  case 'capacitacion':
-                      controllerAS.idRow.find("td:eq(0)").html(d.CAECAP);
-                      controllerAS.idRow.find("td:eq(1)").html(d.CATEVE);
-                      controllerAS.idRow.find("td:eq(2)").html(d.CAAEST);
-                      controllerAS.idRow.find("td:eq(3)").html(d.CATITU);
-                      controllerAS.idRow.find("td:eq(4)").html(d.CATCER);
-                      controllerAS.idRow.find("td:eq(5)").html(d.CADHOR);
-                      controllerAS.idRow.find("td:eq(6)").html(d.CAFICA);
-                      controllerAS.idRow.find("td:eq(7)").html(d.CAFFCA);
-                  break;
-
-                  case 'experiencia-laboral':
-                      controllerAS.idRow.find("td:eq(0)").html(d.ELNEMP);
-                      controllerAS.idRow.find("td:eq(1)").html(d.ELARTR);
-                      controllerAS.idRow.find("td:eq(2)").html(d.ELCARG);
-                      controllerAS.idRow.find("td:eq(3)").html(d.ELFINI);
-                      controllerAS.idRow.find("td:eq(4)").html(d.ELFFIN);
-                      controllerAS.idRow.find("td:eq(5)").html(d.ELTELE);
-                  break;
-
-
-                  }
-
-                }
-
-              controllerAS.cancelEdit();  
-            }
-
-            Materialize.toast(r.MSG, 2500);*/
-            
+            getCurriculumVitae(r);          
 
           },
           error:function(request, typeMessage, errorMessage){
