@@ -6,8 +6,24 @@
     <body>
        <?php include_once MENU_F; ?>
            <?php $concurso = $this->data['Concurso']; ?>
+    <div class="row ">
+    <div class="container">
+    <nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li ><a href="procesos">Concursos</a></li>
+        <li ><a onclick="Materialize.toast('No se puede volver hacia un estado anterior del concurso.',3000);">Reclutamiento</a></li>
+        <li class="active"><a>Calificacion</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  </div> 
+  </div>
+  
    <div class="col l12 m12 s12 center-align ">
-     <p class="blue-text text-darken-2">Poceso de Calificaciones del Concruso <?= $concurso[0][5]; ?> Fecha de culminación <?= $concurso[0][11]; ?> </p>
+      <p class="blue-text text-darken-2">Poceso de Reclutamiento del Concruso <?= $concurso[0][5]; ?> - <?= $concurso[0][1]; ?> Fecha de culminación <?= $concurso[0][11]; ?> </p>
     </div>
         <div class="row ">
             <div class="col  s12  m12 l12 z-depth-1">
@@ -150,6 +166,13 @@ foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
   var IDBCONTOKEN="<?php echo $IDBCONTOKENinicial; ?>";
   </script>
         <script src="<?= URL . 'public/js/controllerCalificacion.js' ?>"></script>
+        <script>
+                $( document ).ready(function(){
+        $(".button-collapse").sideNav();
+        $("#mprocess").attr("class","active");
+    })
+
+        </script>
     </body>
 
 </html>

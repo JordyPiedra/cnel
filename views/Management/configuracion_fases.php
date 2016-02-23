@@ -31,7 +31,7 @@
                                 <div class="col l6 m4 s12">
                                     <div class="input-field">
 
-                                        <input name="IFNOMB" id="IFNOMB" type="text" Did="" class="validate">
+                                        <input name="IFNOMB" id="IFNOMB" type="text" Did="" required class="validate">
                                         <label id="lblIFNOMB" for="IFNOMB">Nombre</label>
                                     </div>
 
@@ -48,7 +48,7 @@
                                 <div class="input-field col l4 m4 s12">
 
                                     <select name="IFTDES"  id="IFTDES" class="browser-default" required >
-                                        <option value="" selected>Seleccione opción</option>
+                                        <option value="" selected disabled>Seleccione opción</option>
                                         <option value="E" >Entrevista</option>
                                         <option value="P">Prueba</option>
                                         <option value="R">Requerimiento</option>
@@ -59,7 +59,7 @@
                                  <div class="input-field col l12 center-align">
   <a  id="fas_guardar" onclick="create_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">save</i> </a>
   <a  id="fas_create" onclick="nueva_fase();" class="btn tooltipped btn-large blue darken-3 center-align" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">add</i> </a>
-                               
+  <input type="submit" id="subFORM" style="display:none;">                            
                                    
                                 </div>
      </form>

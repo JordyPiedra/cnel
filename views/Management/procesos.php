@@ -13,7 +13,8 @@
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li class="active"><a>Concursos</a></li>
-        <li><a href="creaconcurso" onclick="">Crear concurso</a></li>
+        <li><a onclick="Materialize.toast('Seleccione un concurso.',2000);">Reclutamiento</a></li>
+        <li><a onclick="Materialize.toast('Seleccione un concurso.',2000);">Calificacion</a></li>
       </ul>
     </div>
   </nav>
@@ -102,7 +103,7 @@ echo'
 <script type="text/javascript">
     $( document ).ready(function(){
         $(".button-collapse").sideNav();
-        $("#mconcursos").attr("class","active");
+        $("#mprocess").attr("class","active");
     })
 
     function proceso_concurso(id,token)

@@ -10,8 +10,9 @@
         <li id="mconfiguracion" ><a href="<?php echo URL; ?>management/configuracion">&nbsp;&nbsp;Configuración&nbsp;&nbsp;</a></li>
         <li id="mconcursos" ><a href="<?php echo URL; ?>management/concursos">&nbsp;&nbsp;Concursos&nbsp;&nbsp;</a></li>
         <li id="maspirante"><a href="<?php echo URL; ?>management/gestion_aspirante">&nbsp;&nbsp;&nbsp;&nbsp;Aspirantes</a></li>
-        <li id="mreclutamiento"><a href="<?php echo URL; ?>management/reclutamiento">&nbsp;&nbsp;&nbsp;&nbsp;Reclutamiento</a></li>
-        <li id="mcalificaciones"><a href="<?php echo URL; ?>management/calificaciones">&nbsp;&nbsp;&nbsp;&nbsp;Calificaciones</a></li>
+        <li id="mprocess"><a href="<?php echo URL; ?>management/procesos">&nbsp;&nbsp;&nbsp;&nbsp;Procesos</a></li>
+        <!--<li id="mreclutamiento"><a href="<?php echo URL; ?>management/reclutamiento">&nbsp;&nbsp;&nbsp;&nbsp;Reclutamiento</a></li>
+        <li id="mcalificaciones"><a href="<?php echo URL; ?>management/calificaciones">&nbsp;&nbsp;&nbsp;&nbsp;Calificaciones</a></li>-->
         <li id="mreportes"><a href="<?php echo URL; ?>management/reportes">&nbsp;&nbsp;&nbsp;&nbsp;Reportes&nbsp;&nbsp;</a></li>
         <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;Salir&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
       </ul>

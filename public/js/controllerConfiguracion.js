@@ -1,19 +1,17 @@
-  document.addEventListener("DOMContentLoaded", function() {
-    var elements = document.getElementsByTagName("INPUT");
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].oninvalid = function(e) {
-            e.target.setCustomValidity("");
-            if (!e.target.validity.valid) {
-                e.target.setCustomValidity("This field cannot be left blank");
-            }
-        };
-        elements[i].oninput = function(e) {
-            e.target.setCustomValidity("");
-        };
-    }
-})
-  
-  $(document).ready(function(){
+function onclick_ (){
+     $("#form_fases").submit(function(event){
+        event.preventDefault();
+      });
+      //controllerAS.tab[0] = '';
+      var form =$("#form_fases");
+
+      if (!form[0].checkValidity()) {
+        form.find(':submit').click();
+        return false;
+      }else return true;
+}
+
+$(document).ready(function(){
         $("#mconfiguracion").attr("class","active");
     $('.tooltipped').tooltip({delay: 50});
     
@@ -238,8 +236,11 @@ function update_fase_response(response){
 }
 
 function create_fase(){
-     var frmser = $('#form_fases :input').serialize();
-     fajax(frmser, URL+'management/crea_fase', create_fase_response);
+    if(onclick_()){
+      var frmser = $('#form_fases :input').serialize();
+     fajax(frmser, URL+'management/crea_fase', create_fase_response);   
+    }
+    
 }
 function create_fase_response(response){
      console.log(response);

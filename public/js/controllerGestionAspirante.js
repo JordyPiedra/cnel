@@ -1,3 +1,7 @@
+function mensajecalificacion(){
+    Materialize.toast('No puede pasar a calificación si no termina el proceso de reclutamiento.',3000);
+}
+  
   var optintreuccion = {
     
   };

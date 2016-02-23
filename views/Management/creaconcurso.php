@@ -8,18 +8,17 @@
         <?php isset($this->DATA['Concurso']) ? $concurso = $this->DATA['Concurso'] : $concurso = ""; ?>
         <div class="row ">
             <div class="container">
-                <!--<div class="row z-depth-1 hide-on-med-and-down fixed">
-                    <div class="col l12 m12 s12 ">
-                        <ul class="tabs" style="width: 100%;">
-                            <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >
-                                    <i class="material-icons " style="padding-right: 10px;">work</i>Crear concurso</a></li>
-                            <li class="tab" id="tabparametros" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">
-                                    <i class="material-icons" style="padding-right: 10px;">recent_actors</i>Parámetros</a></li>
-                            <div class="indicator" style="right: 669px; left: 669px;"></div></ul>
-                    </div>
-
-                </div>-->
- <nav class="blue darken-1">
+  <nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="concursos">Concursos</a></li>
+        <li  class="active" ><a href="creaconcurso" onclick="">Crear concurso</a></li>
+      </ul>
+    </div>
+  </nav>
+  <br>
+ <nav class="blue darken-2">
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -477,6 +476,10 @@
 
 
     <script type="text/javascript">
+    $( document ).ready(function(){
+        $(".button-collapse").sideNav();
+        $("#mconcursos").attr("class","active");
+    })
 
 //_________________CONSURSOENCABEZADO____________________________
 //CREA CONCURSO
@@ -718,7 +721,7 @@
 
             var obj = JSON.parse(response);
             $("#CARGO").empty();
-            $("#CARGO").append('<option value="NULL" selected>Elija Departamento</option>');
+            $("#CARGO").append('<option value="NULL" selected>Puesto de Trabajo</option>');
 
 
             $.each(obj['puestos'], function (key, value) {

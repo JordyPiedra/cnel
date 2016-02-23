@@ -5,7 +5,11 @@ Class Management extends Controller {
     public function __construct() {
 
         parent:: __construct();
-        //$this->view->render($this, 'index');
+        
+		if(!Session::getValue("ID-ADMIN") && $_SERVER["REQUEST_URI"] != '/cnel/management/login'){
+          header('Location: '.URL.'management/login');
+           
+        }
     }
 //________________________VISTAS RENDERIZADAS___________________________//
     //Cargamos la vista index del usuario
@@ -15,6 +19,11 @@ Class Management extends Controller {
      //Cargamos la vista de configuraciones
     public function configuracion() {
         $this->view->render($this, 'configuracion');
+    }
+     //Cargamos la vista de procesos
+    public function procesos() {
+$this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devuelve concursos inicializados
+        $this->view->render($this, 'procesos');
     }
      //Cargamos la vista de configuraciones
     public function configuracion_departamentos() {
@@ -63,28 +72,25 @@ Class Management extends Controller {
         }
         $this->view->render($this, 'creaconcurso');
     }
+    
+    
      //Cargamos vista de concursos por reclutar 
     public function reclutamiento() {
         $this->view->data=$this->model->getallConcurso("CON_ESTA='I'"); //Devuelve concursos inicializados
         $this->view->render($this, 'reclutamiento');
     }
     //Cargamos vista de reclutamiento de personal
-    public function reclutar() {
-        //echo $_POST['TOKEN'];
-        if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
-        { 
+    private function reclutar($CON_ID) {
           $this->castModel('Aspirante');
-             $this->view->data =$this->datos_concurso($_POST['IDCON_']);
+             $this->view->data =$this->datos_concurso($CON_ID);
             $this->view->data += ['Instruccion' => $this->Cmodel->getEducationLevel()];
             $this->view->data += ['AreaEstudio' => $this->Cmodel->getStudyArea()];
             $this->view->data += ['Experiencia' => $this->Cmodel->getWorkArea()];
             $this->view->data += ['Discapacidad' => $this->Cmodel->getDisability()];
             $this->view->data += ['Aspirantes' => $this->model->getAspirantesbyApro('S')];
-            $this->view->data += ['AspirantesConcurso' => $this->model->getAspirantesbyCONID($_POST['IDCON_'])];
+            $this->view->data += ['AspirantesConcurso' => $this->model->getAspirantesbyCONID($CON_ID)];
             $this->view->render($this, 'reclutar');
-        }
-        else
-         $this->index_management();
+       
 
     }
      //Cargamos vista de concursos por calificar
@@ -93,19 +99,13 @@ Class Management extends Controller {
         $this->view->render($this, 'calificaciones');
     }
     //Cargamos vista de calificacion del personal
-    public function calificar() {
-        if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
-        {
-            //echo $_POST['IDCON__'];
-            $this->view->data =$this->datos_concurso_calificaciones($_POST['IDCON_'],'I');
+    private function calificar($CON_ID,$CONTOKEN) {
+        
+            $this->view->data =$this->datos_concurso_calificaciones($CON_ID,'I');
             if(empty($this->view->data['fasesConcurso']))
-            $this->finalStateConcurso($_POST['IDCON_'],$_POST['CONTOKEN']);
+            $this->finalStateConcurso($CON_ID,$CONTOKEN);
             else
             $this->view->render($this, 'calificar');
-                
-        }else
-        $this->index_management();
-
     }
       //Cargamos la vista de concursos finalizados
     public function concurso_finalizado(){
@@ -116,7 +116,42 @@ Class Management extends Controller {
     public function reportes(){
          $this->view->render($this, 'reportes');
     }
+    
+        public function lista_aspirantes() {
+      
+        $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('%')];
+        $this->view->render($this, 'lista_aspirantes');
+    }   
 //______________________________________________________________________//
+public function proceso_concurso(){
+     if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        {
+            $DATA=$this->model->get_concurso($_POST['IDCON_']);
+            $CON_DATA=$DATA['Concurso'];
+            $CON_ID=$CON_DATA[0][0];
+            $CONTOKEN=$CON_DATA[0][14];
+            switch ($CON_DATA[0][12]) {
+                case 'I':
+                    $this->reclutar($CON_ID);
+                    break;
+                    
+                case 'P':
+                   $this->calificar($CON_ID,$CONTOKEN);
+                    break;
+                    
+            
+                default:
+                    $this->index_management();
+                    break;
+            }
+        }else {
+             $this->index_management();
+        }
+}
+
+
+
+
     //Obtenemos los datos y fases de un concurso en base a su ID
     public function datos_concurso_calificaciones($CON_ID,$BCO_ESTA="") {
             $datoConid=['CON_ID' => "'" . $CON_ID . "'"];
@@ -152,8 +187,9 @@ Class Management extends Controller {
     }
 
 
-    //Cargamos la vista login del usuario
+    //Cargamos la vista login del usuario administrador
     public function login() {
+        Session::setValue("ID-ADMIN",'1');  
         $this->view->render($this, 'login');
     }
 

@@ -1,7 +1,7 @@
 <head>
      <meta charset="UTF-8"/>
      <title>TRABAJA - CNEL</title>
-     <link type="text/css" rel="stylesheet" href="<?=URL?>public/materialize/0.97.1/css/materialize.min.css"  media="screen, projection"/>
+     <link type="text/css" rel="stylesheet" href="<?=URL?>public/materialize/0.97.5/css/materialize.min.css"  media="screen, projection"/>
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <link rel="icon" type="image/png" href="<?=URL?>public/images/logo.png" />
      <!--<link type="text/css" rel="stylesheet" href="materialize/css/stylePrint.css" media="print"/>-->

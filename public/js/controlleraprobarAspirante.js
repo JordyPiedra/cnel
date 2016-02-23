@@ -1,4 +1,8 @@
-
+    $('document').ready(function(){
+  $(".button-collapse").sideNav();
+  $("#maspirante").attr("class","active");
+    
+  });
 //Guarda los aspirantes seleccionados.
 function aprobar_perfil(id){
 

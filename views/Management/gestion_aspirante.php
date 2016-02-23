@@ -10,16 +10,26 @@
     
            
               <div class="row ">
-                <div class="container ">
+     
+ <div class="container">
 
-                    <div class="col  s12  m12 l12 z-depth-1">
-                        <div class="container " style="padding-bottom:100px;">
+   <nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li class="active"><a>Aprobación</a></li>
+        <li><a href="lista_aspirantes">Lista</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+                             <div class="col  s12  m12 l12 z-depth-1">
+
+
                             <div class="col l12 m12 s12 center-align ">
                                         <h5 class="blue-text text-darken-2">Aprobación de Perfiles</h5>
                                     </div>
                             <br>
-                            <br>
-                            
                             <table class="striped highlight ">
                                 <thead>
 
@@ -67,7 +77,7 @@ echo'
                            
                         </div>
                     </div>
-                </div>
+              
          </div>
 
 <!-- Modal Structure -->

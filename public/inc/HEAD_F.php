@@ -2,8 +2,8 @@
      <meta charset="UTF-8"/>
      <title>TRABAJA - CNEL</title>
      
-     <link type="text/css" rel="stylesheet" href="<?php echo URL;?>public/materialize/0.97.1/css/materialize.min.css"  media="screen, projection"/>
-     <link type="text/css" rel="stylesheet" href="<?php echo URL;?>public/materialize/0.97.1/css/ghpages-materialize.css"  media="screen, projection"/>
+     <link type="text/css" rel="stylesheet" href="<?php echo URL;?>public/materialize/0.97.5/css/materialize.min.css"  media="screen, projection"/>
+     <link type="text/css" rel="stylesheet" href="<?php echo URL;?>public/materialize/0.97.5/css/ghpages-materialize.css"  media="screen, projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <link rel="icon" type="image/png" href="<?php echo URL;?>public/images/logo.png" />
      <!--<link type="text/css" rel="stylesheet" href="materialize/css/stylePrint.css" media="print"/>-->
@@ -15,7 +15,7 @@
 		  font-family: 'Material Icons';
 		  font-style: normal;
 		  font-weight: 400;
-		  src: url('<?php echo URL;?>public/materialize/0.97.1/font/material-design-icons/Material-Design-Icons.eot'); /* For IE6-8 */
+		  src: url('<?php echo URL;?>public/materialize/0.97.5/font/material-design-icons/Material-Design-Icons.eot'); /* For IE6-8 */
 		  src: local('Material Icons'),
 		       local('MaterialIcons-Regular'),
 	      url('<?php echo URL;?>public/materialize/0.97.1/font/material-design-icons/Material-Design-Icons.woff2') format('woff2'),

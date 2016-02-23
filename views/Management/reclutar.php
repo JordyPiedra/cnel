@@ -7,9 +7,31 @@
 
     <?php include_once MENU_F; ?>
     <?php $concurso = $this->data['Concurso']; ?>
-
+    <div class="row ">
+    <div class="container">
+   <!--<nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li ><a href="procesos">Concursos</a></li>
+        <li class="active"><a href="">Reclutamiento</a></li>
+        <li disabled><a onclick="mensajecalificacion();">Calificacion</a></li>
+      </ul>
+    </div>
+  </nav>-->
+  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb">First</a>
+        <a href="#!" class="breadcrumb">Second</a>
+        <a href="#!" class="breadcrumb">Third</a>
+      </div>
+    </div>
+  </nav>
+  </div> 
+  </div>
     <div class="col l12 m12 s12 center-align ">
-     <p class="blue-text text-darken-2">Poceso de Reclutamiento del Concruso <?= $concurso[0][5]; ?> Fecha de culminación <?= $concurso[0][11]; ?> </p>
+     <p class="blue-text text-darken-2">Poceso de Reclutamiento del Concruso <?= $concurso[0][5]; ?> - <?= $concurso[0][1]; ?> Fecha de culminación <?= $concurso[0][11]; ?> </p>
     </div>
 
     <div class="row ">
@@ -334,7 +356,13 @@ echo' <tr class="center-align">
     <script type="text/javascript">var URL='<?=  URL;?>';</script>
     <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
     <script src="<?= URL . 'public/js/controllerGestionAspirante.js' ?>"></script>
-   
+   <script>
+           $( document ).ready(function(){
+        $(".button-collapse").sideNav();
+        $("#mprocess").attr("class","active");
+    })
+
+   </script>
     </body>
 
 </html>

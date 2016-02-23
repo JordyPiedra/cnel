@@ -127,10 +127,10 @@ function FancyTable($header, $data,$Cmo,$inicial)
     $this->SetFillColor(83,141,213);
     $this->SetFont('Arial','',8);
     foreach ($header['meritos'] as $key => $value) {
-        $this->Cell($ColMO,7,$value[0],1,0,'C',true);
+        $this->Cell($ColMO,7,utf8_decode($value[0]),1,0,'C',true);
     }
     foreach ($header['oposicion'] as $key => $value) {
-        $this->Cell($ColMO,7,$value[0],1,0,'C',true);
+        $this->Cell($ColMO,7,utf8_decode($value[0]),1,0,'C',true);
     }
      $this->Cell(1,7,'',0,1);
     $this->Cell(70,7,'',0,0);
