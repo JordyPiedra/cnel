@@ -9,6 +9,7 @@
 
 <div class="col l12 m12 s12">
   <h6 class="center-align red white-text">Ingresar capacitación</h6>
+  <h6 class="red-text center-align">Obligatorio <b>*</b></span></h6>
 </div>
 
 
@@ -20,10 +21,10 @@
     <div class="col l12 m12 s12">
       <div class="input-field offset-l2 col l4 m6 s12">
         <input name="CAECAP" id="CAECAP" type="text" maxlength="100" class="actI validate" required>
-        <label for="CAECAP" class="actL">Nombre de la institución</label>
+        <label for="CAECAP" class="actL">Nombre de la institución <span class="red-text">*</span></label>
       </div>
 
-      <div class="col l2 m2 s4 right-align" style="padding-top:15px;">Tipo de evento:</div>
+      <div class="col l2 m2 s4 right-align" style="padding-top:15px;">Tipo de evento <span class="red-text">*</span></div>
       <div class="input-field col l4 m3 s8">
         <select name="CATEVE" id="CATEVE" class="actS browser-default" required> 
           <option value="">Seleccione</option>
@@ -41,10 +42,10 @@
     <div class="col l12 m12 s12" style="margin-top:15px">
       <div class="input-field offset-l2 col l4 m6 s12">
         <input name="CATITU" id="CATITU" type="text" maxlength="150" class="actI validate" required>
-        <label for="CATITU" class="actL">Nombre del evento</label>
+        <label for="CATITU" class="actL">Nombre del evento <span class="red-text">*</span></label>
       </div>
 
-      <div class="col l2 m2 s4 right-align" style="padding-top:15px;">Área de estudios:</div>
+      <div class="col l2 m2 s4 right-align" style="padding-top:15px;">Área de estudios <span class="red-text">*</span></div>
       <div class="input-field col l4 m3 s8">
         <select name="CAAEST" id="CAAEST" class="actS browser-default" required> 
           <option value="">Seleccione</option>
@@ -61,7 +62,7 @@
       
 
     <div class="col l12 m12 s12">
-      <div class="col l6 m6 s4 right-align" style="padding-top:15px;">Tipo de certificado</div>
+      <div class="col l6 m6 s4 right-align" style="padding-top:15px;">Tipo de certificado <span class="red-text">*</span></div>
       <div class="input-field col l6 m6 s8">
         <select name="CATCER" id="CATCER" class="actS browser-default" required> 
           <option value="">Seleccione</option>
@@ -76,17 +77,17 @@
     <div class="col l12 m12 s12">
       <div class="input-field offset-l2 col l4 m6 s6">
         <input name="CAFICA" id="CAFICA" type="text" maxlength="15" class="actI validate" placeholder="aaaa-mm-dd" value='' required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30">
-        <label for="CAFICA" class="active">Fecha desde</label>
+        <label for="CAFICA" class="active">Fecha desde <span class="red-text">*</span></label>
       </div>
 
       <div class="input-field col l4 m6 s6">
         <input name="CAFFCA" id="CAFFCA" type="text" maxlength="15" class="actI validate" placeholder="aaaa-mm-dd" value='' required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30">
-        <label for="CAFFCA" class="active">Fecha hasta</label>
+        <label for="CAFFCA" class="active">Fecha hasta <span class="red-text">*</span></label>
       </div>
 
       <div class="input-field col offset-l6 l2 offset-m6 m3 offset-s2 s8">
         <input name="CADHOR" id="CADHOR" type="text" maxlength="5" class="actI validate" placeholder="En horas" value='' required pattern= "[0-9]*"  title= "Solo acepta números">
-        <label for="CADHOR" class="active">Duración</label>
+        <label for="CADHOR" class="active">Duración <span class="red-text">*</span></label>
       </div>
     </div>
 

@@ -7,6 +7,7 @@
 
   <div class="col l12 m12 s12">
     <h6 class="center-align red white-text">Agregar experiencia laboral</h6>
+    <h6 class="red-text center-align">Obligatorio <b>*</b></span></h6>
   </div>
 
 
@@ -17,10 +18,10 @@
       <div class="row"></div>
       <div class="input-field offset-l2 col l4 m6 s12">
         <input name="ELNEMP" id="ELNEMP" type="text" maxlength="100" class="actI validate" required>
-        <label for="ELNEMP" class="actL">Nombre de la empresa</label>
+        <label for="ELNEMP" class="actL">Nombre de la empresa <span class="red-text">*</span></label>
       </div>
 
-      <div class="col l2 m2 s4 right-align" style="padding-top:15px;">Área de trabajo</div>
+      <div class="col l2 m2 s4 right-align" style="padding-top:15px;">Área de trabajo <span class="red-text">*</span></div>
       <div class="input-field col l4 m3 s8">
         <select name="ELARTR" id="ELARTR" class="actS browser-default" required> 
           <option value="">Seleccione</option>
@@ -38,33 +39,33 @@
     <div class="col l12 m12 s12">
       <div class="input-field offset-l2 col l2 m6 s6">
         <input name="ELCARG" id="ELCARG" type="text" maxlength="50" class="actI validate" required>
-        <label for="ELCARG" class="actL">Cargo</label>
+        <label for="ELCARG" class="actL">Cargo <span class="red-text">*</span></label>
       </div>
 
       <div class="input-field col l2 m6 s6">
         <input name="ELTELE" id="ELTELE" type="text" class="actI validate" required  pattern="[0-9]*"  title= "Solo acepta números">
-        <label for="ELTELE" class="actL">Tel. Empresa</label>
+        <label for="ELTELE" class="actL">Tel. Empresa <span class="red-text">*</span></label>
       </div>
 
       <div class="input-field col l4 m12 s12">
         <input name="ELRELA" id="ELRELA" type="text" class="actI validate" required>
-        <label for="ELRELA" class="actL">Referencia laboral</label>
+        <label for="ELRELA" class="actL">Referencia laboral (contácto) <span class="red-text">*</span></label>
       </div>
     </div>
 
     <div class="col l12 m12 s12">
       <div class="input-field offset-l2 col l2 m6 s6">
         <input name="ELFINI" id="ELFINI" type="text" maxlength="10" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 1999-01-30" class="actI validate" placeholder="aaaa-mm-dd" required>
-        <label for="ELFINI" class="active">Fecha desde</label>
+        <label for="ELFINI" class="active">Fecha desde <span class="red-text">*</span></label>
       </div>
 
       <div class="input-field col l2 m6 s6">
         <input name="ELFFIN" id="ELFFIN" type="text" maxlength="10" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 1999-01-30" class="actI validate" placeholder="aaaa-mm-dd" required>
-        <label for="ELFFIN" class="active">Fecha hasta</label>
+        <label for="ELFFIN" class="active">Fecha hasta <span class="red-text">*</span></label>
       </div>
 
       <div class="input-field col l6 m12 s12">
-        <div class="col l4 m6 s4 right-align" style="padding-top: 10px;">Tipo de empresa:</div>
+        <div class="col l4 m6 s4 right-align" style="padding-top: 10px;">Tipo de empresa <span class="red-text">*</span></div>
         <div class="col l8 m6 s8" >
           <input name="ELSECT" type="radio" class="actR" id="ELSECT1" value="P"/>
           <label for="ELSECT1">Pública</label>

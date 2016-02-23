@@ -34,10 +34,12 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
 ?>
 <h5 class="center-align">Información personal</h5>
 
+
 <form>
 <div class="row">
   <div class="col l12 m12 s12">
     <h6 class="center-align red white-text">Información personal</h6>
+    <h6 class="red-text center-align">Obligatorio <b>*</b></span></h6>
   </div>
 
   <div class="row"></div>
@@ -45,11 +47,11 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
   <div class="col l12 s12 s12">
     <div class="input-field col l3 m3 s12">
       <input id="IPCEDU" name="IPCEDU" type="text" maxlength="15" class="validate <?=$candidate["ASP_CEDU"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_CEDU"]?>'  required>
-      <label class="<?=$candidate["ASP_CEDU"] ? 'active' : ''?>" for="IPCEDU">C.I/Pasaporte</label>
+      <label class="<?=$candidate["ASP_CEDU"] ? 'active' : ''?>" for="IPCEDU">C.I/Pasaporte <span class="red-text">*</span></label>
     </div>
 
     <div class="input-field offset-l1 col l3 m3 s6">
-      <label class="lll">Etnia</label>
+      <label class="lll">Etnia <span class="red-text">*</span></label>
       <select name="IPETNI" class="browser-default selectS" required>
         <option value="">Seleccione</option>
         <?php
@@ -60,22 +62,13 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
         ?>
       </select>
     </div>
-
-    <div class="col offset-m1 l5 m5 s6" >
-        <h6>Eres ciudadano ecuatoriano de nacimiento<br>
-          <input name="IPENAC" type="radio" id="ENAC1" />
-          <label for="ENAC1">Si</label>
-          <input name="IPENAC" type="radio" id="ENAC2" />
-          <label for="ENAC2">No</label>
-        </h6>
-    </div>
   </div>
 
   <div class="col l6 m6 s12">
     <h6 class="center-align"><b>Apellidos</b></h6>
     <div class="input-field col l6 m6 s6">
       <input id="IPAPE1" name="IPAPE1" type="text" maxlength="20" class="validate <?=$candidate["ASP_APE1"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_APE1"]?>' required>
-      <label class="<?=$candidate["ASP_APE1"] ? 'active' : ''?>" for="IPAPE1">Paterno</label>
+      <label class="<?=$candidate["ASP_APE1"] ? 'active' : ''?>" for="IPAPE1">Paterno <span class="red-text">*</span></label>
     </div>
     <div class="input-field col l6 m6 s6">
       <input id="IPAPE2" name="IPAPE2" type="text" maxlength="20" class="validate <?=$candidate["ASP_APE2"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_APE2"]?>'>
@@ -87,7 +80,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
     <h6 class="center-align"><b>Nombres</b></h6>
     <div class="input-field col l6 m6 s6">
       <input id="IPNOM1" name="IPNOM1" type="text" maxlength="20" class="validate <?=$candidate["ASP_NOM1"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_NOM1"]?>' required>
-      <label class="<?=$candidate["ASP_NOM1"] ? 'active' : ''?>" for="IPNOM1">Primero</label>
+      <label class="<?=$candidate["ASP_NOM1"] ? 'active' : ''?>" for="IPNOM1">Primero <span class="red-text">*</span></label>
     </div>
     <div class="input-field col l6 m6 s6">
       <input id="IPNOM2" name="IPNOM2" type="text" maxlength="20" class="validate <?=$candidate["ASP_NOM2"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_NOM2"]?>'>
@@ -111,7 +104,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
     <h6 class="center-align"><b>Lugar de nacimiento</b></h6>
 
     <div class="input-field col l4 m12 s12">
-      <label class="lll">País</label>
+      <label class="lll">País <span class="red-text">*</span></label>
         <select name="IPPAIS" id="IPPAIS" class="triggerI browser-default selectS" required>
           <option value="">Seleccione</option>
           <?php
@@ -157,14 +150,14 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
   <div class="col l12 m12 s12">
     <div class="input-field col l3 m3 s6">                           
       <input id="IPFENA" name="IPFENA" type="text" class="triggerI validate <?=$candidate["ASP_FENA"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_FENA"]?>' placeholder="dd/mm/aaaa" required pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formato fecha: dd-mm-aaaa Ej. 1999-01-30">
-      <label class="active">Fecha nacimiento</label>
+      <label class="active">Fecha nacimiento <span class="red-text">*</span></label>
     </div>
     <div class="input-field col l3 m3 s6">
      <p id="EDAD"></p>
     </div>
     <!-- <div class="row s12" style="margin-bottom:0px;"></div>-->
     <div class="input-field col l2 m6 s12">
-      <label class="lll">Género</label>
+      <label class="lll">Género <span class="red-text">*</span></label>
       <select name="IPGENE" class="browser-default selectS" required>
         <option value="">Seleccione</option>
         <option value="M" <?=$candidate["ASP_GENE"]=="M" ? 'selected' : '' ?>>Masculino</option>
@@ -173,7 +166,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
     </div>
 
     <div class="input-field col l2 m3 s6">
-      <label class="lll">Tipo de sangre</label>
+      <label class="lll">Tipo de sangre <span class="red-text">*</span></label>
       <select name="IPTISA" class="browser-default selectS" required>
         <option value="">Seleccione</option>
         <?php
@@ -186,7 +179,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
     </div>
 
     <div class="input-field col l2 m3 s6">
-      <label class="lll">Estado civil</label>
+      <label class="lll">Estado civil <span class="red-text">*</span></label>
       <select name="IPESCI" class="browser-default selectS" required>
         <option value="">Seleccione</option>
         <?php
@@ -224,12 +217,12 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
   
     <div class="input-field col offset-l2 l2 m3 s7">
       <input id="IPESTA" name="IPESTA" type="text" maxlength="15" class="validate <?=$candidate["ASP_ESTA"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_ESTA"]?>' required>
-      <label class="<?=$candidate["ASP_ESTA"] ? 'active' : ''?>" for="IPESTA">Estatura (m)</label>
+      <label class="<?=$candidate["ASP_ESTA"] ? 'active' : ''?>" for="IPESTA">Estatura (m) <span class="red-text">*</span></label>
     </div>
 
     <div class="input-field col l2 m3 s5">
       <input id="IPPESO" name="IPPESO" type="text" maxlength="15" class="validate <?=$candidate["ASP_PESO"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_PESO"]?>' required>
-      <label class="<?=$candidate["ASP_PESO"] ? 'active' : ''?>" for="IPPESO">Peso (Kg)</label>
+      <label class="<?=$candidate["ASP_PESO"] ? 'active' : ''?>" for="IPPESO">Peso (Kg) <span class="red-text">*</span></label>
     </div>
   </div>
 
@@ -239,7 +232,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
 
   <div class="col l12 m12 s12">
     <div class="input-field col offset-l3 l3 m4 s12">
-      <label class="lll">Provincia</label>
+      <label class="lll">Provincia <span class="red-text">*</span></label>
         <select name="DDPROV" id="DDPROV" class="browser-default selectS" required>
           <option value="">Seleccione</option>
           <?php
@@ -252,7 +245,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
     </div>
 
     <div class="input-field col l3 m4 s6">
-      <label class="lll">Cantón</label>
+      <label class="lll">Cantón <span class="red-text">*</span></label>
       <select name="DDCANT" id="DDCANT" class="browser-default selectS" required>
         <option value="">Seleccione</option>
         <?php
@@ -266,7 +259,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
       </select>
     </div>
     <div class="input-field col l3 m4 s6">
-      <label class="lll">Parroquia</label>
+      <label class="lll">Parroquia <span class="red-text">*</span></label>
       <select name="DDPARR" id="DDPARR" class="browser-default selectS" required>
         <option value="">Seleccione</option>
         <?php
@@ -286,7 +279,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
   <div class="col l12 m12 s12">
     <div class="input-field col l3 m4 s6">
       <input id="DDCAPR" name="DDCAPR" type="text" maxlength="75" class="validate <?=$candidate["ASP_CAPR"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_CAPR"]?>' required>
-      <label class="<?=$candidate["ASP_CAPR"] ? 'active' : ''?>" for="DDCAPR">Calle principal</label>
+      <label class="<?=$candidate["ASP_CAPR"] ? 'active' : ''?>" for="DDCAPR">Calle principal <span class="red-text">*</span></label>
     </div>
 
     <div class="input-field col l3 m4 s6">
@@ -296,7 +289,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
 
     <div class="input-field col l4 m4 s6">
       <input id="DDSECT" name="DDSECT" type="text" maxlength="75" class="validate <?=$candidate["ASP_SECT"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_SECT"]?>' required>
-      <label class="<?=$candidate["ASP_SECT"] ? 'active' : ''?>" for="DDSECT">Sector</label>
+      <label class="<?=$candidate["ASP_SECT"] ? 'active' : ''?>" for="DDSECT">Sector <span class="red-text">*</span></label>
     </div>
 
     <div class="input-field col l2 m4 s6">
@@ -307,7 +300,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
 
     <div class="input-field col l3 m4 s6">
       <input id="DDREFE" name="DDREFE" type="text" maxlength="100" class="validate <?=$candidate["ASP_REFE"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_REFE"]?>' required>
-      <label class="<?=$candidate["ASP_REFE"] ? 'active' : ''?>" for="DDREFE">Referencia</label>
+      <label class="<?=$candidate["ASP_REFE"] ? 'active' : ''?>" for="DDREFE">Referencia <span class="red-text">*</span></label>
     </div>
 
     <div class="input-field col l3 m4 s6">
@@ -317,7 +310,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
 
     <div class="input-field col l4 m4 s6">
       <input id="DDTEL2" name="DDTEL2" type="text" maxlength="15" class="validate <?=$candidate["ASP_TEL2"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_TEL2"]?>' pattern= "[0-9]*"  title= "Solo acepta números" required>
-      <label class="<?=$candidate["ASP_TEL2"] ? 'active' : ''?>" for="DDTEL2">Telf. Celular</label>
+      <label class="<?=$candidate["ASP_TEL2"] ? 'active' : ''?>" for="DDTEL2">Telf. Celular <span class="red-text">*</span></label>
     </div>
   </div>
 

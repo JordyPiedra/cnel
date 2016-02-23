@@ -11,6 +11,7 @@
 
   <div class="col l12 m12 s12">
     <h6 class="center-align red white-text">Agregar instrucción formal</h6>
+    <h6 class="red-text center-align">Obligatorio <b>*</b></span></h6>
   </div>
 
 
@@ -18,7 +19,7 @@
     <div class="row">
       <div class="col l12 m12 s12">
         <div class="col l6 m6 s4">
-          <h6 class="right-align">Nivel de instrucción formal</h6>
+          <h6 class="right-align">Nivel de instrucción formal <span class="red-text">*</span></h6>
         </div>
         <div class="col l6 m6 s8">
             <select name="IFNSTR" id="IFNSTR" class="actS browser-default" required style="margin-top: 0px;"> 
@@ -40,13 +41,13 @@
       <div class="col l8 m8 s12">
         <div class="input-field col offset-l2 l10 m12 s12">
           <input id="IFNOMB1" name="IFNOMB1" type="text" maxlength="140" class="actI validate"  value=''>
-          <label for="IFNOMB1" class="actL">Titulo obtenido</label>
+          <label for="IFNOMB1" class="actL">Titulo obtenido <span class="red-text">*</span></label>
         </div>
       </div>
       <div class="col l4 m4 s12">
         <div class="input-field col l8 m12 s12">
           <input id="IFTIEM1" name="IFTIEM1" type="text" maxlength="2" class="actI validate" placeholder="En años" value='' pattern= "[0-9]*"  title= "Solo acepta números">
-          <label class="active" for="IFTIEM1">Tiempo de estudio</label>
+          <label class="active" for="IFTIEM1">Tiempo de estudio <span class="red-text">*</span></label>
         </div>
       </div>
 
@@ -58,7 +59,7 @@
       <div class="col l12 m12 s12">   
         <div class="col l6 m12 s12">
           <div class="input-field col l6 offset-m2 m4">
-            <label for="IFINST" class="lll">Institución educativa</label>
+            <label for="IFINST" class="lll">Institución educativa <span class="red-text">*</span></label>
             <select name="IFINST" id="IFINST" class="actS browser-default">
               <option value="">Seleccione</option>
               <?php
@@ -73,7 +74,7 @@
           
           <div class="input-field col l6 m6 s12" id="OINS" style="display:none;">
             <input id="IFOINS" name="IFOINS" type="text" maxlength="100" class="actI validate"  value=''>
-            <label for="IFOINS" class="actL">Nombre Institución</label>
+            <label for="IFOINS" class="actL">Nombre Institución <span class="red-text">*</span></label>
           </div> 
 
         </div>
@@ -81,7 +82,7 @@
         <div class="col l6 m12 s12">
           <div class="input-field col l10 m12 s12">
             <input id="IFNOMB" name="IFNOMB" type="text" maxlength="140" class="actI validate"  value=''>
-            <label for="IFNOMB" class="actL">Titulo obtenido</label>
+            <label for="IFNOMB" class="actL">Titulo obtenido <span class="red-text">*</span></label>
           </div> 
         </div>
       
@@ -90,17 +91,17 @@
 
           <div class="input-field col l2 m6 s6">
             <input name="IFTIEM" id="IFTIEM" type="text" maxlength="2" class="actI validate" placeholder="En años" pattern= "[0-9]*"  title= "Solo acepta números">
-            <label for="IFTIEM" class="active">Tiempo de estudio</label>
+            <label for="IFTIEM" class="active">Tiempo de estudio <span class="red-text">*</span></label>
           </div>
 
           <div class="input-field col offset-l1 l2 m6 s6">
             <input name="IFFGRA" id="IFFGRA" type="text" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30">
-            <label for="IFFGRA" class="active">Fecha de graduación</label>
+            <label for="IFFGRA" class="active">Fecha de graduación <span class="red-text">*</span></label>
           </div>
 
           <div class="input-field col offset-l1 l2 m6 s12">
-            <label class="lll">Área de estudios</label>
-            <select name="IFAEST" id="IFAEST" class="actS browser-default">
+            <label class="lll">Área de estudios <span class="red-text">*</span></label>
+            <select name="IFAEST" id="IFAEST" class="actS browser-default" required>
               <option value="">Seleccione</option>
               <?php
                 $x = null;
