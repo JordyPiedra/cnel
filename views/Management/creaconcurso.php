@@ -486,7 +486,7 @@
         $("#save_all").click(function () {
             var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
             console.log(cabecera_concurso);
-            fajax(cabecera_concurso, '<?php echo URL; ?>/management/insert_concurso', crea_cabconcurso);
+            fajax(cabecera_concurso, '<?php echo URL; ?>Management/insert_concurso', crea_cabconcurso);
 
         });
 
@@ -505,7 +505,7 @@
         function CALL_actualiza_tabla_fases() {
 
             param = {'CONID': CONCID_};
-            fajax(param, '<?php echo URL; ?>/management/getall_fase_concurso', actualiza_tabla_fases);
+            fajax(param, '<?php echo URL; ?>Management/getall_fase_concurso', actualiza_tabla_fases);
         }
 
         function actualiza_tabla_fases(response) {
@@ -532,7 +532,7 @@
         function eliminar_fase_concurso(ID) {
             param = {'CONID': CONCID_, "FASE": ID};
             Materialize.toast('Elimado con Éxito', 2000);
-            fajax(param, '<?php echo URL; ?>/management/delete_faseConcurso', CALL_actualiza_tabla_fases);
+            fajax(param, '<?php echo URL; ?>Management/delete_faseConcurso', CALL_actualiza_tabla_fases);
         }
 
 //CREA FASE
@@ -576,7 +576,7 @@
             if ($('#TDES').val() != "NULL")
             {
 
-                fajax($('#TDES').serialize(), '<?php echo URL; ?>/management/getall_fase', actualiza_allfases);
+                fajax($('#TDES').serialize(), '<?php echo URL; ?>Management/getall_fase', actualiza_allfases);
             }
         });
 
@@ -587,7 +587,7 @@
             {
                 var carg = $('#CFASE').serialize();
 
-                fajax(carg, '<?php echo URL; ?>/management/busca_departamento', buscar_cargo);
+                fajax(carg, '<?php echo URL; ?>Management/busca_departamento', buscar_cargo);
 
                 $('#logo_param').openModal();
             }
@@ -601,7 +601,7 @@
                 var faseC = $('#parametrosConcurso :input').serialize();
                 faseC += '&CONID=' + CONCID_;
 
-                fajax(faseC, '<?php echo URL; ?>/management/insert_base_concurso', insert_base_concurso);
+                fajax(faseC, '<?php echo URL; ?>Management/insert_base_concurso', insert_base_concurso);
 
             }
             else
@@ -619,14 +619,14 @@
             {
 
                 console.log(frmser);
-                fajax(frmser, '<?php echo URL; ?>/management/crea_fase', guardar_fase);
+                fajax(frmser, '<?php echo URL; ?>Management/crea_fase', guardar_fase);
 
             }
             else
             {
                 frmdep += "&DID=" + $('#DNOMB').attr('Did'); //AGREGAMOS EL ID PARA SU EDICION
 
-                fajax(frmser, '<?php echo URL; ?>/management/actualiza_departamento', actualiza_departamento);
+                fajax(frmser, '<?php echo URL; ?>Management/actualiza_departamento', actualiza_departamento);
 
             }
 
@@ -684,7 +684,7 @@
         function actualiza_departamento(response) {
             $('#departamento_modal').closeModal();
             var obj = JSON.parse(response);
-            fajax($('#frmDepartamento :input').serialize(), '<?php echo URL; ?>/management/get_allDepartamentosjson', actualiza_alldepartamentos);
+            fajax($('#frmDepartamento :input').serialize(), '<?php echo URL; ?>Management/get_allDepartamentosjson', actualiza_alldepartamentos);
             Materialize.toast(obj['Mensaje'], 2000);
 
         }
@@ -694,7 +694,7 @@
             $('#departamento_modal').closeModal();
             var obj = JSON.parse(response);
             if ($('#PUESTO').val() != "NULL")
-                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>/management/get_allCargos', cargar_puestos_trabajo);
+                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>Management/get_allCargos', cargar_puestos_trabajo);
             Materialize.toast(obj['Mensaje'], 2000);
 
         }
@@ -742,7 +742,7 @@
             $('#CPADR').val($('#PUESTO').val());
             if ($('#PUESTO').val() != "NULL")
             {
-                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>/management/get_allCargos', cargar_puestos_trabajo);
+                fajax($('#PUESTO').serialize(), '<?php echo URL; ?>Management/get_allCargos', cargar_puestos_trabajo);
 
 
             }

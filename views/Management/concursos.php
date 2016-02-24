@@ -80,12 +80,12 @@ echo'
                 </div>
         </div> 
 
-        <form action="<?php echo URL; ?>management/creaconcurso" method="POST"> 
+        <form action="<?php echo URL; ?>Management/creaconcurso" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
             <input type="submit" id="ejecutar" style="display: none;"> 
         </form>
 
-        <form action="<?php echo URL; ?>management/proceso_concurso" method="POST"> 
+        <form action="<?php echo URL; ?>Management/proceso_concurso" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
             <input type="hidden" name="CONTOKEN" id="token_" value=""> 
             <input type="submit" id="proceso" style="display: none;"> 

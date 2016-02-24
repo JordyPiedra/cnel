@@ -1,6 +1,6 @@
 <?php 
 
-	define('URL', 'http://localhost/cnel/');
+	define('URL', 'http://localhost/');
 	define('LIBS', 'libs/');
         
     define('HEAD_U', 'public/inc/HEAD_U.php');

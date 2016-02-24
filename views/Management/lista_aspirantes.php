@@ -70,12 +70,12 @@ echo'
             </div>
         </div>
 
-        <form action="<?php echo URL; ?>management/creaconcurso" method="POST"> 
+        <form action="<?php echo URL; ?>Management/creaconcurso" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
             <input type="submit" id="ejecutar" style="display: none;"> 
         </form>
 
-        <form action="<?php echo URL; ?>management/reclutar" method="POST"> 
+        <form action="<?php echo URL; ?>Management/reclutar" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value=""> 
             <input type="hidden" name="CONTOKEN" id="token_" value=""> 
             <input type="submit" id="reclutar" style="display: none;"> 

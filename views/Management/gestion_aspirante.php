@@ -92,12 +92,12 @@ echo'
     </div>
   </div>
 
-<form action="<?php echo URL; ?>management/creaconcurso_1" method="POST"> 
+<form action="<?php echo URL; ?>Management/creaconcurso_1" method="POST"> 
 <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
 <input type="submit" id="ejecutar" style="display: none;"> 
 </form>
 
-<form action="<?php echo URL; ?>management/reclutamiento" method="POST"> 
+<form action="<?php echo URL; ?>Management/reclutamiento" method="POST"> 
 <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
 <input type="submit" id="reclutar" style="display: none;"> 
 </form>

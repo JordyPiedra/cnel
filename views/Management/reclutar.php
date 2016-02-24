@@ -338,7 +338,7 @@ echo' <tr class="center-align">
 
 
 
-<form style="display: none;" action="<?php echo URL; ?>management/processStateConcurso" method="POST"> 
+<form style="display: none;" action="<?php echo URL; ?>Management/processStateConcurso" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value="<?= $concurso[0][0]; ?>"> 
             <input type="hidden" name="CONTOKEN" id="token_" value="<?= $concurso[0][14]; ?>"> 
             <input type="submit" id="terminar_proceso" style="display: none;"> 

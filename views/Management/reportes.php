@@ -40,11 +40,11 @@
         <i class="large     material-icons ">assignment_turned_in</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
-            <a target="" href="<?= URL.'management/concurso_finalizado' ?>">Concursos Finalizados<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+            <a target="" href="<?= URL.'Management/concurso_finalizado' ?>">Concursos Finalizados<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
         <p>Informe de Selección</p>
         </div>
         <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><a target="" href="<?= URL.'management/concurso_finalizado' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
+        <span class="card-title grey-text text-darken-4"><a target="" href="<?= URL.'Management/concurso_finalizado' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
         <p>Listado de los concursos finalizados con informe de selección</p>
         </div>
     </div>

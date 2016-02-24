@@ -541,7 +541,7 @@ public function proceso_concurso(){
     }
     //Función que genera el token para un identificador
     private function index_management(){
-        header('Location: '.URL.'management/index');
+        header('Location: '.URL.'Management/index');
     }
     private function Mayus($variable) {
         $variable = strtr(strtoupper($variable), "àèìòùáéíóúçñäëïöü", "ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
@@ -559,7 +559,7 @@ public function proceso_concurso(){
             $CON_ID=$_POST["IDCON_"];
             
                if($this->model->update_estadoConcurso($CON_ID, $data))
-                    header('Location: '.URL.'management/calificaciones');
+                    header('Location: '.URL.'Management/calificaciones');
                 else
                     $this->index_management();
 
@@ -577,7 +577,7 @@ public function proceso_concurso(){
             $CON_ID=$_POST["IDCON_"];
             
                if($this->model->update_estadoConcurso($CON_ID, $data))
-               header('Location: '.URL.'management/reclutamiento');
+               header('Location: '.URL.'Management/reclutamiento');
                else
                  $this->index_management();
 
@@ -589,7 +589,7 @@ public function proceso_concurso(){
     private function finalStateConcurso($CON_ID,$CON_IDTOKEN){
             $data = ["CON_ESTA" => "'F'"];
             if($this->model->update_estadoConcurso($CON_ID, $data))
-            header('Location: '.URL.'management/reportes');
+            header('Location: '.URL.'Management/reportes');
             else
             $this->index_management();
     }
