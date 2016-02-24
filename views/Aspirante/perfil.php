@@ -1,3 +1,6 @@
+<?php
+  $modal_init = $this->data["MODAL-INIT"];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -133,7 +136,7 @@
     
  </div>
 
- <div class="container z-depth-1" id="containerHV" >
+<div class="container z-depth-1" id="containerHV" >
 </div>
 
   <div class="fixed-action-btn send1" style="bottom: 45px; right: 24px;display:none;">
@@ -155,6 +158,28 @@
   </div>
 </div>
 
+<!-- Modal MESSAGE INIT-->
+<div id="modalMI" class="modal">
+  <div class="modal-content">
+    <p class="center-align"><i class="material-icons large blue-text text-darken-4">mood</i></p>
+    <h5 class="center-align">Bienvenido a "Trabaja con nosotros CNEL"</h5>
+    <h5 class="center-align">Santo Domingo</h5>
+    <p>Por favor, a continuación lee las siguientes instrucciones:</p>
+    <ul>
+      <li>* La información proporcionada estará sujeta a revisión por parte del personal encargado.</li>
+      <li>* Se recomienda ingresar información correcta.</li>
+      <li>* Cualquier inquietud o duda comunicarse a <a href="mailto:soportedevelopersd@gmail.com">soportedevelopersd@gmail.com</a></li>
+    </ul>
+    <p class="center-align">
+      <img src="<?=URL?>public/images/logo.png" style="width:10%;">
+    </p>
+    <h6 class="center-align">El equipo de <b>CNEL EP. Unidad de Negocios Santo Domingo<b></h6>
+  </div>
+  <div class="modal-footer">    
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-green  btn-flat">Aceptar</a>
+  </div>
+</div>
+
 <iframe id="applicantResume" class="modal" frameborder="0" style="width=100%;"></iframe>
 
 
@@ -162,7 +187,7 @@
 </main>
 
 <?php include_once SCRIPT_U;?>
-<script>var URL = '<?=URL?>';</script>
+<script>var URL = '<?=URL?>';var MI = <?=$modal_init?>;</script>
 <script src="<?=URL.'public/js/controllerAspirante.js'?>"></script>
 <?php include_once JSPDF ?>
 <script src="<?=URL.'public/js/controllerApplicantResume.js'?>"></script>

@@ -73,6 +73,7 @@ Class Acceso_model extends Model {
           if($query[0][1]==='A'){
             Session::setValue("ID-ASPIRANTE", $query[0][0]);
             Session::setValue("EMAIL-ASPIRANTE", $email);
+            Session::setValue("MODAL-INIT", 1);
             $output = ["STATUS" => "SUCCESS", "MSG"=> "<i class=\"material-icons green-text\">done</i> &nbsp; Has iniciado sesión correctamente"];  
           }
 

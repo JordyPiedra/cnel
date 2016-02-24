@@ -4,14 +4,21 @@ Class Aspirante extends Controller{
 	public function __construct(){
 		parent::__construct();
 
-		if(!Session::getValue("ID-ASPIRANTE")){
-            header('Location: '.URL);
-            //echo '<script> window.location.href="'.URL.'Aspirante/perfil"</script>';
-        }
+		if(!Session::getValue("GUEST")){
+			if(!Session::getValue("ID-ASPIRANTE")){
+	            header('Location: '.URL);
+	            //echo '<script> window.location.href="'.URL.'Aspirante/perfil"</script>';
+	        }	        
+		}else{
+			Session::SetValue("ID-ASPIRANTE", Session::getValue("GUEST"));
+		}
+		
 	}
 
 	public function perfil(){
+		$this->view->data = ["MODAL-INIT" => Session::getValue("MODAL-INIT")];
 		$this->view->render($this, 'perfil');
+		Session::SetValue("MODAL-INIT", 0);
 	}
 
 	//Configure the view to show
@@ -527,10 +534,13 @@ Class Aspirante extends Controller{
 		echo '<script> window.location.href="'.URL.'"</script>';
 	}
 
-	public function curriculumVitae(){
+	public function curriculumVitae($id = false){
 
+		if (!$id) {
+			$id = Session::getValue("ID-ASPIRANTE");
+		}
 
-		$candidate = $this->model->getDataCandidate2(Session::getValue("ID-ASPIRANTE"))[0];
+		$candidate = $this->model->getDataCandidate2($id)[0];
 
 		/*$n = $this->model->db->prepare("call get_localidad(".$candidate[34].", 'N');");
 		$n->execute();
@@ -542,23 +552,23 @@ Class Aspirante extends Controller{
 
 
 
-		$n = $this->model->db->prepare("call get_formal_education(".Session::getValue("ID-ASPIRANTE").");");
+		$n = $this->model->db->prepare("call get_formal_education(".$id.");");
 		$n->execute();
 
 		$candidate["fe"] = $n->fetchAll(PDO::FETCH_NUM);
 
 
-		$n = $this->model->db->prepare("call get_languages_applicant(".Session::getValue("ID-ASPIRANTE").");");
+		$n = $this->model->db->prepare("call get_languages_applicant(".$id.");");
 		$n->execute();
 
 		$candidate["la"] = $n->fetchAll(PDO::FETCH_NUM);
 
-		$n = $this->model->db->prepare("call get_candidate_training(".Session::getValue("ID-ASPIRANTE").");");
+		$n = $this->model->db->prepare("call get_candidate_training(".$id.");");
 		$n->execute();
 
 		$candidate["ct"] = $n->fetchAll(PDO::FETCH_NUM);
 
-		$n = $this->model->db->prepare("call get_work_experience(".Session::getValue("ID-ASPIRANTE").");");
+		$n = $this->model->db->prepare("call get_work_experience(".$id.");");
 		$n->execute();
 
 		$candidate["we"] = $n->fetchAll(PDO::FETCH_NUM);

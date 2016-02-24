@@ -1,5 +1,8 @@
 $(function(){
   //Materialize.toast('<i class="material-icons white-text">mood</i>&nbsp;Bienvenido', 2500, 'rounded');
+  if(MI){
+    $('#modalMI').openModal();
+  }
   $(".dropdown-button").dropdown();
   $(".button-collapse").sideNav();
   handleDate();
