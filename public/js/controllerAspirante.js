@@ -219,7 +219,17 @@ var controllerAS = {
       }
 
       $("#containerHV").empty().load(URL+'Aspirante/configSection/'+view, function(){
-        
+        if(typeof(GU) != "undefined"){
+          if($(".contentBtn").length){
+            $(".contentBtn").remove();
+          }
+
+          if($(".delete").length){
+            $(".delete").remove();
+          }
+
+          
+        }
         $(".triggerI").trigger("change");
       });
     },

@@ -1,5 +1,6 @@
 <?php
   $modal_init = $this->data["MODAL-INIT"];
+  $guest = $this->data["GUEST"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -139,12 +140,14 @@
 <div class="container z-depth-1" id="containerHV" >
 </div>
 
-  <div class="fixed-action-btn send1" style="bottom: 45px; right: 24px;display:none;">
-    <a class="btn-floating btn-large red">
-      <i class="large material-icons">save</i>
-    </a>
-  </div>
-
+  <?php 
+    if (!$guest) {
+      echo '<div class="fixed-action-btn send1" style="bottom: 45px; right: 24px;display:none;">
+      <a class="btn-floating btn-large red">
+        <i class="large material-icons">save</i>
+      </a></div>';
+    }
+  ?>
 
 <!-- Modal CONFIRMATION-->
 <div id="modalCON" class="modal">
@@ -187,7 +190,7 @@
 </main>
 
 <?php include_once SCRIPT_U;?>
-<script>var URL = '<?=URL?>';var MI = <?=$modal_init?>;</script>
+<script>var URL = '<?=URL?>';var MI = <?=$modal_init?>;var GU = '<?=$guest?>';</script>
 <script src="<?=URL.'public/js/controllerAspirante.js'?>"></script>
 <?php include_once JSPDF ?>
 <script src="<?=URL.'public/js/controllerApplicantResume.js'?>"></script>
