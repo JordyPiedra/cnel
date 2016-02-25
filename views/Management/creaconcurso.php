@@ -38,7 +38,7 @@
                                 </div>
 
                                 <div class="input-field col l4 m4 s12">
-                                    <input id="CODI" name="CODI" type="text" class="validate" <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; ?>  require>
+                                    <input id="CODI"  name="CODI" type="text" class="validate red-text" <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; else if(isset($this->codicon)) echo 'value="'.$this->codicon.'"';?>  require>
                                     <label for="CODI" <?php if ($concurso != "") echo'class="active"'; ?> >Código </label>
                                 </div>
                                 <div class="input-field col l6 m4 s12">
