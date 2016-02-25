@@ -190,7 +190,7 @@
 </main>
 
 <?php include_once SCRIPT_U;?>
-<script>var URL = '<?=URL?>';var MI = <?=$modal_init?>;var GU = '<?=$guest?>';</script>
+<script>var URL = '<?=URL?>';var MI = <?=$modal_init?>; <?php if($guest) echo 'var GU ="JVJP";'?> </script>
 <script src="<?=URL.'public/js/controllerAspirante.js'?>"></script>
 <?php include_once JSPDF ?>
 <script src="<?=URL.'public/js/controllerApplicantResume.js'?>"></script>

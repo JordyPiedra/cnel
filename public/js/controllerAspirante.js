@@ -226,10 +226,9 @@ var controllerAS = {
 
           if($(".delete").length){
             $(".delete").remove();
-          }
-
-          
+          }  
         }
+
         $(".triggerI").trigger("change");
       });
     },
