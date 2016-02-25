@@ -200,10 +200,14 @@ echo'
 <td>'. $value[6] .'</td>
 
 <td>
-<a onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons teal-text text-lighten-3  small">visibility</i></a>
-<a onclick="eliminar_aspirante_concurso(' . $value[0] . ",'" . $value[7] ."'".')"> <i class="material-icons teal-text text-lighten-3  small">delete</i></a>
-</td>
-</tr>';
+<td>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar C.V." onclick="ver_CV('.$value[0].')"> <i class="material-icons small">visibility</i></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('.$value[0].')"> <i class="material-icons small">assignment_ind</i></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar('.$value[0].",'".$value[1]."'".')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a>
+</td></tr>';
 }
 ?>   
 
@@ -356,6 +360,8 @@ echo' <tr class="center-align">
     <script type="text/javascript">var URL='<?=  URL;?>';</script>
     <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
     <script src="<?= URL . 'public/js/controllerGestionAspirante.js' ?>"></script>
+     <script src="<?php echo URL; ?>public/js/controllerApplicantResume.js"></script>
+  <script src="<?php echo URL; ?>public/js/controlleraprobarAspirante.js"></script>
    <script>
            $( document ).ready(function(){
         $(".button-collapse").sideNav();

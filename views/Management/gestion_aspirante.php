@@ -54,7 +54,7 @@ foreach ($this->data['Aspirantes'] as $key => $value) {
   
 echo' 
 <tr class="center-align">
-<td><i class="material-icons light-blue-text text-accent-3 small ">person</i></td>
+<td>'.($key+1).'</td>
 <td>'.$value[1].'</td>
 <td>'.$value[2].' '.$value[3].'</td>
 <td> '.$value[4].' '.$value[5].'</td>
@@ -62,11 +62,13 @@ echo'
 <td>'.$value[6].'</td>
 
 <td></td><td>
-
-<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_concurso('.$value[0].')"> <i class="material-icons small">visibility</i></a>
-&nbsp;  
-<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar_perfil('.$value[0].')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a></td>
-</tr>';
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar C.V." onclick="ver_CV('.$value[0].')"> <i class="material-icons small">visibility</i></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('.$value[0].')"> <i class="material-icons small">assignment_ind</i></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar('.$value[0].",'".$value[1]."'".')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a>
+</td></tr>';
 }
 ?>   
 
@@ -91,7 +93,7 @@ echo'
    
     </div>
   </div>
-
+<iframe id="applicantResume" class="modal" frameborder="0" style="width=100%;"></iframe>
 <form action="<?php echo URL; ?>Management/creaconcurso_1" method="POST"> 
 <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
 <input type="submit" id="ejecutar" style="display: none;"> 
@@ -102,12 +104,23 @@ echo'
 <input type="submit" id="reclutar" style="display: none;"> 
 </form>
 
+<div id="modalAPRO" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+  <div class="modal-content center-align">
+    <p><i class="material-icons medium red-text">info</i></p>
+    <h5 id="mensajeAlert"></h5>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-red  red-text  btn-flat" id="accept">Aceptar</a>
+  </div>
+</div>
 <?php include_once SCRIPT_U; ?> 
 
 <?php include_once JSPDF ?>
 <script > var URL="<?php echo URL; ?>";</script>
-  <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
-  <script src="<?php echo URL; ?>/public/js/controlleraprobarAspirante.js"></script>
+  <script src="<?php echo URL; ?>public/js/globalJS.js"></script>
+  <script src="<?php echo URL; ?>public/js/controllerApplicantResume.js"></script>
+  <script src="<?php echo URL; ?>public/js/controlleraprobarAspirante.js"></script>
 
     </body>
     

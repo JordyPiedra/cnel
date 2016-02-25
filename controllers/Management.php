@@ -6,7 +6,7 @@ Class Management extends Controller {
 
         parent:: __construct();
         
-		if(!Session::getValue("ID-ADMIN") && $_SERVER["REQUEST_URI"] != '/cnel/management/login'){
+		if(!Session::getValue("ID-ADMIN") && $_SERVER["REQUEST_URI"] != '/Management/login'){
           header('Location: '.URL.'Management/login');
            
         }
@@ -69,7 +69,15 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
             $datoConid=['CON_ID' => "'" . $_POST["IDCON_"] . "'"];
             $this->view->DATA = $this->model->get_concurso($_POST['IDCON_']);
             $this->view->DATA += ['fasesConcurso' => $this->model->getall_faseconcurso($datoConid)];    
+        }else {
+            $numcon= $this->model->getallConcurso();
+            $numcon=$numcon['Concursos'];
+            $count=(count($numcon)+1);
+            //DRH-001-2016
+            $numero=str_pad($count, 3, "0", STR_PAD_LEFT);
+            $this->view->codicon='DRH-'.$numero.'-'.date('Y');
         }
+        
         $this->view->render($this, 'creaconcurso');
     }
     
@@ -190,6 +198,7 @@ public function proceso_concurso(){
     //Cargamos la vista login del usuario administrador
     public function login() {
         Session::setValue("ID-ADMIN",'1');  
+        Session::setValue("GUEST",'1'); 
         $this->view->render($this, 'login');
     }
 
@@ -642,7 +651,18 @@ public function proceso_concurso(){
         else
             $this->index_management();
     }
-
+//
+public function perfil_aspirante(){
+    if(isset($_POST['id']))
+    {
+       Session::setValue("GUEST",$_POST['id']);
+       echo true;
+      
+    }else {
+        $this->index_management();
+    }
+    
+}
  
          
 }

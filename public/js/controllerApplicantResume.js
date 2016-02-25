@@ -37,7 +37,10 @@ $(function(){
         });
   });
 
-	function getCurriculumVitae(d)
+
+});
+
+function getCurriculumVitae(d)
   {
 
 
@@ -230,8 +233,7 @@ $(function(){
     y+=10;
 
   }
-
-  var string = pdf.output('datauristring');
+   var string = pdf.output('datauristring');
 
   $('#applicantResume').attr('src', string);
   $('#applicantResume').css("top", 0);
@@ -240,7 +242,3 @@ $(function(){
   $('#applicantResume').height(1000);
 
   }
-
-
-
-});
