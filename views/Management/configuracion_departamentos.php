@@ -27,7 +27,7 @@
                                     <h5 class="blue-text text-darken-2">Departamentos del Sistema</h5>
                                 </div>
                                     <div class="input-field col l6 m11 s11">
-                                        <select id="PUESTO" name="PUESTO" class="browser-default" required onchange ="dep_selected();" require>
+                                        <select id="PUESTO" name="PUESTO" class="browser-default" required onchange ="dep_selected();" >
                                             <option value="NULL" selected>Elija Departamento</option>
 
                                             <?php
@@ -96,7 +96,7 @@
                                     <div class="col l8 m4 s12">
                                         <div class="input-field">
 
-                                            <input id="DNOMB" Did="" name="DNOMB" type="text" class="validate valid">
+                                            <input id="DNOMB" Did="" name="DNOMB" type="text" required class="validate" >
                                             <label id= "lDNOMB" for="DNOMB" class="active" >Nombre Departamento</label>
                                         </div>
 
@@ -156,7 +156,7 @@
 </div>
 <div class="input-field col l4 s12 l4">
 
-<select name="CPADR" id="CPADR" class="browser-default" required="">
+<select name="CPADR" id="CPADR" class="browser-default" required>
    <option value="NULL" selected>Elija Departamento</option>
 
 <?php

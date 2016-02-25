@@ -1,11 +1,12 @@
-function onclick_ (){
-     $("#form_fases").submit(function(event){
+function onclick_ (form_id){
+     $(form_id).submit(function(event){
         event.preventDefault();
       });
       //controllerAS.tab[0] = '';
-      var form =$("#form_fases");
-
+      var form =$(form_id);
+        console.log(form);
       if (!form[0].checkValidity()) {
+         console.log(form[0].checkValidity());
         form.find(':submit').click();
         return false;
       }else return true;
@@ -61,10 +62,12 @@ function create_departamento(){
 }
 //Inserta el departamento establecido
 function insert_departamento(){
+    if(onclick_('#frmDepartamento')){
      var frmdep = $('#frmDepartamento :input').serialize();
      frmdep += "&TIPO=D";
     // console.log(frmdep);
     fajax(frmdep, URL+'management/crea_departamento', insert_departamento_response);
+    }else Materialize.toast('Afuera');
 }
 //
 function insert_departamento_response(response){
@@ -91,11 +94,13 @@ function edit_departamento(){
 }
 //Guardar departamento editado
 function update_departamento(id){
+    if(onclick_('#frmDepartamento')){
    var frmdep = $('#frmDepartamento :input').serialize();
     frmdep += "&DID="+id; 
      frmdep += "&TIPO=D";
      //console.log(frmdep);
     fajax(frmdep, URL+'management/actualiza_departamento', update_departamento_response);
+    }
 }
 function update_departamento_response(response){
       $('#departamento_modal').closeModal();
@@ -236,7 +241,7 @@ function update_fase_response(response){
 }
 
 function create_fase(){
-    if(onclick_()){
+    if(onclick_('#form_fases')){
       var frmser = $('#form_fases :input').serialize();
      fajax(frmser, URL+'management/crea_fase', create_fase_response);   
     }

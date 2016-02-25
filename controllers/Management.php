@@ -7,7 +7,7 @@ Class Management extends Controller {
         parent:: __construct();
         
 		if(!Session::getValue("ID-ADMIN") && $_SERVER["REQUEST_URI"] != '/cnel/management/login'){
-          header('Location: '.URL.'management/login');
+          header('Location: '.URL.'Management/login');
            
         }
     }

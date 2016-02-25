@@ -136,7 +136,7 @@ Class Management_model extends Model {
         if ($this->db->update('SSP_FASE_MO',$FMO_DATOS,false,"FMO_ID='$FMO_ID'"))
             return $data = ["Mensaje" => "Fase " . $FMO_DATOS['FMO_NOMB'] . " actualizado correctamente"];
         else
-            return $data = ["Mensaje" => "Error. al actualizar"];
+            return $data = ["Mensaje" => "No existieron cambios"];
          
     }
 
