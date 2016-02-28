@@ -144,7 +144,16 @@
 </div>
 </div>        
 
- 
+ <div id="modalAPRO" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+  <div class="modal-content center-align">
+    <p><i class="material-icons medium red-text">info</i></p>
+    <h5 id="mensajeAlert"></h5>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:"  onclick=" $('#modalAPRO').closeModal();" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-red  red-text  btn-flat" id="accept">Aceptar</a>
+  </div>
+</div>
 
     </body>
 <?php include_once SCRIPT_U; ?> 

@@ -22,8 +22,8 @@
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-         <li class="tab"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >General</a></li>
-         <li class="tab" id="tabparametros" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">Parámetros</a></li>
+         <li id="tabCC" class="tab active"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >General</a></li>
+         <li id="tabPC" class="tab" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">Parámetros</a></li>
       </ul>
     </div>
   </nav>
@@ -31,7 +31,7 @@
                     <form id="cabeceraConcurso" style="display: hide;">
                         <div class="col  s12  m12 l12 z-depth-1">
 
-                            <div class="container " style="padding-bottom:100px;">
+                            <div  style="padding-bottom:100px;">
 
                                 <div class="col l12 m12 s12 center-align ">
                                     <h5 class="blue-text text-darken-2">Bases del concurso</h5>
@@ -150,9 +150,7 @@
                                     </select>
                                 </div>
 
-                                <div class="input-field col l4 m1 s1"  >
-                                    <a id="logo_param" onclick=""><i class="material-icons small" >open_in_new</i></a>  
-                                </div>
+                             
 
                                 <div class="input-field col l12 m12 s12">
                                     <div class="input-field col l4 m4 s12">
@@ -494,7 +492,7 @@
             var obj = JSON.parse(response);
             CONCID_ = obj['Concurso_'];
             if(CONCID_)
-            $('#tabparametros').show();
+            $('#tabPC').show();
             console.log(obj);
             Materialize.toast(obj['Mensaje'],2000);
         }
@@ -649,12 +647,16 @@
                 case 'CC':
                 {
                     $('#cabeceraConcurso').show();
+                    $('#tabCC').attr('class','tab active');
+                    $('#tabPC').attr('class','tab');
                     break;
 
                 }
                 case 'PC':
 
                     $('#parametrosConcurso').show();
+                    $('#tabPC').attr('class','tab active');
+                    $('#tabCC').attr('class','tab');
                     break;
                
 

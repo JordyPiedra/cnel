@@ -23,8 +23,6 @@
                             <h5 class="blue-text text-darken-2">Concursos</h5>
                         
                 <div id="formContainer">
-                     
-                     
                         <br>
                         <table class="striped highlight ">
                             <thead>

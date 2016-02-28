@@ -49,22 +49,7 @@
         </div>
     </div>
 </div>
-<div class="col l4 "> 
-    <div class="card z-depth-2">
-        <div class="card-image waves-effect waves-block waves-light center-align">
-        <i class="large     material-icons ">assignment_turned_in
-</i>
-        </div>
-        <div class="card-content" style="padding-top: 0px;">
-        <a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-        <p>Aspirantes inscritos</p>
-        </div>
-        <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><i class="material-icons right">close</i></span>
-        <p>Listado de todos los aspirantes inscritos al sistema</p>
-        </div>
-    </div>
-</div>
+
    
                 </div>
             </div>

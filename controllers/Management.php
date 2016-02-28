@@ -568,10 +568,9 @@ public function proceso_concurso(){
             $CON_ID=$_POST["IDCON_"];
             
                if($this->model->update_estadoConcurso($CON_ID, $data))
-                    header('Location: '.URL.'Management/calificaciones');
+                    header('Location: '.URL.'Management/procesos');
                 else
                     $this->index_management();
-
         }
          else
            $this->index_management();
@@ -586,9 +585,9 @@ public function proceso_concurso(){
             $CON_ID=$_POST["IDCON_"];
             
                if($this->model->update_estadoConcurso($CON_ID, $data))
-               header('Location: '.URL.'Management/reclutamiento');
+               echo true;
                else
-                 $this->index_management();
+               echo false;
 
         }
         else
@@ -598,7 +597,7 @@ public function proceso_concurso(){
     private function finalStateConcurso($CON_ID,$CON_IDTOKEN){
             $data = ["CON_ESTA" => "'F'"];
             if($this->model->update_estadoConcurso($CON_ID, $data))
-            header('Location: '.URL.'Management/reportes');
+            header('Location: '.URL.'Management/procesos');
             else
             $this->index_management();
     }

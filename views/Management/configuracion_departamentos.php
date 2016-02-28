@@ -117,7 +117,7 @@
                                             <a class=" center-align waves-effect waves-light btn blue" onclick=" $('#departamento_modal').closeModal()">Cancelar</a>
 
                                         </div>
-
+<input type="submit" id="subFORM" style="display:none;">      
 
                                         <br><br><br>
 
@@ -149,7 +149,7 @@
 <div class="col l8 m4 s12">
 <div class="input-field">
 
-<input id="CNOMB" Did="" name="CNOMB" type="text" class="validate valid">
+<input id="CNOMB" Did="" name="CNOMB" type="text" class="validate valid" required>
 <label id= "lDNOMB2" for="CNOMB" class="active" >Nombre Cargo</label>
 </div>
 
@@ -157,7 +157,7 @@
 <div class="input-field col l4 s12 l4">
 
 <select name="CPADR" id="CPADR" class="browser-default" required>
-   <option value="NULL" selected>Elija Departamento</option>
+   <option value="" selected disabled>Elija Departamento</option>
 
 <?php
 //echo var_dump($this->data['departamentos']);
@@ -180,7 +180,7 @@ echo '<option estado="'.$value[3].'" value="' . $value[0] . '">' . $value[1] . '
 
 </div>
 
-
+<input type="submit" id="" style="display:none;"> 
 
 <br><br><br>
 
@@ -238,7 +238,16 @@ echo '<option estado="'.$value[3].'" value="' . $value[0] . '">' . $value[1] . '
 </div>
 </div>        
 
-
+ <div id="modalAPRO" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+  <div class="modal-content center-align">
+    <p><i class="material-icons medium red-text">info</i></p>
+    <h5 id="mensajeAlert"></h5>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:" onclick=" $('#modalAPRO').closeModal();" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-red  red-text  btn-flat" id="accept">Aceptar</a>
+  </div>
+</div>
 
     </body>
 <?php include_once SCRIPT_U; ?> 

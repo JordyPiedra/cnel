@@ -126,3 +126,10 @@ echo'
     
 </html>
 
+<script>
+    $('document').ready(function(){
+  $(".button-collapse").sideNav();
+  $("#maspirante").attr("class","active");
+    
+  });
+</script>

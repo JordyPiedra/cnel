@@ -9,7 +9,7 @@
     <?php $concurso = $this->data['Concurso']; ?>
     <div class="row ">
     <div class="container">
-   <!--<nav class="blue darken-1">
+   <nav class="blue darken-1">
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -17,15 +17,6 @@
         <li class="active"><a href="">Reclutamiento</a></li>
         <li disabled><a onclick="mensajecalificacion();">Calificacion</a></li>
       </ul>
-    </div>
-  </nav>-->
-  <nav>
-    <div class="nav-wrapper">
-      <div class="col s12">
-        <a href="#!" class="breadcrumb">First</a>
-        <a href="#!" class="breadcrumb">Second</a>
-        <a href="#!" class="breadcrumb">Third</a>
-      </div>
     </div>
   </nav>
   </div> 
@@ -166,7 +157,7 @@
            
             </div>    
             <div class="col l3 m12 s12 left-align">
-                <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="$('#terminar_proceso').trigger('click');"><i class="material-icons left">exit_to_app</i>Terminar  </a>
+                <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="alerta_iniciar( <?= $concurso[0][0].",'".$concurso[0][5]."','".$concurso[0][1]."','".$concurso[0][13]."'";?>);"><i class="material-icons left">exit_to_app</i>Terminar  </a>
             </div>    
             </div>             
         <table class="striped highlight " >
@@ -340,18 +331,26 @@ echo' <tr class="center-align">
     </div>
 </div>
 
-
-
+<div id="modalalert" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+  <div class="modal-content center-align">
+    <p><i class="material-icons medium red-text">info</i></p>
+    <h5 id="mensajeAlert"></h5>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:" onclick="$('#modalAPRO').closeModal();" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
+    <a href="javascript:"  class="modal-action modal-close waves-effect waves-red  red-text  btn-flat" id="accept">Aceptar</a>
+  </div>
+</div>
 <form style="display: none;" action="<?php echo URL; ?>Management/processStateConcurso" method="POST"> 
             <input type="hidden" name="IDCON_" id="IDCON_2" value="<?= $concurso[0][0]; ?>"> 
             <input type="hidden" name="CONTOKEN" id="token_" value="<?= $concurso[0][14]; ?>"> 
             <input type="submit" id="terminar_proceso" style="display: none;"> 
 </form>
-
+<iframe id="applicantResume" class="modal" frameborder="0" style="width=100%;"></iframe>
 
     <?php include_once SCRIPT_U; ?> 
 
-    <?php// include_once JSPDF ?>
+    <?php include_once JSPDF ?>
     <script type="text/javascript">
     var IDCONC=<?=  $concurso[0][0];?>;
     var CONTOKEN="<?=  $concurso[0][14];?>";
@@ -367,6 +366,14 @@ echo' <tr class="center-align">
         $(".button-collapse").sideNav();
         $("#mprocess").attr("class","active");
     })
+function alerta_iniciar(id,nombre,codigo,token){
+    $("#mensajeAlert").html('Seguro desea terminar el reclutamiento del concurso '+nombre+' - '+codigo+' ?');
+    $("#IDCON_2").val(IDCONC);
+    $("#token_").val(CONTOKEN);
+     $("#accept").attr('onclick','$("#terminar_proceso").trigger("click");');
+      $("#modalalert").openModal();
+}
+
 
    </script>
     </body>

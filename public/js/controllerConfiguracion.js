@@ -67,11 +67,12 @@ function insert_departamento(){
      frmdep += "&TIPO=D";
     // console.log(frmdep);
     fajax(frmdep, URL+'management/crea_departamento', insert_departamento_response);
-    }else Materialize.toast('Afuera');
+    }
 }
 //
 function insert_departamento_response(response){
      var obj = JSON.parse(response);
+      $("#CARGO").empty();
      Materialize.toast(obj['Mensaje'],2000);
      $("#departamento_modal").closeModal();
   fajax({}, URL+'management/get_allDepartamentosjson', actualiza_alldepartamentos);
@@ -106,7 +107,9 @@ function update_departamento_response(response){
       $('#departamento_modal').closeModal();
             var obj = JSON.parse(response);
             fajax($('#frmDepartamento :input').serialize(), URL+'management/get_allDepartamentosjson', actualiza_alldepartamentos);
+              $("#CARGO").empty();
             Materialize.toast(obj['Mensaje'], 2000);
+            
     
 }
 
@@ -124,7 +127,7 @@ function update_departamento_response(response){
                 $("#PUESTO").append(fila);
 
             });
-          
+        
 
             $("#CPADR").html($("#PUESTO").html());
         }
@@ -135,17 +138,20 @@ function create_cargo(){
      $('#CNOMB').val('');
     $('#guardar_C').attr('onclick','insert_cargo();');
     $('#estCarg').hide();
+        if($('#PUESTO').val()!= 'NULL')
     $('#CPADR').val($('#PUESTO').val());
     
      $('#cargo_trabajo').openModal();
 }
 function insert_cargo(){
+    if(onclick_('#frmCargo')){
      var frmdep = $('#frmCargo :input').serialize();
     frmdep += "&TIPO=P";
     console.log(frmdep);
     frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
     console.log(frmdep);
     fajax(frmdep, URL+'management/crea_departamento', insert_cargo_response);
+    } 
 }
 //CREA CARGO 
 function insert_cargo_response(response) {
@@ -171,6 +177,7 @@ function actualizar_cargo(id,nombre,padre) {
 
 //Actualiza Cargo
 function update_cargo(id) {
+     if(onclick_('#frmCargo')){
   var frmdep = $('#frmCargo :input').serialize();
     frmdep += "&TIPO=P";
         frmdep += "&DID="+id; 
@@ -180,7 +187,7 @@ function update_cargo(id) {
     frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
     console.log(frmdep);
      fajax(frmdep, URL+'management/actualiza_departamento', update_cargo_response);
-   
+     }
 
 }
 function update_cargo_response(response){
@@ -195,9 +202,9 @@ function update_cargo_response(response){
 
 //Actualiza Cargo - elimina cargo
 function elimina_cargo(id,nombre){
-     $('#nombcargmsj').html(nombre);
-    $('#elimina_C').attr('onclick','delete_cargo('+id+');');
-     $('#mensaje_cargo').openModal();
+     $('#mensajeAlert').html('¿Seguro desea eliminar el cargo '+nombre);
+    $('#accept').attr('onclick','delete_cargo('+id+');');
+     $('#modalAPRO').openModal();
 }
 function delete_cargo(id) {
   
@@ -254,9 +261,9 @@ function create_fase_response(response){
     actualizar_tabla_fases();
 }
 function elimina_fase(id,nombre){
-    $('#nombfase').html(nombre);
-    $('#mensaje_fase').openModal();
-    $('#elimina_F').attr('onclick','delete_fase('+id+');');
+    $('#mensajeAlert').html('¿Seguro desea eliminar la fase '+nombre);
+    $('#modalAPRO').openModal();
+    $('#accept').attr('onclick','delete_fase('+id+');');
     
 }
 function delete_fase(id){

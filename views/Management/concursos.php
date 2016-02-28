@@ -56,7 +56,13 @@ else if($value[12]=='P')
     $estado = 'Calificación';
      $estado2='Calificar';
      $color='orange-text text-accent-4';  
+}else if($value[12]=='C')
+{
+    $estado = 'Creado';
+     $estado2='Iniciar concurso';
+     $color='blue-text text-accent-4';  
 }
+
  
 echo' 
 <tr class="center-align">
@@ -68,7 +74,7 @@ echo'
 <td>' . $value[11] . '</td>
 <td>
 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar concurso" onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
-&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="'.$estado2.' aspirantes" onclick="proceso_concurso(' . $value[0] .",'".$value[13]."'".');"><i class="material-icons small" >settings</i></a></td>
+&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="'.$estado2.'" onclick="alerta_iniciar(' . $value[0] .",'". $value[5] ."','". $value[1] ."','".$value[13]."'".');"><i class="material-icons small" >play_circle_filled</i></a></td>
 
 </tr>';
 }
@@ -98,20 +104,20 @@ echo'
     </body>
 
 </html>
+<!-- Modal Structure -->
+<div id="modalalert" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+  <div class="modal-content center-align">
+    <p><i class="material-icons medium red-text">info</i></p>
+    <h5 id="mensajeAlert"></h5>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-red  red-text  btn-flat" id="accept">Aceptar</a>
+  </div>
+</div>
+<script > var URL="<?php echo URL; ?>";</script>
+  <script src="<?php echo URL; ?>public/js/globalJS.js"></script>
+  <script src="<?php echo URL; ?>public/js/controllerConcurso.js"></script>
 
-<script type="text/javascript">
-    $( document ).ready(function(){
-        $(".button-collapse").sideNav();
-        $("#mconcursos").attr("class","active");
-    })
 
-    function proceso_concurso(id,token)
-  {
-    console.log(token);
-    $("#IDCON_2").val(id); 
-    $("#token_").val(token); 
-    $("#proceso").trigger("click");
-  }
-
-</script>
 
