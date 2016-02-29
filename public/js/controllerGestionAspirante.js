@@ -139,8 +139,9 @@ $('#aspiranteConcruso_reclutado').empty();
       fila += '<td>' + value[1] + '</td>';
       fila += '<td>' + value[2] +' ' + value[3] +' ' + value[4] +' '+ value[5] + '</td>';
       fila += '<td>'+ value[6] +'</td>';
-      fila += '<td><a onclick="ver_concurso(' +  value[0] + ')"> <i class="material-icons teal-text text-lighten-3  small">visibility</i></a>';
-      fila += '<a onclick="eliminar_aspirante_concurso(' +  value[0] + ",'"+ value[7] +"'"+')"> <i class="material-icons teal-text text-lighten-3  small">delete</i></a></td></tr>';
+      fila += '<td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar C.V." onclick="ver_CV('+value[0]+')"> <i class="material-icons small">visibility</i></a>';
+      fila += '&nbsp;&nbsp;&nbsp;&nbsp;<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('+value[0]+')"> <i class="material-icons small">assignment_ind</i></a>';
+      fila += '<a onclick="eliminar_aspirante_concurso(' +  value[0] + ",'"+ value[7] +"'"+')"> <i class="material-icons red-text small">delete</i></a></td></tr>';
 $("#aspiranteConcruso_reclutado").append(fila);
 
             });

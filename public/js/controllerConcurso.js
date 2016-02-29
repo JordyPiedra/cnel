@@ -145,3 +145,13 @@ switch (param)
 
 }
 }
+
+function anular_concurso(id,nombre,codigo,token){
+    $("#mensajeAlert").html('¿Seguro desea eliminar el concurso '+nombre+' - '+codigo+' ? <br> una vez eliminado no podra activarlo nuevamente');
+     $("#accept").attr('onclick','eliminar_concurso('+id+",'"+token+"');");
+      $("#modalalert").openModal();
+}
+ function eliminar_concurso(id,token)
+  {
+    fajax({'IDCON_':id,'CONTOKEN':token},URL+'Management/AnulaStateConcurso', function(response){console.log(response); location.reload();});
+  }

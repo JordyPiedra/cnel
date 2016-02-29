@@ -58,7 +58,7 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
 
     //Cargamos vista de concursos
     public function concursos() {
-        $this->view->data=$this->model->getallConcurso("CON_ESTA='C'"); //Devuelve concursos inicializados
+        $this->view->data=$this->model->getallConcurso("CON_ESTA in ('C','I','P') ORDER BY CON_ESTA"); //Devuelve concursos inicializados
         $this->view->render($this, 'concursos');
     }
     //Cargamos vista de creacion de concurso
@@ -616,6 +616,15 @@ public function proceso_concurso(){
             header('Location: '.URL.'Management/procesos');
             else
             $this->index_management();
+    }
+      //Función que cambia el estado a en FINALIZADO "F"
+    public function AnulaStateConcurso(){
+          if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        { 
+            $data = ["CON_ESTA" => "'A'"];
+            $this->model->update_estadoConcurso($_POST['IDCON_'], $data);
+      
+        }
     }
 
 //funcion que asigna la calificacion de un aspirante

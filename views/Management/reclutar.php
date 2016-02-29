@@ -148,8 +148,6 @@
 
 
        <div class="input-field col l12 s6">
-          <input id="last_name" type="search" class="validate">
-       
 
         </div>
 
@@ -197,7 +195,7 @@ echo'
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('.$value[0].')"> <i class="material-icons small">assignment_ind</i></a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar('.$value[0].",'".$value[1]."'".')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a>
+<a onclick="eliminar_aspirante_concurso(' .  $value[0] . ",'". $value[7] ."'".')"> <i class="material-icons red-text  small">delete</i></a>
 </td></tr>';
 }
 ?>   
@@ -335,6 +333,7 @@ echo' <tr class="center-align">
   <div class="modal-content center-align">
     <p><i class="material-icons medium red-text">info</i></p>
     <h5 id="mensajeAlert"></h5>
+    <p >Una vez terminado el reclutamiento ya no se puedrá editar</p>
   </div>
   <div class="modal-footer">
     <a href="javascript:" onclick="$('#modalAPRO').closeModal();" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
