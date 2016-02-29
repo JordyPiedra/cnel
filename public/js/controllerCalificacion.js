@@ -29,7 +29,7 @@ IDBCONTOKEN=IDBCONTOKEN_;
 
     var data= $('#aspfas'+IDBCON).serializeArray();
     console.log(data);
-    fajax({'IDCON_': IDCONC , 'CONTOKEN':CONTOKEN,'IDBCON':IDBCON,'IDBCONTOKEN':IDBCONTOKEN, 'data': data}, URL+"/management/save_calificacion_aspirante", save_calificacion_aspirante_response);
+    fajax({'IDCON_': IDCONC , 'CONTOKEN':CONTOKEN,'IDBCON':IDBCON,'IDBCONTOKEN':IDBCONTOKEN, 'data': data}, URL+"/Management/save_calificacion_aspirante", save_calificacion_aspirante_response);
 
   }
 
@@ -41,7 +41,7 @@ IDBCONTOKEN=IDBCONTOKEN_;
   }
   
     function finaliza_fase(){
-    fajax({'IDCON_': IDCONC , 'CONTOKEN':CONTOKEN,'IDBCON':IDBCON,'IDBCONTOKEN':IDBCONTOKEN}, URL+"/management/finaliza_fase", finaliza_fase_response);
+    fajax({'IDCON_': IDCONC , 'CONTOKEN':CONTOKEN,'IDBCON':IDBCON,'IDBCONTOKEN':IDBCONTOKEN}, URL+"/Management/finaliza_fase", finaliza_fase_response);
   }
   function finaliza_fase_response(response){
   if(response==1)
