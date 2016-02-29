@@ -1,3 +1,17 @@
+   function onclick_ (form_id){
+     $(form_id).submit(function(event){
+        event.preventDefault();
+      });
+      //controllerAS.tab[0] = '';
+      var form =$(form_id);
+        console.log(form);
+      if (!form[0].checkValidity()) {
+         console.log(form[0].checkValidity());
+        form.find(':submit').click();
+        return false;
+      }else return true;
+}
+   
     $( document ).ready(function(){
         $(".button-collapse").sideNav();
         $("#mconcursos").attr("class","active");
@@ -15,3 +29,119 @@ function alerta_iniciar(id,nombre,codigo,token){
 function inicia_concurso_response(){
     location.reload();
 }  
+
+function editar_concurso(id,token){
+    $('#IDCON_1').val(id);
+    $('#token_1').val(token);
+    $('#editar').trigger('click');
+    
+}
+
+//Validar creacion concurso
+//CREA CONCURSO
+       function creaconcurso() {
+            if(onclick_('#cabeceraConcurso')){
+            var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
+            console.log(cabecera_concurso);
+            fajax(cabecera_concurso, URL+'Management/insert_concurso', creaconcurso_response);
+            }
+            
+        }
+
+        function creaconcurso_response(response) {
+            var obj = JSON.parse(response);
+            CONCID_ = obj['IDCON'];
+            CONTOKEN = obj['CONTOKEN'];
+            if(CONCID_)
+            $('#tabPC').show();
+            $('#save_all').attr('onclick',"actualizar_concurso()");
+            console.log(obj);
+            Materialize.toast(obj['Mensaje'],2000);
+            $('#ltabPC').trigger('click');
+        }
+ 
+ function actualizar_concurso(){
+      if(onclick_('#cabeceraConcurso')){
+            var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
+            cabecera_concurso+='&IDCON_=' + CONCID_+'&CONTOKEN=' + CONTOKEN;
+            console.log(cabecera_concurso);
+            fajax(cabecera_concurso, URL+'Management/update_concurso', actualizar_concurso_response);
+            }
+ }
+ 
+ function actualizar_concurso_response(response){
+       var obj = JSON.parse(response);
+         Materialize.toast(obj['Mensaje'],2000);
+        
+ }
+ 
+ ///crea las fases para un concurso especificado
+ function insert_base_concurso(){
+if (CONCID_ != null && CONCID_ != '')
+{
+    if(onclick_('#parametrosConcurso')){
+    var faseC = $('#parametrosConcurso :input').serialize();
+    faseC += '&CONID=' + CONCID_;
+    fajax(faseC, URL+'Management/insert_base_concurso', insert_base_concurso_response);
+    }
+}
+else
+    Materialize.toast('Concurso no definido', 2000);   
+ }
+        
+function insert_base_concurso_response(response) {
+
+    var obj = JSON.parse(response);
+    console.log(response);
+    Materialize.toast(obj['Mensaje'], 2000);
+    actualiza_tabla_fases();
+}
+
+function actualiza_tabla_fases() {
+    param = {'CONID': CONCID_};
+    fajax(param, URL+'Management/getall_fase_concurso', actualiza_tabla_fases_response);
+}
+
+function actualiza_tabla_fases_response(response) {
+        var obj = JSON.parse(response);
+        $("#detalle_fases").empty();
+        $.each(obj, function (key, value) {
+            if (value[8] == 'M')
+                registro = '<tr class="center-align"><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td>' + value[3] + '</td><td></td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small" >delete</i></a></td></tr>';
+            else
+                registro = '<tr><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td></td><td>' + value[3] + '</td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small" >delete</i></a></td></tr>';
+            $("#detalle_fases").append(registro);
+
+        });
+       
+    }
+//Funcion para cargar las secciones de creacion de concurso
+function seccionS(param) {
+$('#cabeceraConcurso').hide();
+$('#seccion2').hide();
+
+
+switch (param)
+{
+
+
+    case 'CC':
+    {
+        $('#cabeceraConcurso').show();
+        $('#tabCC').attr('class','tab active');
+        $('#tabPC').attr('class','tab');
+        $('#save_all').show();
+        break;
+
+    }
+    case 'PC':
+
+        $('#seccion2').show();
+        $('#tabPC').attr('class','tab active');
+        $('#tabCC').attr('class','tab');
+        $('#save_all').hide();
+        break;
+    
+
+}
+}

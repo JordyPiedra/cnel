@@ -23,7 +23,7 @@
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
          <li id="tabCC" class="tab active"><a section="cabecera_concurso" onclick="seccionS('CC');" class="active" >General</a></li>
-         <li id="tabPC" class="tab" style="display:none;"><a section="parametros" onclick="seccionS('PC');" class="">Parámetros</a></li>
+         <li id="tabPC" class="tab" style="<?php if ($concurso != "") echo''; else echo 'display:none;'; ?>"><a id="ltabPC" section="parametros" onclick="seccionS('PC');" class="">Parámetros</a></li>
       </ul>
     </div>
   </nav>
@@ -38,16 +38,16 @@
                                 </div>
 
                                 <div class="input-field col l4 m4 s12">
-                                    <input id="CODI"  name="CODI" type="text" class="validate red-text" <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; else if(isset($this->codicon)) echo 'value="'.$this->codicon.'"';?>  require>
-                                    <label for="CODI" <?php if ($concurso != "") echo'class="active"'; ?> >Código </label>
+                                    <input id="CODI"  name="CODI" type="text" class="validate red-text" <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; else if(isset($this->codicon)) echo 'value="'.$this->codicon.'"';?>  required>
+                                    <label for="CODI" class="active">Código </label>
                                 </div>
                                 <div class="input-field col l6 m4 s12">
-                                    <input id="NOMB" name="NOMB" type="text" class="validate" <?php if ($concurso != "") echo'value="' . $concurso[0][1] . '"'; ?> require> 
+                                    <input id="NOMB" name="NOMB" type="text" class="validate" <?php if ($concurso != "") echo'value="' . $concurso[0][1] . '"'; ?> required> 
                                     <label for="NOMB" <?php if ($concurso != "") echo'class="active"'; ?> >Nombre</label>
 
                                 </div>
                                 <div class="input-field col l2 m4 s7">
-                                    <input id="NVAC" name="NVAC" type="number" value="1"  class="validate " <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; ?> require>
+                                    <input id="NVAC" name="NVAC" type="number" value="1"  class="validate " <?php if ($concurso != "") echo'value="' . $concurso[0][5] . '"'; ?> required>
                                     <label for="NVAC" class="active" >N# Vacantes</label>
 
                                 </div>
@@ -58,8 +58,8 @@
                                     <div class="input-field col l12 m11 s11">
 
 
-                                        <select id="PUESTO" name="PUESTO" class="browser-default" required onchange ="SelectController($('option:selected', this));" require>
-                                            <option value="NULL" selected>Elija Departamento</option>
+                                        <select id="PUESTO" name="PUESTO" class="browser-default"  required>
+                                            <option  value="" selected disable>Elija Departamento</option>
 
                                             <?php
                                             //echo var_dump($this->data['departamentos']);
@@ -74,8 +74,8 @@
                                     </div>
                                     <div class="input-field col l12 m11 s11">
 
-                                        <select id="CARGO" name="CARGO" class="browser-default" required onchange ="SelectController2($('option:selected', this));" require>
-                                            <option value="NULL" selected >Puesto de Trabajo</option>
+                                        <select id="CARGO" name="CARGO" class="browser-default" required >
+                                            <option  value="" selected disable >Puesto de Trabajo</option>
                                             <div id="CARGOcontainer">
                                             </div>
                                         
@@ -85,47 +85,50 @@
 
                                 <div class="col l6 m6 s12">
                                     <div class="input-field col l6 m6 s6">
-                                        <input id="VALM"  name="VALM" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][3] . '"';
+                                        <input id="VALM" required  name="VALM" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][3] . '"';
                                             else echo'value="50"'; ?>  class="validate">
                                         <label for="VALM" class="active">% Mérito</label>
 
                                     </div>
                                     <div class="input-field col l6 m6 s6">
-                                        <input id="VALO" name="VALO" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][4] . '"';
+                                        <input id="VALO" required name="VALO" type="number" <?php if ($concurso != "") echo'value="' . $concurso[0][4] . '"';
                                             else echo'value="50"'; ?>  class="validate">
                                         <label for="VALO" class="active">% Oposición</label>
 
                                     </div>
                                     <div class="input-field col l6 m6 s12">
-                                        <input id="CFINI" name="CFINI"  type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][10] . '"'; ?> >
+                                        <input id="CFINI" required  name="CFINI"  type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][10] . '"'; ?> >
                                         <label class="active" for="CFINI">Fecha Inicial</label>
                                     </div>
                                     <div class="input-field col l6 m6 s12">
-                                        <input id="CFFIN" name="CFFIN" type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][11] . '"'; ?> >
+                                        <input id="CFFIN" required name="CFFIN" type="date" class="datepicker" <?php if ($concurso != "") echo'value="' . $concurso[0][11] . '"'; ?> >
                                         <label class="active" for="CFFIN">Fecha Final</label>
                                     </div>
                                 </div>
 
                                 <div class="input-field col l12 m6 s12">
 
-                                    <textarea id="DESC" name="DESC"  class="materialize-textarea"><?php if ($concurso != "") echo $concurso[0][2]; ?> </textarea>
+                                    <textarea  id="DESC" name="DESC"  class="materialize-textarea" max="200" required><?php if ($concurso != "") echo $concurso[0][2]; ?></textarea>
                                     <label for="DESC">Descripción</label>
+                                    
                                 </div>
-
+                                
+                                <input type="submit" style="display:none;">
                             </div>
-
+                            
 
                         </div>
                     </form>
+                    <div id="seccion2">
                     <form id="parametrosConcurso" >
                         <div class="col  s12  m12 l12 z-depth-1">
-                            <div class="container " style="padding-bottom:100px;">
+                            <div class=" " style="padding-bottom:100px;">
 
                                 <div class="col l12 m12 s12 center-align ">
                                     <h5 class="blue-text text-darken-2">Fases del concurso</h5>
                                 </div>
 
-                                <div class="input-field col l4 m4 s12">
+                                <div class="input-field col l6 m4 s12">
 
 
                                     <select id="TDES" name="TDES"  class="browser-default" required >
@@ -139,43 +142,38 @@
 
                                 </div>
 
-                                <div class="input-field col l4 m1 s12">
+                                <div class="input-field col l6 m1 s12">
 
-                                    <select id="CFASE" name="CFASE" class="browser-default" required onchange ="SelectController3($('option:selected', this));" >
-                                        <option value="NULL" selected >Fase</option>
-
-
-                                        <option value="NULL" >Crear - Editar</option>
-
+                                    <select id="CFASE" name="CFASE" class="browser-default" required >
+                                        <option value="" selected disabled >Elija Fase</option>
                                     </select>
                                 </div>
-
-                             
-
                                 <div class="input-field col l12 m12 s12">
-                                    <div class="input-field col l4 m4 s12">
-                                        <input id="BFINI" name="BFINI"  type="date" class="datepicker">
+                                    <div class="input-field col l3 m4 s12">
+                                        <input id="BFINI" name="BFINI"  type="date" class="datepicker " required>
                                         <label class="active" for="BFINI">Fecha Inicial</label>
                                     </div>
-                                    <div class="input-field col l4 m4 s12">
-                                        <input id="BFFIN" name="BFFIN" type="date" class="datepicker">
+                                    <div class="input-field col l3 m4 s12">
+                                        <input id="BFFIN" name="BFFIN" type="date" class="datepicker" required>
                                         <label class="active" for="BFFIN">Fecha Final</label>
                                     </div>
 
                                     <div class="input-field col l3 m4 s12">
-                                        <input id="BVALO" name="BVALO" type="number" class="validate">
+                                        <input id="BVALO" name="BVALO" type="number" class="validate" required>
                                         <label for="last_name">Valor</label>
                                     </div>
 
-                                    <div  class="input-field col l1 m1 s1"  >
-                                        <a id="G_fase" class="center-align" ><i class="material-icons small" >playlist_add</i></a>  
+                                    <div  class="input-field col l3 m3 s3"  >
+                                         <a  id="G_fase" onclick="insert_base_concurso();" class="btn tooltipped btn-large blue darken-3 right" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" > <i class="large material-icons">playlist_add</i> </a>
                                     </div>
+                                       <input type="submit" style="display:none;">
                                 </div>
                             </div>
 
 
                         </div>
-
+                     
+  </form>
 
 
 
@@ -191,8 +189,8 @@
 
                                             <th data-field="price">Fecha Inicio</th>
                                             <th data-field="name">Fecha Fin</th>
-                                            <th data-field="name">Mérito</th>
-                                            <th data-field="name">Oposición</th>
+                                            <th data-field="name">Mérito <?php if ($concurso != "") echo $concurso[0][3]; else echo "50"; ?>%</th>
+                                            <th data-field="name">Oposición <?php if ($concurso != "") echo $concurso[0][4]; else echo "50"; ?>%</th>
                                             <th data-field="name"></th>
 
 
@@ -200,18 +198,21 @@
                                     </thead>
 
                                     <tbody id="detalle_fases">
-                                        <?php
-                                        if ($concurso != "") {
-                                            foreach ($this->DATA['fasesConcurso'] as $key => $value) {
-                                                echo '
-<tr class="center-align"><td>' . $value[7] . '</td>
-<td>' . $value[4] . '</td><td>' . $value[5] . '</td>
-<td>' . $value[3] . '</td><td></td>
-<td><a onclick="eliminar_fase_concurso(' . $value[2] . ')"><i class="material-icons small" >delete</i></a></td>
-</tr>';
-                                            }
-                                        }
-                                        ?>  
+<?php
+if ($concurso != "") {
+    foreach ($this->DATA['fasesConcurso'] as $key => $value) {
+        echo '
+        <tr class="center-align"><td>' . $value[7] . '</td>
+        <td>' . $value[4] . '</td><td>' . $value[5] . '</td>';
+        if($value[8]=="M")
+        echo '<td>' . $value[3] . '</td><td></td>';
+        else
+        echo '<td></td><td>' . $value[3] . '</td>';
+        echo '<td><a onclick="eliminar_fase_concurso(' . $value[2] . ')"><i class="material-icons small" >delete</i></a></td>
+        </tr>';
+    }
+}
+?>  
 
                                     </tbody>
                                 </table>
@@ -220,7 +221,7 @@
 
 
                         </div>
-                    </form>
+                 </div><!--Seccion 2-->
 
                 </div>  
             </div>
@@ -228,234 +229,12 @@
 
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large red" id="save_all">
+            <a class="btn-floating btn-large red" onclick="<?php if ($concurso != "") echo 'actualizar_concurso();'; else echo "creaconcurso();"; ?>"  id="save_all">
                 <i class="large material-icons">save</i>
             </a>
         </div>
 
-        <!-- Modal Fases -->
-        <div id="parametros" class="modal">
-            <div class="modal-content center-align">
-                <h5>Fases concurso</h5>
-
-            </div>
-            <div class="modal-footer">
-                <div class="row ">
-
-
-                    <div class="col  s12  m12 l12 ">
-                        <div class="container " style="padding-bottom:100px;">
-                            <form id="form_fases">
-
-                                <div class="col l4 m4 s12">
-                                    <div class="input-field">
-
-                                        <input name="IFNOMB" id="IFNOMB" type="text" Did="" class="validate">
-                                        <label for="IFNOMB">Nombre</label>
-                                    </div>
-
-                                </div>
-                                <div class="input-field col l4 m4 s12">
-
-                                    <select name="IFTFAS" id="IFTFAS" class="browser-default" required >
-                                        <option value="">Seleccione opción</option>
-                                        <option value="M" selected>Mérito</option>
-                                        <option value="O">Oposición</option>
-
-                                    </select>
-                                </div>
-                                <div class="input-field col l4 m4 s12">
-
-                                    <select name="IFTDES"  id="IFTDES" class="browser-default" required >
-                                        <option value="" selected>Seleccione opción</option>
-                                        <option value="E" >Entrevista</option>
-                                        <option value="P">Prueba</option>
-                                        <option value="R">Requerimiento</option>
-
-                                    </select>
-                                </div>
-
-                                <div class="center-align col l12 m6 s6">
-                                    <div class="center-align col l6 m12 s12">
-                                        <a class=" center-align waves-effect waves-light btn blue" id="guardar_F">Guardar</a>
-
-                                    </div> 
-                                    <div class="center-align col l6 m12 s12">
-                                        <a class=" center-align waves-effect waves-light btn blue" onclick="$('#parametros').closeModal();">Cancelar</a>
-
-                                    </div>
-
-
-                                    <br><br><br>
-
-                                </div>
-
-
-
-                            </form>
-
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-
-        <!-- Modal Departamento -->
-        <div id="departamento_modal" class="modal">
-            <div class="modal-content center-align">
-                <h5>Configuración Departamento</h5>
-            </div>
-            <div class="modal-content center-align">
-                <div class="row ">
-
-                    <div class="col  s12  m12 l12 ">
-                        <form id="frmDepartamento">
-                            <div class="col  s12  m12 l12 z-depth-1">
-
-                                <div class="container " style="padding-bottom:100px;">
-
-
-
-
-
-
-                                    <div class="col l4 m4 s12">
-                                        <div class="input-field">
-
-                                            <input id="DNOMB" Did="" name="DNOMB" type="text" class="validate">
-                                            <label id= "lDNOMB" for="nombfmo">Nombre Departamento</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="input-field col l4 m4 s12">
-
-                                        <select name="DPADR" id="DPADR" class="browser-default" required >
-                                            <option value="NULL" >Departmanteo Padre</option>
-
-                                            <?php
-//echo var_dump($this->data['departamentos']);
-                                            foreach ($this->data['departamentos'] as $key => $value) {
-                                                echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
-                                                // echo '<option value="'.$value[$key][0].'">'.$value[$key][1].'</option>';
-                                            }
-                                            ?>
-
-                                            <option value="NULL" >Ninguno</option>
-
-
-                                        </select>
-                                    </div>
-
-                                    <div class="input-field col l4 m4 s12">
-
-                                        <input type="checkbox" class="filled-in" id="DESTA" name="DESTA" checked="checked" />
-                                        <label for="DESTA">Habilitado</label>
-                                    </div>
-
-                                    <div class="center-align col l12 m6 s6">
-                                        <div class="center-align col l6 m12 s12">
-                                            <a class=" center-align waves-effect waves-light btn blue" id="guardar_D" >Guardar</a>
-
-                                        </div> 
-                                        <div class="center-align col l6 m12 s12">
-                                            <a class=" center-align waves-effect waves-light btn blue" onclick=" $('#departamento_modal').closeModal()">Cancelar</a>
-
-                                        </div>
-
-
-                                        <br><br><br>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Modal Trabajo -->
-        <div id="cargo_trabajo" class="modal">
-            <div class="modal-content center-align">
-                <h5>Puesto de Trabajo</h5>
-            </div>
-            <div class="modal-content center-align">
-                <div class="row ">
-
-
-                    <div class="col  s12  m12 l12 ">
-                        <form id="frmCargo">
-                         
-
-
-                                      <div class="input-field col s12 l4" class="ui-widget">
-                                        <i class="mdi-action-search prefix"></i>
-                                        <input id="CNOMB" Did="" name="CNOMB"  required >
-                                        </div>  
-                        
-                          
-                               <div class="input-field col s12 l4" class="ui-widget">
-
-                                    <select name="CPADR" id="CPADR" class="browser-default" required class="ui-widget">
-
-
-                                        <?php
-//echo var_dump($this->data['departamentos']);
-                                        foreach ($this->data['departamentos'] as $key => $value) {
-                                            echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
-                                            // echo '<option value="'.$value[$key][0].'">'.$value[$key][1].'</option>';
-                                        }
-                                        ?>
-
-
-
-                                    </select>
-                                </div>
-
-                                <div class="input-field col l4 m4 s12">
-
-                                    <input type="checkbox" class="filled-in" id="DESTA" name="DESTA" checked="checked" />
-                                    <label for="CESTA">Habilitado</label>
-                                </div>
-
-                                <div class="center-align col l12 m6 s6">
-                                    <div class="center-align col l6 m12 s12">
-                                        <a class=" center-align waves-effect waves-light btn blue" id="guardar_C" >Guardar</a>
-
-                                    </div> 
-                                    <div class="center-align col l6 m12 s12">
-                                        <a class=" center-align waves-effect waves-light btn blue" onclick=" $('#cargo_trabajo').closeModal()">Cancelar</a>
-
-                                    </div>
-
-
-                                    <br><br><br>
-
-                                </div>
-
-
-                           
-                        </form> 
-
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>        
-
-
+ 
 
 
 
@@ -464,12 +243,13 @@
 <?php include_once SCRIPT_U; ?> 
 
     <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
-    <script src="<?php echo URL; ?>/public/js/lunr.min.js"></script>
+    <script src="<?php echo URL; ?>/public/js/controllerConcurso.js"></script>
     <script>var URL = '<?= URL ?>';</script>
     <script>
         var opdepartamento = '<?php if ($concurso != "") echo $concurso[0][6]; else echo ""; ?>';
         var opdepartamentopadr = '<?php if ($concurso != "") echo $concurso[0][13]; else echo ""; ?>';
-        var CONCID_ = '<?php if ($concurso != "") echo $concurso[0][0]; else echo ""; ?>'
+        var CONCID_ = '<?php if ($concurso != "") echo $concurso[0][0]; else echo ""; ?>';
+        var CONTOKEN= '<?php if ($concurso != "") echo $concurso[0][14]; else echo ""; ?>';
     </script>
 
 
@@ -480,57 +260,19 @@
     })
 
 //_________________CONSURSOENCABEZADO____________________________
-//CREA CONCURSO
-        $("#save_all").click(function () {
-            var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
-            console.log(cabecera_concurso);
-            fajax(cabecera_concurso, '<?php echo URL; ?>Management/insert_concurso', crea_cabconcurso);
-
-        });
-
-        function crea_cabconcurso(response) {
-            var obj = JSON.parse(response);
-            CONCID_ = obj['Concurso_'];
-            if(CONCID_)
-            $('#tabPC').show();
-            console.log(obj);
-            Materialize.toast(obj['Mensaje'],2000);
-        }
 
 
 //_________________FASE CONCURSO____________________________
 //Tabla Fases_concurso
-        function CALL_actualiza_tabla_fases() {
+ 
 
-            param = {'CONID': CONCID_};
-            fajax(param, '<?php echo URL; ?>Management/getall_fase_concurso', actualiza_tabla_fases);
-        }
-
-        function actualiza_tabla_fases(response) {
-            var obj = JSON.parse(response);
-
-            $("#detalle_fases").empty();
-            $.each(obj, function (key, value) {
-
-
-                if (value[8] == 'M')
-                    registro = '<tr class="center-align"><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td>' + value[3] + '</td><td></td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small" >delete</i></a></td></tr>';
-                else
-                    registro = '<tr><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td></td><td>' + value[3] + '</td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small" >delete</i></a></td></tr>';
-                $("#detalle_fases").append(registro);
-
-            });
-
-
-
-            console.log(obj);
-        }
+       
 
 //ELIMINAR FASE CONCURSO
         function eliminar_fase_concurso(ID) {
             param = {'CONID': CONCID_, "FASE": ID};
             Materialize.toast('Elimado con Éxito', 2000);
-            fajax(param, '<?php echo URL; ?>Management/delete_faseConcurso', CALL_actualiza_tabla_fases);
+            fajax(param, '<?php echo URL; ?>Management/delete_faseConcurso', actualiza_tabla_fases);
         }
 
 //CREA FASE
@@ -540,22 +282,12 @@
             Materialize.toast(obj['Mensaje'], 2000);
 
         }
-
-        function insert_base_concurso(response) {
-
-            var obj = JSON.parse(response);
-            console.log(response);
-            Materialize.toast(obj['Mensaje'], 2000);
-            CALL_actualiza_tabla_fases();
-        }
-
-
 //Actualiza todos fases
         function actualiza_allfases(response) {
             var obj = JSON.parse(response);
 
             $("#CFASE").empty();
-            $("#CFASE").append('<option value="NULL" selected>Elija Fase</option>');
+            $("#CFASE").append('<option value="" selected disabled>Elija Fase</option>');
 
             $("#CFASE").append('fila');
             console.log(obj);
@@ -592,21 +324,7 @@
         });
 
 
-///Event handler click agregar detalle fase
-        $("#G_fase").click(function () {
-            if (CONCID_ != null && CONCID_ != '')
-            {
-                var faseC = $('#parametrosConcurso :input').serialize();
-                faseC += '&CONID=' + CONCID_;
 
-                fajax(faseC, '<?php echo URL; ?>Management/insert_base_concurso', insert_base_concurso);
-
-            }
-            else
-                Materialize.toast('Concurso no definido', 2000);
-
-
-        });
 
 
 //event heandler click guardar fase
@@ -631,38 +349,6 @@
 
 
         });
-
-//____________________________________________________________
-//Cargar contenido
-
-        function seccionS(param) {
-            $('#cabeceraConcurso').hide();
-            $('#parametrosConcurso').hide();
-           
-
-            switch (param)
-            {
-
-
-                case 'CC':
-                {
-                    $('#cabeceraConcurso').show();
-                    $('#tabCC').attr('class','tab active');
-                    $('#tabPC').attr('class','tab');
-                    break;
-
-                }
-                case 'PC':
-
-                    $('#parametrosConcurso').show();
-                    $('#tabPC').attr('class','tab active');
-                    $('#tabCC').attr('class','tab');
-                    break;
-               
-
-            }
-        }
-//-_____________________________________________________///
 
         $(document).ready(function () {
             seccionS('CC');
@@ -705,7 +391,7 @@
         function actualiza_alldepartamentos(response) {
             var obj = JSON.parse(response);
             $("#PUESTO").empty();
-            $("#PUESTO").append('<option value="NULL" selected>Elija Departamento</option>');
+            $("#PUESTO").append('<option value="" selected>Elija Departamento</option>');
 
             $("#PUESTO").append('fila');
             $.each(obj['departamentos'], function (key, value) {
@@ -723,7 +409,7 @@
 
             var obj = JSON.parse(response);
             $("#CARGO").empty();
-            $("#CARGO").append('<option value="NULL" selected>Puesto de Trabajo</option>');
+            $("#CARGO").append('<option value="" selected>Puesto de Trabajo</option>');
 
 
             $.each(obj['puestos'], function (key, value) {

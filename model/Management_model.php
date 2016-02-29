@@ -7,20 +7,19 @@ Class Management_model extends Model {
     }
 
     public function setConcurso($CONCURSO_DATOS) {
-
         $cabecera_concurso = $CONCURSO_DATOS['SSP_CONCURSO'];
-
-
         $result = $this->db->select('CON_CODI', 'SSP_CONCURSO', "CON_CODI = " . $cabecera_concurso['CON_CODI'], PDO::FETCH_NUM);
-
         if (sizeof($result) > 0)
             return $data = ["Mensaje" => "Ingreso Incorrecto. El concurso " . $cabecera_concurso['CON_CODI'] . " ya existe"];
-        else
-            $this->db->insert('SSP_CONCURSO', $CONCURSO_DATOS['SSP_CONCURSO']);
-
-        $result1 = $this->db->select('CON_ID', 'SSP_CONCURSO', "CON_CODI = " . $cabecera_concurso['CON_CODI'], PDO::FETCH_NUM);
-        if (sizeof($result1) > 0)
-            return $data = ["Mensaje" => "Ingreso Correctamente", "Concurso_" => $result1[0][0]];
+        else{
+            if($this->db->insert('SSP_CONCURSO', $CONCURSO_DATOS['SSP_CONCURSO'])){
+            $result1 = $this->db->select('CON_ID, tokenGenerator(CON_ID)', 'SSP_CONCURSO', "CON_CODI = " . $cabecera_concurso['CON_CODI'], PDO::FETCH_NUM);
+            if (sizeof($result1) > 0)
+            return $data = ["Mensaje" => "Ingreso Correctamente", "IDCON" => $result1[0][0],"CONTOKEN" => $result1[0][1],"Actualizar"=>true];
+           }
+            else 
+             return $data = ["Mensaje" => "Error de ingreso"];
+             }
     }
     
     //Obtener todos los concursos

@@ -64,8 +64,8 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
     //Cargamos vista de creacion de concurso
     public function creaconcurso() {
         $this->view->data = $this->get_allDepartamentos('H');
-        if(isset($_POST['IDCON_']))
-        { 
+        if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        {
             $datoConid=['CON_ID' => "'" . $_POST["IDCON_"] . "'"];
             $this->view->DATA = $this->model->get_concurso($_POST['IDCON_']);
             $this->view->DATA += ['fasesConcurso' => $this->model->getall_faseconcurso($datoConid)];    
@@ -256,26 +256,18 @@ public function proceso_concurso(){
     //__________________________________________________________________//
     //_______________Buscamos el registro en SSP_BASE_CONCURSO_______________//
     public function getall_fase_concurso() {
-
-
-
         if (!empty($_POST["CONID"]) && isset($_POST["CONID"])) {
             $DATA = [
 
                 "CON_ID" => "'" . $_POST["CONID"] . "'"
             ];
-
-
             echo json_encode($this->model->getall_faseconcurso($DATA));
         } else
-            echo "Hola2";
+            echo "Mensaje del sistema";
     }
 
     //_______________Creamos el registro en SSP_BASE_CONCURSO_______________//
     public function insert_base_concurso() {
-
-
-
         if (!empty($_POST["CONID"]) && isset($_POST["CONID"]) && !empty($_POST["CFASE"]) && isset($_POST["CFASE"]) && !empty($_POST["BFINI"]) && isset($_POST["BFINI"]) && !empty($_POST["BFFIN"]) && isset($_POST["BFFIN"]) && !empty($_POST["BVALO"]) && isset($_POST["BVALO"])) {
             $base_concurso = [
                 "FMO_ID" => "'" . $_POST["CFASE"] . "'",
@@ -284,19 +276,14 @@ public function proceso_concurso(){
                 "CON_ID" => "'" . $_POST["CONID"] . "'",
                 "BCO_VALO" => "'" . $_POST["BVALO"] . "'"
             ];
-
-
             echo json_encode($this->model->setBaseConcurso($base_concurso));
         } else
-            echo "Hola2";
+            echo "Complete los campos";
     }
 
     //__________________________________________________________________//
     //_______________Creamos el registro en SSP_CONCURSO_______________//
     public function insert_concurso() {
-
-
-
         if (!empty($_POST["CODI"]) && isset($_POST["CODI"]) && !empty($_POST["NOMB"]) 
             && isset($_POST["NOMB"]) && !empty($_POST["NVAC"]) && isset($_POST["NVAC"])
              && !empty($_POST["VALO"]) && isset($_POST["VALO"]) && !empty($_POST["VALM"])
@@ -305,7 +292,7 @@ public function proceso_concurso(){
                 && !empty($_POST["CFINI"]) && isset($_POST["CFINI"]) && !empty($_POST["CFFIN"]) && isset($_POST["CFFIN"])) {
             $cabecera_concurso = [
                 "CON_NOMB" => "'" . $this->Mayus($_POST["NOMB"]) . "'",
-                "CON_DESC" => "'" . $_POST["DESC"] . "'",
+                "CON_DESC" => "'" . $this->Mayus($_POST["DESC"]) . "'",
                 "CON_VALM" => "'" . $_POST["VALM"] . "'",
                 "CON_VALO" => "'" . $_POST["VALO"] . "'",
                 "CON_CODI" => "'" . $_POST["CODI"] . "'",
@@ -316,10 +303,39 @@ public function proceso_concurso(){
                 "CON_ESTA" => "'C'"
             ];
             $CONCURSO_DATOS = ["SSP_CONCURSO" => $cabecera_concurso];
-
             echo json_encode($this->model->setConcurso($CONCURSO_DATOS));
         } else
-            echo "Hola2";
+            echo "Complete todos los campos.";
+    }
+    
+    public function update_concurso(){
+       if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
+        { 
+ 
+            if (!empty($_POST["CODI"]) && isset($_POST["CODI"]) && !empty($_POST["NOMB"]) 
+                && isset($_POST["NOMB"]) && !empty($_POST["NVAC"]) && isset($_POST["NVAC"])
+                && !empty($_POST["VALO"]) && isset($_POST["VALO"]) && !empty($_POST["VALM"])
+                && isset($_POST["VALM"]) && !empty($_POST["CARGO"]) && ($_POST["CARGO"] != 'NULL')
+                && isset($_POST["CARGO"]) && !empty($_POST["DESC"]) && isset($_POST["DESC"])
+                    && !empty($_POST["CFINI"]) && isset($_POST["CFINI"]) && !empty($_POST["CFFIN"]) && isset($_POST["CFFIN"])) {
+                $cabecera_concurso = [
+                "CON_NOMB" => "'" . $this->Mayus($_POST["NOMB"]) . "'",
+                "CON_DESC" => "'" . $this->Mayus($_POST["DESC"]). "'",
+                "CON_VALM" => "'" . $_POST["VALM"] . "'",
+                "CON_VALO" => "'" . $_POST["VALO"] . "'",
+                "PTR_ID" => "'" . $_POST["CARGO"] . "'",
+                "CON_NVAC" => "'" . $_POST["NVAC"] . "'",
+                "CON_FINI" => "'" . $_POST["CFINI"] . "'",
+                "CON_FFIN" => "'" . $_POST["CFFIN"] . "'",
+            ];        
+                if($this->model->update_estadoConcurso($_POST['IDCON_'], $cabecera_concurso))
+                 echo json_encode(['Mensaje' => 'Concurso actualizado correctamente']);   
+                 else 
+                 echo json_encode(['Mensaje' => 'No existen cambios']);
+            }else 
+                 echo json_encode(['Mensaje' => 'Complete los datos correctamente']);
+      }else 
+                 echo json_encode(['Mensaje' => 'Error en concurso']);
     }
 
     //__________________________________________________________________//

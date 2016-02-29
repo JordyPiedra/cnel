@@ -43,7 +43,6 @@
 
                             <tbody >
 <?php
-
 foreach ($this->data['Concursos'] as $key => $value) {
 if( $value[12]=='I')
 {
@@ -74,9 +73,9 @@ echo'
 <td>' . $value[11] . '</td>
 <td>
 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar concurso" onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
-&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="'.$estado2.'" onclick="alerta_iniciar(' . $value[0] .",'". $value[5] ."','". $value[1] ."','".$value[13]."'".');"><i class="material-icons small" >play_circle_filled</i></a></td>
-
-</tr>';
+&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="'.$estado2.'" onclick="alerta_iniciar(' . $value[0] .",'". $value[5] ."','". $value[1] ."','".$value[13]."'".');"><i class="material-icons small" >play_circle_filled</i></a>
+&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" onclick="editar_concurso(' . $value[0] .",'".$value[13]."'".');"><i class="material-icons small" >edit</i></a>
+</td></tr>';
 }
 ?>   
 
@@ -87,8 +86,9 @@ echo'
         </div> 
 
         <form action="<?php echo URL; ?>Management/creaconcurso" method="POST"> 
-            <input type="hidden" name="IDCON_" id="IDCON_" value=""> 
-            <input type="submit" id="ejecutar" style="display: none;"> 
+            <input type="hidden" name="IDCON_" id="IDCON_1" value="">
+            <input type="hidden" name="CONTOKEN" id="token_1" value="">  
+            <input type="submit" id="editar" style="display: none;"> 
         </form>
 
         <form action="<?php echo URL; ?>Management/proceso_concurso" method="POST"> 
