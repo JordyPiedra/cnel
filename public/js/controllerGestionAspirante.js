@@ -32,7 +32,7 @@ parametros ={
 };
  var estudio0=F_instruccion_formal();
 //  console.log(estudio0);
-  fajax(parametros, URL+"/management/get_aspirantes_reclutar", get_aspirantes_response);
+  fajax(parametros, URL+"/Management/get_aspirantes_reclutar", get_aspirantes_response);
 }
 
 function get_aspirantes_response(response){
@@ -110,7 +110,7 @@ $('#preload').openModal();
 var asp_selected=$('#formResultadoAspirantes :input').serializeArray();
 console.log(asp_selected);
 parametre ={'IDCON_' : IDCONC , 'ASP_SELECTED' : asp_selected};
-fajax(parametre, URL+"/management/set_aspirantes_concurso", saveAspiranteToConcurso_response);
+fajax(parametre, URL+"/Management/set_aspirantes_concurso", saveAspiranteToConcurso_response);
 
 }
 
@@ -120,7 +120,7 @@ function saveAspiranteToConcurso_response(response){
 var obj = JSON.parse(response);
 Materialize.toast(obj['Mensaje'],4000);
 //Actualizamos la tabla de aspirantes_concurso
-fajax({'IDCON_' : IDCONC }, URL+"/management/JSONgetAspirantesbyCONID", get_aspirantes_concurso_response);
+fajax({'IDCON_' : IDCONC }, URL+"/Management/JSONgetAspirantesbyCONID", get_aspirantes_concurso_response);
 
 
 }
@@ -150,7 +150,7 @@ $("#aspiranteConcruso_reclutado").append(fila);
 }
 //eliminar aspirante reclutado    
 function eliminar_aspirante_concurso(id,token){
-fajax({'IDCON_' : IDCONC ,'CONTOKEN' : CONTOKEN ,'IDASP' : id, 'ASPTOKEN' : token  }, URL+"/management/eliminar_aspirante_concurso", eliminar_aspirante_concurso_response);
+fajax({'IDCON_' : IDCONC ,'CONTOKEN' : CONTOKEN ,'IDASP' : id, 'ASPTOKEN' : token  }, URL+"/Management/eliminar_aspirante_concurso", eliminar_aspirante_concurso_response);
 }
 
 
@@ -158,7 +158,7 @@ fajax({'IDCON_' : IDCONC ,'CONTOKEN' : CONTOKEN ,'IDASP' : id, 'ASPTOKEN' : toke
 function eliminar_aspirante_concurso_response(response){
 var obj = JSON.parse(response);
 //Actualizamos la tabla de aspirantes_concurso
-fajax({'IDCON_' : IDCONC }, URL+"/management/JSONgetAspirantesbyCONID", get_aspirantes_concurso_response);
+fajax({'IDCON_' : IDCONC }, URL+"/Management/JSONgetAspirantesbyCONID", get_aspirantes_concurso_response);
 Materialize.toast(obj['Mensaje'],2000);
 console.log(obj);
 
