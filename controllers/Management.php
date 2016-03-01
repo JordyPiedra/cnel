@@ -37,7 +37,7 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
     }
     //Cargamos la vista gestion_aspirante
     public function gestion_aspirante() {
-        $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('N')];
+        $this->view->data = ['Aspirantes' => $this->model->getAspirantestoAPRO("ASP_APRO='N' AND ASP_NOMB != '' AND 1 <= (SELECT COUNT(*) FROM SSP_TITULO WHERE ASP_ID=TIT_FK_ASPI )")];
         $this->view->render($this, 'gestion_aspirante');
     }
     //Cargamos la vista gestion_aspirante
