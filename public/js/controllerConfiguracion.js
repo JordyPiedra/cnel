@@ -27,7 +27,7 @@ function dep_selected(){
     {
     $('#dep_edit').show();
  
-   fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+   fajax($('#PUESTO').serialize(),URL+'Management/get_allCargos', cargar_puestos_trabajo);
 
   
     }
@@ -66,7 +66,7 @@ function insert_departamento(){
      var frmdep = $('#frmDepartamento :input').serialize();
      frmdep += "&TIPO=D";
     // console.log(frmdep);
-    fajax(frmdep, URL+'management/crea_departamento', insert_departamento_response);
+    fajax(frmdep, URL+'Management/crea_departamento', insert_departamento_response);
     }
 }
 //
@@ -75,7 +75,7 @@ function insert_departamento_response(response){
       $("#CARGO").empty();
      Materialize.toast(obj['Mensaje'],2000);
      $("#departamento_modal").closeModal();
-  fajax({}, URL+'management/get_allDepartamentosjson', actualiza_alldepartamentos);
+  fajax({}, URL+'Management/get_allDepartamentosjson', actualiza_alldepartamentos);
 }
 
 //Edita los puestos de trabajo
@@ -100,13 +100,13 @@ function update_departamento(id){
     frmdep += "&DID="+id; 
      frmdep += "&TIPO=D";
      //console.log(frmdep);
-    fajax(frmdep, URL+'management/actualiza_departamento', update_departamento_response);
+    fajax(frmdep, URL+'Management/actualiza_departamento', update_departamento_response);
     }
 }
 function update_departamento_response(response){
       $('#departamento_modal').closeModal();
             var obj = JSON.parse(response);
-            fajax($('#frmDepartamento :input').serialize(), URL+'management/get_allDepartamentosjson', actualiza_alldepartamentos);
+            fajax($('#frmDepartamento :input').serialize(), URL+'Management/get_allDepartamentosjson', actualiza_alldepartamentos);
               $("#CARGO").empty();
             Materialize.toast(obj['Mensaje'], 2000);
             
@@ -150,7 +150,7 @@ function insert_cargo(){
     console.log(frmdep);
     frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
     console.log(frmdep);
-    fajax(frmdep, URL+'management/crea_departamento', insert_cargo_response);
+    fajax(frmdep, URL+'Management/crea_departamento', insert_cargo_response);
     } 
 }
 //CREA CARGO 
@@ -161,7 +161,7 @@ function insert_cargo_response(response) {
     Materialize.toast(obj['Mensaje'], 2000);
 
     if ($('#PUESTO').val() != "NULL")
-        fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+        fajax($('#PUESTO').serialize(),URL+'Management/get_allCargos', cargar_puestos_trabajo);
 
 }
 
@@ -186,7 +186,7 @@ function update_cargo(id) {
     console.log(frmdep);
     frmdep = frmdep.replace('CNOMB', 'DNOMB').replace('CESTA', 'DESTA').replace('CPADR', 'DPADR');
     console.log(frmdep);
-     fajax(frmdep, URL+'management/actualiza_departamento', update_cargo_response);
+     fajax(frmdep, URL+'Management/actualiza_departamento', update_cargo_response);
      }
 
 }
@@ -196,7 +196,7 @@ function update_cargo_response(response){
     obj['Mensaje']=obj['Mensaje'].replace('departamento', 'cargo')
     Materialize.toast(obj['Mensaje'], 2000);
      if ($('#PUESTO').val() != "NULL")
-        fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+        fajax($('#PUESTO').serialize(),URL+'Management/get_allCargos', cargar_puestos_trabajo);
 }
 
 
@@ -208,14 +208,14 @@ function elimina_cargo(id,nombre){
 }
 function delete_cargo(id) {
   
-     fajax({'DID': id}, URL+'management/actualiza_departamento', delete_cargo_response);
+     fajax({'DID': id}, URL+'Management/actualiza_departamento', delete_cargo_response);
 }
 
 function delete_cargo_response(response){
      $('#mensaje_cargo').closeModal();
     Materialize.toast('Cargo eliminado...', 2000);
     $('#elimina_C').attr('onclick','');
-    fajax($('#PUESTO').serialize(),URL+'management/get_allCargos', cargar_puestos_trabajo);
+    fajax($('#PUESTO').serialize(),URL+'Management/get_allCargos', cargar_puestos_trabajo);
 }
 //___________________________CONFIGURACION FASES__________________________________
 function nueva_fase(){
@@ -237,7 +237,7 @@ function update_fase(id){
      var frmser = $('#form_fases :input').serialize();
      frmser += "&DID="+id; 
      console.log(frmser);
-          fajax(frmser, URL+'management/update_fase', update_fase_response);
+          fajax(frmser, URL+'Management/update_fase', update_fase_response);
 }
 function update_fase_response(response){
      console.log(response);
@@ -250,7 +250,7 @@ function update_fase_response(response){
 function create_fase(){
     if(onclick_('#form_fases')){
       var frmser = $('#form_fases :input').serialize();
-     fajax(frmser, URL+'management/crea_fase', create_fase_response);   
+     fajax(frmser, URL+'Management/crea_fase', create_fase_response);   
     }
     
 }
@@ -267,7 +267,7 @@ function elimina_fase(id,nombre){
     
 }
 function delete_fase(id){
-     fajax({'DID':id,'ESTA':'D'}, URL+'management/delete_fase',delete_fase_response);
+     fajax({'DID':id,'ESTA':'D'}, URL+'Management/delete_fase',delete_fase_response);
 }
 function delete_fase_response(){
     Materialize.toast('Fase eliminada..',2000);
@@ -275,7 +275,7 @@ function delete_fase_response(){
     actualizar_tabla_fases();
 }
 function actualizar_tabla_fases(){
-     fajax({'TDES': '%'}, URL+'management/getall_fase', actualizar_tabla_fases_response);
+     fajax({'TDES': '%'}, URL+'Management/getall_fase', actualizar_tabla_fases_response);
      
 }
 function actualizar_tabla_fases_response(response){
