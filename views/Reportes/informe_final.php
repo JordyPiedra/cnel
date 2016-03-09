@@ -43,9 +43,9 @@ function Header1($data)
     $this->Ln($t);  
     $this->Cell(70);
     
-    $this->SetFont('Arial','B',12);
+    $this->SetFont('Arial','B',10);
     $this->Cell(40,$t,'Elaborado por: ',1,0,'C');
-    $this->SetFont('Arial','',12);
+    $this->SetFont('Arial','',10);
     $this->Cell(30,$t,'DRH',1,0,'C');
     
     $this->SetFont('Arial','B',12);
@@ -53,29 +53,29 @@ function Header1($data)
     $this->SetFont('Arial','',12);
     $this->Cell(30,$t,'GDC',1,0,'C');
     
-    $this->SetFont('Arial','B',12);
+    $this->SetFont('Arial','B',10);
     $this->Cell(40,$t,'Aprobado por: ',1,0,'C');
-    $this->SetFont('Arial','',12);
+    $this->SetFont('Arial','',10);
     $this->Cell(30,$t,'GG',1,0,'C');
     
     $this->Ln(13);  
     $this->Cell(1);
     $this->SetTextColor(31,73,125);
-    $this->SetFont('Arial','B',12);
+    $this->SetFont('Arial','B',9);
     $this->Cell(20,$t,'Proceso: ',0,0,'L');
-    $this->SetFont('Arial','',12);
+    $this->SetFont('Arial','',9);
     $this->Cell(100,$t,$data[0][1],0,0,'L');
-    $this->SetFont('Arial','B',12);
+    $this->SetFont('Arial','B',9);
     $this->Cell(25,$t,utf8_decode('P.Código: '),0,0,'L');
-    $this->SetFont('Arial','',12);
+    $this->SetFont('Arial','',9);
     $this->Cell(25,$t,$data[0][5],0,0,'L');
-    $this->SetFont('Arial','B',12);
+    $this->SetFont('Arial','B',9);
     $this->Cell(30,$t,utf8_decode('Fecha Inicio: '),0,0,'L');
-    $this->SetFont('Arial','',12);
+    $this->SetFont('Arial','',9);
     $this->Cell(25,$t,$data[0][10],0,0,'L');
-    $this->SetFont('Arial','B',12);
+    $this->SetFont('Arial','B',9);
     $this->Cell(30,$t,utf8_decode('Fecha Fin: '),0,0,'L');
-    $this->SetFont('Arial','',12);
+    $this->SetFont('Arial','',9);
     $this->Cell(25,$t,$data[0][11],0,0,'L');
      $this->Ln(10);
     // $this->Cell(80);
