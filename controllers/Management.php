@@ -197,9 +197,17 @@ public function proceso_concurso(){
 
     //Cargamos la vista login del usuario administrador
     public function login() {
-        Session::setValue("ID-ADMIN",'1');  
-        Session::setValue("GUEST",'1'); 
         $this->view->render($this, 'login');
+    }
+    public function test() {
+        $this->view->render($this, 'test');
+    }
+    
+    public function validate_login(){
+        Session::setValue("ID-ADMIN",'1');
+          
+        Session::setValue("GUEST",'1');
+      //  if($USER) 
     }
 
  
