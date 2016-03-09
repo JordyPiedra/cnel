@@ -7,8 +7,12 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <div class="col l10">
       <ul class="right hide-on-med-and-down">
+        <?php
+        if(Session::getValue("TIP-ADMIN")=='D'){
+          ?>
         <li id="mconfiguracion" ><a href="<?php echo URL; ?>Management/configuracion">&nbsp;&nbsp;Configuración&nbsp;&nbsp;</a></li>
         <li id="mconcursos" ><a href="<?php echo URL; ?>Management/concursos">&nbsp;&nbsp;Concursos&nbsp;&nbsp;</a></li>
+        <?php }?>
         <li id="maspirante"><a href="<?php echo URL; ?>Management/gestion_aspirante">&nbsp;&nbsp;&nbsp;&nbsp;Aspirantes</a></li>
         <li id="mprocess"><a href="<?php echo URL; ?>Management/procesos">&nbsp;&nbsp;&nbsp;&nbsp;Procesos</a></li>
         <!--<li id="mreclutamiento"><a href="<?php echo URL; ?>Management/reclutamiento">&nbsp;&nbsp;&nbsp;&nbsp;Reclutamiento</a></li>

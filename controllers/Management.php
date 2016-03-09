@@ -27,11 +27,13 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
     }
      //Cargamos la vista de configuraciones
     public function configuracion_departamentos() {
+        $this->tipousuario('D');
         $this->view->data = $this->get_allDepartamentos();
         $this->view->render($this, 'configuracion_departamentos');
     }
      //Cargamos la vista de fases
     public function configuracion_fases() {
+        $this->tipousuario('D');
         $this->view->data=($this->model->getallFase(["FMO_TDES" => "'" . '%' . "'"]));
         $this->view->render($this, 'configuracion_fases');
     }
@@ -58,11 +60,13 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
 
     //Cargamos vista de concursos
     public function concursos() {
+        $this->tipousuario('D');
         $this->view->data=$this->model->getallConcurso("CON_ESTA in ('C','I','P') ORDER BY CON_ESTA"); //Devuelve concursos inicializados
         $this->view->render($this, 'concursos');
     }
     //Cargamos vista de creacion de concurso
     public function creaconcurso() {
+        $this->tipousuario('D');
         $this->view->data = $this->get_allDepartamentos('H');
         if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         {
@@ -204,10 +208,24 @@ public function proceso_concurso(){
     }
     
     public function validate_login(){
-        Session::setValue("ID-ADMIN",'1');
-          
-        Session::setValue("GUEST",'1');
-      //  if($USER) 
+     
+        if(isset($_POST['USER']) && isset($_POST['PASS']))
+        {
+            $_POST['USER'] = filter_var($_POST['USER'], FILTER_SANITIZE_STRING);
+            $_POST['USER']=$this->Mayus( $_POST['USER']);
+            $_POST['PASS'] = filter_var($_POST['PASS'], FILTER_SANITIZE_STRING);
+            $_POST['PASS']=sha1($_POST['PASS']);
+            if($result= $this->model->getusuario($_POST['USER'],$_POST['PASS']))
+            {
+                Session::setValue("ID-ADMIN",$result[0][0]);
+                Session::setValue("USU-ADMIN",$result[0][1]);
+                Session::setValue("TIP-ADMIN",$result[0][2]);
+                Session::setValue("GUEST",'1');
+                echo true;    
+            }else 
+            echo false;
+        }else
+        echo false;
     }
 
  
@@ -276,6 +294,7 @@ public function proceso_concurso(){
 
     //_______________Creamos el registro en SSP_BASE_CONCURSO_______________//
     public function insert_base_concurso() {
+        $this->tipousuario('D');
         if (!empty($_POST["CONID"]) && isset($_POST["CONID"]) && !empty($_POST["CFASE"]) && isset($_POST["CFASE"]) && !empty($_POST["BFINI"]) && isset($_POST["BFINI"]) && !empty($_POST["BFFIN"]) && isset($_POST["BFFIN"]) && !empty($_POST["BVALO"]) && isset($_POST["BVALO"])) {
             $base_concurso = [
                 "FMO_ID" => "'" . $_POST["CFASE"] . "'",
@@ -292,6 +311,7 @@ public function proceso_concurso(){
     //__________________________________________________________________//
     //_______________Creamos el registro en SSP_CONCURSO_______________//
     public function insert_concurso() {
+        $this->tipousuario('D');
         if (!empty($_POST["CODI"]) && isset($_POST["CODI"]) && !empty($_POST["NOMB"]) 
             && isset($_POST["NOMB"]) && !empty($_POST["NVAC"]) && isset($_POST["NVAC"])
              && !empty($_POST["VALO"]) && isset($_POST["VALO"]) && !empty($_POST["VALM"])
@@ -317,6 +337,7 @@ public function proceso_concurso(){
     }
     
     public function update_concurso(){
+        $this->tipousuario('D');
        if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         { 
  
@@ -349,6 +370,7 @@ public function proceso_concurso(){
     //__________________________________________________________________//
     //___________Creamos el registro en SSP_PUESTO_TRABAJO_______________//
     public function crea_departamento() {
+        $this->tipousuario('D');
         $estado = "H";
         
         if (empty($_POST["DPADR"]) || $_POST["DPADR"] == "NULL") {
@@ -373,6 +395,7 @@ public function proceso_concurso(){
     //__________________________________________________________________//
     //___________Actualiamos el registro en SSP_PUESTO_TRABAJO_______________//
     public function actualiza_departamento() {
+        $this->tipousuario('D');
         $estado = "D";
 
         if (isset($_POST["DESTA"]))
@@ -400,6 +423,7 @@ public function proceso_concurso(){
     }
     
     public function elimina_cargo() {
+        $this->tipousuario('D');
         $estado = "D";
 
             $data = [
@@ -412,7 +436,7 @@ public function proceso_concurso(){
     //__________________________________________________________________//
     //___________Buscamos el registro en SSP_PUESTO_TRABAJO_______________//
     public function busca_departamento() {
-
+        
         $data = [ "PTR_ID" => "'" . $_POST['PUESTO'] . "'"];
         echo json_encode($this->model->getDepartamentos($data));
     }
@@ -452,7 +476,7 @@ public function proceso_concurso(){
 
     //_________________CONTRUCCION DE LA CONDICION FINAL SEGUN LOS FILTROS DEL reclutamiento__
     public function get_aspirantes_reclutar(){
-
+        
         $TotalWhere = "";
 
         if(isset($_POST['InstruccionFormal']) && !Empty($_POST['InstruccionFormal'])) //TABLA SSP_TITULO         
@@ -695,6 +719,9 @@ public function perfil_aspirante(){
     }
     
 }
- 
+ private function tipousuario($TIPO){
+     if(!Session::getValue("TIP-ADMIN")==$TIPO)
+     $this->index_management();
+ }
          
 }
