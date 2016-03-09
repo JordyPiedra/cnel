@@ -243,5 +243,9 @@ Class Management_model extends Model {
         return $this->db->select("BCO_VALO", 'SSP_BASE_CONCURSO', "BCO_ID='$BCO_ID'", PDO::FETCH_NUM);
     }
 
+            //VALIDA QUE EXISTA USUARIO Y CONTRASEÑA
+    public function getusuario($USER,$PASS) {
+        return $this->db->select("USU_ID,USU_NOMB,USU_TIPO", 'SSP_USUARIOS', "USU_NOMB='$USER' AND USU_PASS= '$PASS'", PDO::FETCH_NUM);
+    }
 
 }
