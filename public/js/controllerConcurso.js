@@ -41,11 +41,16 @@ function editar_concurso(id,token){
 //CREA CONCURSO
        function creaconcurso() {
             if(onclick_('#cabeceraConcurso')){
-            var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
-            console.log(cabecera_concurso);
-            fajax(cabecera_concurso, URL+'Management/insert_concurso', creaconcurso_response);
-            }
-            
+              if($('#CFINI').val()<=$('#CFFIN').val())
+                {
+                var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
+                console.log(cabecera_concurso);
+                fajax(cabecera_concurso, URL+'Management/insert_concurso', creaconcurso_response);
+                }
+            }else
+           { Materialize.toast('La fecha inicial no puede ser mayor a la fecha final.',3000);
+            $('#CFFIN').focus();
+           }
         }
 
         function creaconcurso_response(response) {
@@ -62,11 +67,17 @@ function editar_concurso(id,token){
  
  function actualizar_concurso(){
       if(onclick_('#cabeceraConcurso')){
+           if($('#CFINI').val()<=$('#CFFIN').val())
+                {
             var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
             cabecera_concurso+='&IDCON_=' + CONCID_+'&CONTOKEN=' + CONTOKEN;
             console.log(cabecera_concurso);
             fajax(cabecera_concurso, URL+'Management/update_concurso', actualizar_concurso_response);
-            }
+                } else
+           { Materialize.toast('La fecha inicial no puede ser mayor a la fecha final.',3000);
+            $('#CFFIN').focus();
+           }   
+     }
  }
  
  function actualizar_concurso_response(response){
@@ -80,9 +91,15 @@ function editar_concurso(id,token){
 if (CONCID_ != null && CONCID_ != '')
 {
     if(onclick_('#parametrosConcurso')){
+         if($('#BFINI').val()<=$('#BFFIN').val())
+                {
     var faseC = $('#parametrosConcurso :input').serialize();
     faseC += '&CONID=' + CONCID_;
     fajax(faseC, URL+'Management/insert_base_concurso', insert_base_concurso_response);
+    }else
+           { Materialize.toast('La fecha inicial no puede ser mayor a la fecha final.',3000);
+            $('#BFFIN').focus();
+           }   
     }
 }
 else
