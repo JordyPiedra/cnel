@@ -1,8 +1,4 @@
-    $('document').ready(function(){
-  $(".button-collapse").sideNav();
-  $("#maspirante").attr("class","active");
-    
-  });
+
 //Aprueba perfil
 function aprobar(id,nombre){
     $("#accept").attr('onclick','aprobar_perfil('+id+')');

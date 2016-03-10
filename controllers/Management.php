@@ -6,7 +6,8 @@ Class Management extends Controller {
 
         parent:: __construct();
         
-		if(!Session::getValue("ID-ADMIN") && $_SERVER["REQUEST_URI"] != '/Management/login'){
+		if(!Session::getValue("ID-ADMIN") && ($_SERVER["REQUEST_URI"] != '/Management/login' && $_SERVER["REQUEST_URI"] != '//Management/validate_login')){
+         
           header('Location: '.URL.'Management/login');
            
         }
@@ -18,6 +19,7 @@ Class Management extends Controller {
     }
      //Cargamos la vista de configuraciones
     public function configuracion() {
+        $this->tipousuario('D');
         $this->view->render($this, 'configuracion');
     }
      //Cargamos la vista de procesos
@@ -131,7 +133,7 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
     
         public function lista_aspirantes() {
       
-        $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('%')];
+        $this->view->data = ['Aspirantes' => $this->model->getAspirantesbyApro('S')];
         $this->view->render($this, 'lista_aspirantes');
     }   
 //______________________________________________________________________//
@@ -208,13 +210,14 @@ public function proceso_concurso(){
     }
     
     public function validate_login(){
-     
         if(isset($_POST['USER']) && isset($_POST['PASS']))
         {
             $_POST['USER'] = filter_var($_POST['USER'], FILTER_SANITIZE_STRING);
             $_POST['USER']=$this->Mayus( $_POST['USER']);
             $_POST['PASS'] = filter_var($_POST['PASS'], FILTER_SANITIZE_STRING);
             $_POST['PASS']=sha1($_POST['PASS']);
+           //echo $_POST['USER'];
+           // echo $_POST['PASS'];
             if($result= $this->model->getusuario($_POST['USER'],$_POST['PASS']))
             {
                 Session::setValue("ID-ADMIN",$result[0][0]);
@@ -720,8 +723,14 @@ public function perfil_aspirante(){
     
 }
  private function tipousuario($TIPO){
-     if(!Session::getValue("TIP-ADMIN")==$TIPO)
+     
+     if(Session::getValue("TIP-ADMIN")!=$TIPO)
      $this->index_management();
+ }
+  public function logout(){
+    Session::destroy();
+    header('Location: '.URL.'Management/login');
+    
  }
          
 }

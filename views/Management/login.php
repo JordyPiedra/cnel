@@ -73,6 +73,7 @@
     fajax($('#log').serialize(), URL+"/Management/validate_login", validate_login_response);    
     }
     function validate_login_response(response){
+        console.log(response);
         if (response==1)
         {
             setTimeout(function(){ window.location.href = URL+"Management/index"; }, 3000);
@@ -89,7 +90,7 @@
     }
       $(document).keypress(function(e){
          if(e.which == 13) {
-          ACCESS.submit();
+          login();
          }
       });
 </script>
