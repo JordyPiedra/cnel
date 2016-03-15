@@ -91,15 +91,23 @@ function editar_concurso(id,token){
 if (CONCID_ != null && CONCID_ != '')
 {
     if(onclick_('#parametrosConcurso')){
-         if($('#BFINI').val()<=$('#BFFIN').val())
-                {
-    var faseC = $('#parametrosConcurso :input').serialize();
-    faseC += '&CONID=' + CONCID_;
-    fajax(faseC, URL+'Management/insert_base_concurso', insert_base_concurso_response);
-    }else
-           { Materialize.toast('La fecha inicial no puede ser mayor a la fecha final.',3000);
-            $('#BFFIN').focus();
-           }   
+        
+        if($('#BFINI').val()>=$('#CFINI').val() && $('#BFFIN').val()<=$('#CFFIN').val())
+                  {  
+                      if($('#BFINI').val()<=$('#BFFIN').val())
+                            {
+                var faseC = $('#parametrosConcurso :input').serialize();
+                faseC += '&CONID=' + CONCID_;
+                fajax(faseC, URL+'Management/insert_base_concurso', insert_base_concurso_response);
+                }else
+                    { Materialize.toast('La fecha inicial no puede ser mayor a la fecha final.',3000);
+                        $('#BFFIN').focus();
+                    } 
+           } else
+                    { Materialize.toast('La fechas no estan en el rango de fechas del concurso',3000);
+                        $('#BFFIN').focus();
+                    } 
+             
     }
 }
 else
