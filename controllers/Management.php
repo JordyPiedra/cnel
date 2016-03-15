@@ -331,6 +331,8 @@ public function proceso_concurso(){
                 "CON_NVAC" => "'" . $_POST["NVAC"] . "'",
                 "CON_FINI" => "'" . $_POST["CFINI"] . "'",
                 "CON_FFIN" => "'" . $_POST["CFFIN"] . "'",
+                "CON_UCRE" => "'" . Session::getValue("USU-ADMIN") . "'",
+                "CON_FCRE" => "NOW()",
                 "CON_ESTA" => "'C'"
             ];
             $CONCURSO_DATOS = ["SSP_CONCURSO" => $cabecera_concurso];
