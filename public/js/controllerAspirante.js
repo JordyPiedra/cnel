@@ -280,8 +280,8 @@ var controllerAS = {
         f2 = new Date (f2Arr[0], f2Arr[1], f2Arr[2]);
 
         if(f2<f1){
-          //Materialize.toast("Por favor, la fecha final debe ser superior a la fecha inicial", 3000, "rounded");  
-          //return false;
+          Materialize.toast("Por favor, la fecha final debe ser superior a la fecha inicial", 3000, "rounded");  
+          return false;
         }
 
       }
@@ -318,7 +318,7 @@ var controllerAS = {
             //$("#BE").prepend(controllerAS.loading());
           },
           success: function(response){
-            console.log(response);
+            //console.log(response);
             var r= JSON.parse(response);
             if (r.STATUS==='SUCCESS') {
                 //var d = r.DATA;
