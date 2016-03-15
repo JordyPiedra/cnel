@@ -23,8 +23,8 @@ $(function(){
           success: function(response){
             //console.log(response);
             var r= JSON.parse(response);
-            getCurriculumVitae(r);          
-
+            getCurriculumVitae(r);
+     
           },
           error:function(request, typeMessage, errorMessage){
             Materialize.toast(errorMessage, 2000);
@@ -43,10 +43,10 @@ $(function(){
 function getCurriculumVitae(d)
   {
 
-
     //210 x 297
 
-
+try {
+  
   var x = y = l = 0;
   var pdf = new jsPDF();
 
@@ -240,5 +240,13 @@ function getCurriculumVitae(d)
   $('#applicantResume').leanModal();
   $('#applicantResume').openModal();
   $('#applicantResume').height(1000);
+
+
+}
+catch(err) {
+  Materialize.toast("Al parecer no ha ingresado la suficiente información", 2000, "", function(){
+    Materialize.toast("Por favor, complete su hoja de vida para poder visualizar el archivo", 2000);
+  });
+}
 
   }
