@@ -103,6 +103,10 @@ Class Aspirante_model extends Model {
     }
 
     public function CreateUpdateFamily($data, $idASP = false, $idRow = false) {
+      if ($this->checkData($data)) {
+        return false;
+      }
+
       if($idRow){
         $this->db->update('SSP_FAMILIAR', $data, false, 'FAM_ID = '.$idRow, true);  
 
@@ -191,6 +195,11 @@ Class Aspirante_model extends Model {
     }
 
     public function CreateUpdateFormalEducation($data, $idASP = false, $idRow = false) {
+      
+      if ($this->checkData($data)) {
+        return false;
+      }
+
       if($idRow){
         $this->db->update('SSP_TITULO', $data, false, 'TIT_ID = '.$idRow, true); 
 
@@ -317,9 +326,8 @@ Class Aspirante_model extends Model {
     }
 
     public function CreateUpdateLanguageApplicant($data, $idASP = false, $idRow = false) {
-      if(!$data){
-        $output = ["STATUS" => "FAIL", "MSG" => "ERROR: Datos incorrectos."];
-        return json_encode($output);
+      if ($this->checkData($data)) {
+        return false;
       }
 
       $levels = ["B"=>"BÁSICO", "I"=>"INTERMEDIO", "A"=>"AVANZADO"];      
@@ -365,9 +373,8 @@ Class Aspirante_model extends Model {
 
     public function CreateUpdateCandidateTraining($data, $idASP = false, $idRow = false) {
 
-      if(!$data){
-        $output = ["STATUS" => "FAIL", "MSG" => "ERROR: Datos incorrectos."];
-        return json_encode($output);
+      if ($this->checkData($data)) {
+       return false;
       }
 
       $certificate_type = ["A"=> "APROBACIÓN", "S"=>"ASISTENCIA"];
@@ -474,7 +481,11 @@ Class Aspirante_model extends Model {
     }
 
     public function CreateUpdateWorkExperience($data, $idASP = false, $idRow = false) {
-  
+    
+      if ($this->checkData($data)) {
+        return false;
+      }
+
       if($idRow){
         $this->db->update('SSP_EXPERIENCIA_LABORAL', $data, false, 'ELA_ID = '.$idRow, true);      
 
@@ -572,6 +583,16 @@ Class Aspirante_model extends Model {
         ASP_FK_LOCN,
         ASP_FK_LOCD',
         'SSP_ASPIRANTE', 'ASP_ID = '.$id, PDO::FETCH_NUM);   
+    }
+
+    public function checkData($data){
+      if(!$data){
+        $output = ["STATUS" => "FAIL", "MSG" => "ERROR: Datos incorrectos."];
+        echo json_encode($output);
+        return true;
+      }
+      
+      return false;
     }
 
 

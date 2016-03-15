@@ -95,7 +95,7 @@
           </div>
 
           <div class="input-field col offset-l1 l2 m6 s6">
-            <input name="IFFGRA" id="IFFGRA" type="text" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30">
+            <input name="IFFGRA" id="IFFGRA" type="date" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30    Nota: Si visualizas el calendario, por favor sólo selecciona la fecha correspondiente">
             <label for="IFFGRA" class="active">Fecha de graduación <span class="red-text">*</span></label>
           </div>
 

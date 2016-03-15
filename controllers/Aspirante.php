@@ -73,14 +73,6 @@ Class Aspirante extends Controller{
 				$disability_candidate= $this->model->getDisabilityCandidate(Session::getValue("ID-ASPIRANTE"));
 
 
-				//We changed the date of birth to a format (dd/mm/yyyy)
-				$FENA =  $candidate["ASP_FENA"];
-				if($FENA){
-					$FENA = explode("-", $FENA);
-					$candidate["ASP_FENA"] = $FENA[2]."/".$FENA[1]."/".$FENA[0];
-				}
-
-
 				$this->view->data = [
 					'candidate' => $candidate,
 					'catastrophic_illness' => $catastrophic_illness,
@@ -357,10 +349,6 @@ Class Aspirante extends Controller{
 					$_POST["IPLOCN"] = $_POST["IPPAIS"];
 				}
 
-				//We changed the date of birth to a format (yyyy-mm-dd)
-				$FENA = explode("/",$_POST["IPFENA"]);
-				$_POST["IPFENA"] = $FENA[2]."/".$FENA[1]."/".$FENA[0];
-
 
 				if(empty($_POST["DEENFE"])){
 					$_POST["DEENFE"] = null;
@@ -477,6 +465,13 @@ Class Aspirante extends Controller{
 			case 'capacitacion':
 				$certificate_type = ["A", "S"];
 
+				$f1 = strtotime($_POST["CAFICA"]);
+				$f2 = strtotime($_POST["CAFFCA"]);
+
+				if ($f2 < $f1) {
+					return false;
+				}
+
 				if (in_array($_POST["CATCER"], $certificate_type)) {
 					$data = [
 						"CUR_ECAP"    => ["value"=>$_POST["CAECAP"], "type" => PDO::PARAM_STR], 
@@ -498,6 +493,15 @@ Class Aspirante extends Controller{
 			break;
 
 			case 'experiencia-laboral':
+
+				$f1 = strtotime($_POST["ELFINI"]);
+				$f2 = strtotime($_POST["ELFFIN"]);
+
+				if ($f2 < $f1) {
+					return false;
+				}
+
+
 				$data = [
 					"ELA_NEMP"    => ["value"=>$_POST["ELNEMP"], "type" => PDO::PARAM_STR], 
 					"ELA_CARG"    => ["value"=>$_POST["ELCARG"], "type" => PDO::PARAM_STR], 

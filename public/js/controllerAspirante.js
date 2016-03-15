@@ -251,13 +251,39 @@ var controllerAS = {
       if (controllerAS.tab[1]==='informacion-personal' || controllerAS.tab[1]==='referencias-personales'){
         controllerAS.val[1] = data;
         if(controllerAS.val[0] === controllerAS.val[1]){
-          Materialize.toast("No es posible actualizar los datos", 2500, "rounded", function(){
-            Materialize.toast("¡No se ha detectado ningún cambio!", 2500, "rounded");  
+          Materialize.toast("No es posible actualizar los datos", 2500, "", function(){
+            Materialize.toast("¡No se ha detectado ningún cambio!", 2500, "");  
           });
           return false;
         }else{
           controllerAS.val[0] = data;
         }
+      }
+
+      if (controllerAS.tab[1]==='capacitacion' || controllerAS.tab[1]==='experiencia-laboral'){
+        
+        if (controllerAS.tab[1]==='capacitacion') {
+          var f1Str = $("#CAFICA").val();
+          var f2Str = $("#CAFFCA").val();
+        }else{
+          var f1Str = $("#ELFINI").val();
+          var f2Str = $("#ELFFIN").val();
+        }
+
+
+        var f1Arr = f1Str.split("-");
+        var f2Arr = f2Str.split("-");
+
+        var f1 = f2 = null;
+
+        f1 = new Date (f1Arr[0], f1Arr[1], f1Arr[2]);
+        f2 = new Date (f2Arr[0], f2Arr[1], f2Arr[2]);
+
+        if(f2<f1){
+          //Materialize.toast("Por favor, la fecha final debe ser superior a la fecha inicial", 3000, "rounded");  
+          //return false;
+        }
+
       }
 
       if($("#IFNSTR").length){
@@ -292,7 +318,7 @@ var controllerAS = {
             //$("#BE").prepend(controllerAS.loading());
           },
           success: function(response){
-            //console.log(response);
+            console.log(response);
             var r= JSON.parse(response);
             if (r.STATUS==='SUCCESS') {
                 //var d = r.DATA;
@@ -408,7 +434,7 @@ var controllerAS = {
                 controllerAS.idAction='';
                 controllerAS.idRow='';
                 controllerAS.cancelEdit();
-                Materialize.toast(r.MSG, 4000, 'rounded');
+                Materialize.toast(r.MSG, 4000, '');
               }else{
                 var d = r.DATA;
                 switch(controllerAS.tab[1]){
@@ -667,8 +693,8 @@ function handleDate() {
 
 //convert the date string in the format of dd/mm/yyyy into a JS date object
 function parseDate(dateStr) {
-  var dateParts = dateStr.split("/");
-  return new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+  var dateParts = dateStr.split("-");
+  return new Date(dateParts[0], (dateParts[1] - 1), dateParts[2]);
 }
 
 //is valid date format
@@ -697,16 +723,18 @@ function isDate(txtDate) {
     return true;
 
   //Declare Regex
-  var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+  //var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+  var rxDatePattern = /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/;
   var dtArray = currVal.match(rxDatePattern); // is format OK?
+
 
   if (dtArray == null)
     return false;
 
   //Checks for dd/mm/yyyy format.
-  var dtDay = dtArray[1];
+  var dtDay = dtArray[5];
   var dtMonth = dtArray[3];
-  var dtYear = dtArray[5];
+  var dtYear = dtArray[1];
 
   if (dtMonth < 1 || dtMonth > 12)
     return false;

@@ -46,7 +46,7 @@
         </div>
 
         <div class="input-field col offset-l1 l2 m4 s6">
-          <input name="DFFNAC" id="DFFNAC" type="text" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2000-01-30">
+          <input name="DFFNAC" id="DFFNAC" type="date" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 1999-01-30     Nota: Si visualizas el calendario, por favor sólo selecciona la fecha correspondiente">
           <label class="active" for="DFFNAC">Fecha nacimiento <span class="red-text">*</span></label>
         </div>
 

@@ -76,12 +76,12 @@
 
     <div class="col l12 m12 s12">
       <div class="input-field offset-l2 col l4 m6 s6">
-        <input name="CAFICA" id="CAFICA" type="text" maxlength="15" class="actI validate" placeholder="aaaa-mm-dd" value='' required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30">
+        <input name="CAFICA" id="CAFICA" type="date" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" value='' required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30    Nota: Si visualizas el calendario, por favor sólo selecciona la fecha correspondiente">
         <label for="CAFICA" class="active">Fecha desde <span class="red-text">*</span></label>
       </div>
 
       <div class="input-field col l4 m6 s6">
-        <input name="CAFFCA" id="CAFFCA" type="text" maxlength="15" class="actI validate" placeholder="aaaa-mm-dd" value='' required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-01-30">
+        <input name="CAFFCA" id="CAFFCA" type="date" maxlength="10" class="actI validate" placeholder="aaaa-mm-dd" value='' required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 2010-05-20    Nota: Si visualizas el calendario, por favor sólo selecciona la fecha correspondiente">
         <label for="CAFFCA" class="active">Fecha hasta <span class="red-text">*</span></label>
       </div>
 

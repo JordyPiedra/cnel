@@ -149,7 +149,7 @@ $tipo_licencia = ["A","A1","B","C","C1","D","D1","E","E1","F","G"];
 
   <div class="col l12 m12 s12">
     <div class="input-field col l3 m3 s6">                           
-      <input id="IPFENA" name="IPFENA" type="text" class="triggerI validate <?=$candidate["ASP_FENA"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_FENA"]?>' placeholder="dd/mm/aaaa" required pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formato fecha: dd-mm-aaaa Ej. 1999-01-30">
+      <input id="IPFENA" name="IPFENA" type="date" class="triggerI validate <?=$candidate["ASP_FENA"] ? 'valid' : '' ?>"  value='<?=$candidate["ASP_FENA"]?>' placeholder="aaaa-mm-dd" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Formato fecha: aaaa-mm-dd Ej. 1999-01-30    Nota: Si visualizas el calendario, por favor sólo selecciona la fecha correspondiente">
       <label class="active">Fecha nacimiento <span class="red-text">*</span></label>
     </div>
     <div class="input-field col l3 m3 s6">
