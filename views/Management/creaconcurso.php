@@ -166,6 +166,10 @@
                                     <div  class="input-field col l3 m3 s3"  >
                                          <a  id="G_fase" onclick="insert_base_concurso();" class="btn tooltipped btn-large blue darken-3 right" data-position="bottom" data-delay="50" data-tooltip="Agregar fase" > <i class="large material-icons">playlist_add</i> </a>
                                     </div>
+                                    <div class="input-field col l12 m12 s12">
+                                        <textarea name="BDESC" id="BDESC" cols="" rows=""></textarea>
+                                        <label for="last_name">Descipción</label>
+                                    </div>
                                        <input type="submit" style="display:none;">
                                 </div>
                             </div>

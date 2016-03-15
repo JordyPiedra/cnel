@@ -304,7 +304,8 @@ public function proceso_concurso(){
                 "BCO_FFIN" => "'" . $_POST["BFFIN"] . "'",
                 "BCO_FINI" => "'" . $_POST["BFINI"] . "'",
                 "CON_ID" => "'" . $_POST["CONID"] . "'",
-                "BCO_VALO" => "'" . $_POST["BVALO"] . "'"
+                "BCO_VALO" => "'" . $_POST["BVALO"] . "'",
+                "BCO_DESC" => "'" . $_POST["BDESC"] . "'"
             ];
             echo json_encode($this->model->setBaseConcurso($base_concurso));
         } else
