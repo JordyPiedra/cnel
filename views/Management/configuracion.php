@@ -16,6 +16,7 @@
         <li class="active"><a href="configuracion">Configuraciones</a></li>
         <li><a href="configuracion_departamentos">Departamentos</a></li>
         <li><a href="configuracion_fases">Fases</a></li>
+        <li><a href="configuracion_usuarios">Usuarios</a></li>
       </ul>
     </div>
   </nav>

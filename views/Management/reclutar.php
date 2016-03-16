@@ -34,7 +34,8 @@
             <li class="blue-text text-darken-2"><i>Buscar resultados por:</i></li>
 
             <li>
-                <div class="collapsible-header left-align"><i class="material-icons">games</i>
+                <div class="collapsible-header left-align"><i class="material-icons">keyboard_arrow_down
+</i>
                     <input type="checkbox" class="filled-in" id="instruccionF"  />
                     <label for="instruccionF" style="margin-top: 12px;">Instrucción Formal</label>
                 </div>
@@ -59,7 +60,7 @@
             </li>
 
             <li>
-                <div class="collapsible-header left-align"><i class="material-icons">games</i>
+                <div class="collapsible-header left-align"><i class="material-icons">keyboard_arrow_down</i>
                     <input type="checkbox" class="filled-in" id="area"  />
                     <label for="area" style="margin-top: 12px;">Areas de Estudio</label>
                 </div>
@@ -84,7 +85,7 @@
             </li>
 
             <li>
-                <div class="collapsible-header left-align"><i class="material-icons">games</i>
+                <div class="collapsible-header left-align"><i class="material-icons">keyboard_arrow_down</i>
                     <input type="checkbox" class="filled-in" id="Experiencia"  />
                     <label for="Experiencia" style="margin-top: 12px;">Experiencia Laboral</label>
                 </div>
@@ -109,7 +110,7 @@
             </li>
 
             <li>
-                <div class="collapsible-header left-align"><i class="material-icons">games</i>
+                <div class="collapsible-header left-align"><i class="material-icons">keyboard_arrow_down</i>
                     <input type="checkbox" class="filled-in" id="discapacidad"  />
                     <label for="discapacidad" style="margin-top: 12px;">Discapacidad</label>
                 </div>
@@ -333,7 +334,7 @@ echo' <tr class="center-align">
   <div class="modal-content center-align">
     <p><i class="material-icons medium red-text">info</i></p>
     <h5 id="mensajeAlert"></h5>
-    <p >Una vez terminado el reclutamiento ya no se puedrá editar</p>
+    <p >Recuerde una vez terminado el reclutamiento, el concurso ya no se puedrá editar.</p>
   </div>
   <div class="modal-footer">
     <a href="javascript:" onclick="$('#modalAPRO').closeModal();" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>

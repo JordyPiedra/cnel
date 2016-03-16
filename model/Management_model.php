@@ -169,7 +169,7 @@ Class Management_model extends Model {
 
      //LISTA DE ASPIRANTES EN UN CONCURSO
     public function getAspirantesbyCONID($CON_ID) {
-        return $this->db->select("A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA, tokenGenerator(A.ASP_ID) TOKEN", 'SSP_ASPIRANTE A, SSP_ASPIRANTE_CONCURSO C ', "A.ASP_ID = C.ASP_ID AND C.CON_ID='$CON_ID'", PDO::FETCH_NUM);
+        return $this->db->select("A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA, tokenGenerator(A.ASP_ID) TOKEN,A.ASP_EMAP", 'SSP_ASPIRANTE A, SSP_ASPIRANTE_CONCURSO C ', "A.ASP_ID = C.ASP_ID AND C.CON_ID='$CON_ID'", PDO::FETCH_NUM);
     }
      //LISTA DE ASPIRANTES FILTRO POR APROBACIÒN
     public function getAspirantesbyApro($ASP_APRO) {
@@ -177,7 +177,7 @@ Class Management_model extends Model {
     }
      //LISTA DE ASPIRANTES FILTRO MINIMO 1 TITULO Y LLENADO DE NOMBRES
     public function getAspirantestoAPRO($where) {
-        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA,ASP_GENE', 'SSP_ASPIRANTE', $where, PDO::FETCH_NUM);
+        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA,ASP_GENE,ASP_EMAP', 'SSP_ASPIRANTE', $where, PDO::FETCH_NUM);
     }
     
     //Función complemenadora para la busqueda de aspirantes donde where es el filtro completo de busqueda
@@ -229,7 +229,7 @@ Class Management_model extends Model {
     
      //LISTA DE ASPIRANTES EN UN CONCURSO y CALIFICACIONES POR FASE 
     public function getAspirantesbyCONIDBCONID($BCO_ID) {
-        return $this->db->select("A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA, tokenGenerator(A.ASP_ID) TOKEN,CAL_VALO VALOR", 'SSP_ASPIRANTE A, ssp_calificaciones C', "A.ASP_ID = c.ASP_ID  AND C.Bco_ID='$BCO_ID'", PDO::FETCH_NUM);
+        return $this->db->select("A.ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA, tokenGenerator(A.ASP_ID) TOKEN,CAL_VALO VALOR,A.ASP_EMAP", 'SSP_ASPIRANTE A, ssp_calificaciones C', "A.ASP_ID = c.ASP_ID  AND C.Bco_ID='$BCO_ID'", PDO::FETCH_NUM);
     }
     
     //CAMBIA ESTADO DE LA TABLA SSP_BASE_CONCURSO 
@@ -246,6 +246,10 @@ Class Management_model extends Model {
             //VALIDA QUE EXISTA USUARIO Y CONTRASEÑA
     public function getusuario($USER,$PASS) {
         return $this->db->select("USU_ID,USU_NOMB,USU_TIPO", 'SSP_USUARIOS', "USU_NOMB='$USER' AND USU_PASS= '$PASS'", PDO::FETCH_NUM);
+    }
+    
+    public function getallusuario() {
+        return $this->db->select("USU_ID,USU_NOMB,USU_TIPO", 'SSP_USUARIOS',"", PDO::FETCH_NUM);
     }
 
 }

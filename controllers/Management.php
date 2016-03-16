@@ -52,6 +52,26 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
             $ASP_ID=$_POST["IDASP"];
             
                if($this->model->update_estadoperfilAspirante($ASP_ID, $data))
+               {
+               $email=$this->model->getAspirantestoAPRO("ASP_ID ='$ASP_ID' ");
+              
+               EmailGenerator::sendEmail('perfil-aprobado', '', $email[0][8]);
+               echo true;
+               }
+               else
+                echo false;
+        }
+       else 
+        echo false;
+    }
+    
+    public function desaprobar_perfil() {
+        if(isset($_POST["IDASP"]))
+        {
+            $data = ["ASP_APRO" => "'N'"];
+            $ASP_ID=$_POST["IDASP"];
+            
+               if($this->model->update_estadoperfilAspirante($ASP_ID, $data))
                echo true;
                else
                 echo false;
@@ -618,13 +638,30 @@ public function proceso_concurso(){
      if(isset($_POST['IDCON_']) && $_POST['CONTOKEN']==$this->tokengenerate($_POST['IDCON_']))
         { 
 
-            $data = ["CON_ESTA" => "'P'"];
-            $CON_ID=$_POST["IDCON_"];
             
-               if($this->model->update_estadoConcurso($CON_ID, $data))
-                    header('Location: '.URL.'Management/procesos');
-                else
-                    $this->index_management();
+                        $data = ["CON_ESTA" => "'P'"];
+                        $CON_ID=$_POST["IDCON_"];
+             
+                        $DATOS=$this->datos_concurso($CON_ID);
+                        $nomcon=$DATOS['Concurso'];
+                        $EMAIL=$DATOS['fasesConcurso'];
+                        $aspirantes=$this->model->getAspirantesbyCONID($CON_ID);
+                       $arrayEmail = array();
+                        foreach ($aspirantes as $key => $value) {
+                      array_push($arrayEmail,$value[8]);
+                        }
+                     if(EmailGenerator::sendEmail('aspirante-selected', '', $arrayEmail,['CON_NOMB'=>$nomcon[0][1],'CON_FINI'=>$nomcon[0][10]]))
+                     {
+                        
+                          if($this->model->update_estadoConcurso($CON_ID, $data))
+                                 header('Location: '.URL.'Management/procesos');
+                             else
+                                 $this->index_management();
+                         
+                     }
+                      else 
+                      echo "no envio mensaje";
+                      //$this->index_management();
         }
          else
            $this->index_management();
@@ -733,6 +770,13 @@ public function perfil_aspirante(){
   public function logout(){
     Session::destroy();
     header('Location: '.URL.'Management/login');
+    
+ }
+ 
+   public function configuracion_usuarios(){
+     $this->view->datos=['Usuarios'=>$this->model->getallusuario()];
+     
+    $this->view->render($this, 'configuracion_usuarios');
     
  }
          

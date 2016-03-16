@@ -32,6 +32,12 @@ class PDOManager extends PDO{
                 die($e->getMessage());
             }
 	}
+    
+    public function sqlquery($sql,$fetchMode = PDO::FETCH_ASSOC){
+		$result = $this->prepare($sql);
+        $result->execute();    
+        return $result->fetchAll($fetchMode);
+	}
 	/**
 	* SELECT
 	*

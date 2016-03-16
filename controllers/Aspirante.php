@@ -356,10 +356,10 @@ Class Aspirante extends Controller{
 
 				$data = [
 					"ASP_CEDU"    => ["value"=>$_POST["IPCEDU"], "type" => PDO::PARAM_STR], 
-					"ASP_NOM1"    => ["value"=>$_POST["IPNOM1"], "type" => PDO::PARAM_STR], 
-					"ASP_NOM2"    => ["value"=>$_POST["IPNOM2"], "type" => PDO::PARAM_STR], 
-					"ASP_APE1"    => ["value"=>$_POST["IPAPE1"], "type" => PDO::PARAM_STR], 
-					"ASP_APE2"    => ["value"=>$_POST["IPAPE2"], "type" => PDO::PARAM_STR], 
+					"ASP_NOM1"    => ["value"=>$this->Mayus($_POST["IPNOM1"]), "type" => PDO::PARAM_STR], 
+					"ASP_NOM2"    => ["value"=>$this->Mayus($_POST["IPNOM2"]), "type" => PDO::PARAM_STR], 
+					"ASP_APE1"    => ["value"=>$this->Mayus($_POST["IPAPE1"]), "type" => PDO::PARAM_STR], 
+					"ASP_APE2"    => ["value"=>$this->Mayus($_POST["IPAPE2"]), "type" => PDO::PARAM_STR], 
 					"ASP_DISC"    => ["value"=>$_POST["DEDISC"], "type" => PDO::PARAM_STR], 
 					"ASP_ETNI"    => ["value"=>$_POST["IPETNI"], "type" => PDO::PARAM_STR], 
 					"ASP_ESCI"    => ["value"=>$_POST["IPESCI"], "type" => PDO::PARAM_STR], 
@@ -374,11 +374,11 @@ Class Aspirante extends Controller{
 					"ASP_TILI"    => ["value"=>$_POST["IPTILI"], "type" => PDO::PARAM_STR], 
 					"ASP_TISA"    => ["value"=>$_POST["IPTISA"], "type" => PDO::PARAM_STR],
 
-					"ASP_CAPR"    => ["value"=>$_POST["DDCAPR"], "type" => PDO::PARAM_STR],
-					"ASP_CASE"    => ["value"=>$_POST["DDCASE"], "type" => PDO::PARAM_STR],
+					"ASP_CAPR"    => ["value"=>$this->Mayus($_POST["DDCAPR"]), "type" => PDO::PARAM_STR],
+					"ASP_CASE"    => ["value"=>$this->Mayus($_POST["DDCASE"]), "type" => PDO::PARAM_STR],
 					"ASP_NCAS"    => ["value"=>$_POST["DDNCAS"], "type" => PDO::PARAM_STR],
-					"ASP_SECT"    => ["value"=>$_POST["DDSECT"], "type" => PDO::PARAM_STR],
-					"ASP_REFE"    => ["value"=>$_POST["DDREFE"], "type" => PDO::PARAM_STR],
+					"ASP_SECT"    => ["value"=>$this->Mayus($_POST["DDSECT"]), "type" => PDO::PARAM_STR],
+					"ASP_REFE"    => ["value"=>$this->Mayus($_POST["DDREFE"]), "type" => PDO::PARAM_STR],
 					
 					"ASP_FK_LOCD" => ["value"=>$_POST["DDPARR"], "type" => PDO::PARAM_INT],
 					"ASP_FK_LOCN" => ["value"=>$_POST["IPLOCN"], "type" => PDO::PARAM_INT],
@@ -389,9 +389,9 @@ Class Aspirante extends Controller{
 			case 'datos-familiares':
  				$data = [
 					"FAM_CEDU"    => ["value"=>$_POST["DFCEDU"], "type" => PDO::PARAM_STR], 
-					"FAM_APEL"    => ["value"=>$_POST["DFAPEL"], "type" => PDO::PARAM_STR], 
-					"FAM_NOMB"    => ["value"=>$_POST["DFNOMB"], "type" => PDO::PARAM_STR], 
-					"FAM_DIRE"    => ["value"=>$_POST["DFDIRE"], "type" => PDO::PARAM_STR], 
+					"FAM_APEL"    => ["value"=>$this->Mayus($_POST["DFAPEL"]), "type" => PDO::PARAM_STR], 
+					"FAM_NOMB"    => ["value"=>$this->Mayus($_POST["DFNOMB"]), "type" => PDO::PARAM_STR], 
+					"FAM_DIRE"    => ["value"=>$this->Mayus($_POST["DFDIRE"]), "type" => PDO::PARAM_STR], 
 					"FAM_FNAC"    => ["value"=>$_POST["DFFNAC"], "type" => PDO::PARAM_STR], 
 					"FAM_FEME"    => ["value"=>$_POST["DFFEME"], "type" => PDO::PARAM_STR], 
 					"FAM_TEL1"    => ["value"=>$_POST["DFTEL1"], "type" => PDO::PARAM_STR], 
@@ -407,8 +407,8 @@ Class Aspirante extends Controller{
 			case 'instruccion-formal':
 				if(!!$_POST["IFNOMB1"]){
 					$data = [
-						"TIT_NOMB"    => ["value"=>$_POST["IFNOMB1"], "type" => PDO::PARAM_STR], 
-						"TIT_TIEM"    => ["value"=>$_POST["IFTIEM1"], "type" => PDO::PARAM_INT], 
+						"TIT_NOMB"    => ["value"=>$this->Mayus($_POST["IFNOMB1"]), "type" => PDO::PARAM_STR], 
+						"TIT_TIEM"    => ["value"=>$this->Mayus($_POST["IFTIEM1"]), "type" => PDO::PARAM_INT], 
 						
 						"TIT_FK_ASPI" => ["value"=>Session::getValue("ID-ASPIRANTE"), "type" => PDO::PARAM_INT], 
 						"TIT_FK_NSTR" => ["value"=>$_POST["IFNSTR"], "type" => PDO::PARAM_INT]
@@ -428,7 +428,7 @@ Class Aspirante extends Controller{
 					}
 
 	 				$data = [
-						"TIT_NOMB"    => ["value"=>$_POST["IFNOMB"], "type" => PDO::PARAM_STR], 
+						"TIT_NOMB"    => ["value"=>$this->Mayus($_POST["IFNOMB"]), "type" => PDO::PARAM_STR], 
 						"TIT_TIEM"    => ["value"=>$_POST["IFTIEM"], "type" => PDO::PARAM_INT], 
 						"TIT_FGRA"    => ["value"=>$_POST["IFFGRA"], "type" => PDO::PARAM_STR], 
 
@@ -438,7 +438,7 @@ Class Aspirante extends Controller{
 
 						"TIT_SENE"    => ["value"=>$_POST["IFSENE"], "type" => PDO::PARAM_STR],
 						"TIT_FK_AEST" => ["value"=>$_POST["IFAEST"], "type" => PDO::PARAM_INT],
-						"TIT_OINS" 	  => ["value"=>$_POST["IFOINS"], "type" => PDO::PARAM_STR]
+						"TIT_OINS" 	  => ["value"=>$this->Mayus($_POST["IFOINS"]), "type" => PDO::PARAM_STR]
 
 					];
 					
@@ -474,8 +474,8 @@ Class Aspirante extends Controller{
 
 				if (in_array($_POST["CATCER"], $certificate_type)) {
 					$data = [
-						"CUR_ECAP"    => ["value"=>$_POST["CAECAP"], "type" => PDO::PARAM_STR], 
-						"CUR_TITU"    => ["value"=>$_POST["CATITU"], "type" => PDO::PARAM_STR], 
+						"CUR_ECAP"    => ["value"=>$this->Mayus($_POST["CAECAP"]), "type" => PDO::PARAM_STR], 
+						"CUR_TITU"    => ["value"=>$this->Mayus($_POST["CATITU"]), "type" => PDO::PARAM_STR], 
 						"CUR_TCER"    => ["value"=>$_POST["CATCER"], "type" => PDO::PARAM_STR], 
 						"CUR_FICA"    => ["value"=>$_POST["CAFICA"], "type" => PDO::PARAM_STR], 
 						"CUR_FFCA"    => ["value"=>$_POST["CAFFCA"], "type" => PDO::PARAM_STR], 
@@ -503,9 +503,9 @@ Class Aspirante extends Controller{
 
 
 				$data = [
-					"ELA_NEMP"    => ["value"=>$_POST["ELNEMP"], "type" => PDO::PARAM_STR], 
-					"ELA_CARG"    => ["value"=>$_POST["ELCARG"], "type" => PDO::PARAM_STR], 
-					"ELA_RELA"    => ["value"=>$_POST["ELRELA"], "type" => PDO::PARAM_STR], 
+					"ELA_NEMP"    => ["value"=>$this->Mayus($_POST["ELNEMP"]), "type" => PDO::PARAM_STR], 
+					"ELA_CARG"    => ["value"=>$this->Mayus($_POST["ELCARG"]), "type" => PDO::PARAM_STR], 
+					"ELA_RELA"    => ["value"=>$this->Mayus($_POST["ELRELA"]), "type" => PDO::PARAM_STR], 
 					"ELA_TELE"    => ["value"=>$_POST["ELTELE"], "type" => PDO::PARAM_STR], 
 					"ELA_SECT"    => ["value"=>$_POST["ELSECT"], "type" => PDO::PARAM_STR], 
 					"ELA_FINI"    => ["value"=>$_POST["ELFINI"], "type" => PDO::PARAM_STR], 
@@ -519,13 +519,13 @@ Class Aspirante extends Controller{
 
 			case 'referencias-personales':
 				$data = [
-					"ASP_R1AP"    => ["value"=>$_POST["RPR1AP"], "type" => PDO::PARAM_STR], 
-					"ASP_R1NO"    => ["value"=>$_POST["RPR1NO"], "type" => PDO::PARAM_STR], 
+					"ASP_R1AP"    => ["value"=>$this->Mayus($_POST["RPR1AP"]), "type" => PDO::PARAM_STR], 
+					"ASP_R1NO"    => ["value"=>$this->Mayus($_POST["RPR1NO"]), "type" => PDO::PARAM_STR], 
 					"ASP_R1TE"    => ["value"=>$_POST["RPR1TE"], "type" => PDO::PARAM_STR], 
 					"ASP_R1CO"    => ["value"=>$_POST["RPR1CO"], "type" => PDO::PARAM_STR],
 
-					"ASP_R2AP"    => ["value"=>$_POST["RPR2AP"], "type" => PDO::PARAM_STR], 
-					"ASP_R2NO"    => ["value"=>$_POST["RPR2NO"], "type" => PDO::PARAM_STR], 
+					"ASP_R2AP"    => ["value"=>$this->Mayus($_POST["RPR2AP"]), "type" => PDO::PARAM_STR], 
+					"ASP_R2NO"    => ["value"=>$this->Mayus($_POST["RPR2NO"]), "type" => PDO::PARAM_STR], 
 					"ASP_R2TE"    => ["value"=>$_POST["RPR2TE"], "type" => PDO::PARAM_STR], 
 					"ASP_R2CO"    => ["value"=>$_POST["RPR2CO"], "type" => PDO::PARAM_STR] 
 				];		
@@ -590,7 +590,10 @@ Class Aspirante extends Controller{
 		echo json_encode($output);
 
 	}
-
+    private function Mayus($variable) {
+        $variable = strtr(strtoupper($variable), "àèìòùáéíóúçñäëïöü", "ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+        return $variable;
+    }
 
 }
 

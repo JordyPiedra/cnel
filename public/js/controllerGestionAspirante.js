@@ -21,9 +21,6 @@ function mensajecalificacion(){
 
 
 function get_aspirantes(){
-$('#preload').openModal();
-
-
 parametros ={
   'InstruccionFormal' : F_instruccion_formal()
   , 'AreaEstudio' :  F_area_estudio()
@@ -53,7 +50,6 @@ $("#ResultadoAspirantes_").empty();
 $("#ResultadoAspirantes_").append(fila);
 
             });
-  $('#preload').closeModal();
    $('#selectAll').prop('checked', '');
   $('#aspirantesModal').openModal();//Abre el modal luego de cargar opciones
 }
@@ -106,7 +102,6 @@ function F_discapacidad(){
 //Guarda los aspirantes seleccionados.
 function saveAspiranteToConcurso(){
 $('#aspirantesModal').closeModal();
-$('#preload').openModal();
 var asp_selected=$('#formResultadoAspirantes :input').serializeArray();
 console.log(asp_selected);
 parametre ={'IDCON_' : IDCONC , 'ASP_SELECTED' : asp_selected};
@@ -145,8 +140,6 @@ $('#aspiranteConcruso_reclutado').empty();
 $("#aspiranteConcruso_reclutado").append(fila);
 
             });
-  $('#preload').closeModal();
-
 }
 //eliminar aspirante reclutado    
 function eliminar_aspirante_concurso(id,token){

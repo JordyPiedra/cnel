@@ -31,7 +31,7 @@ Class EmailGenerator{
 
 
     //Swift_Message::newInstance
-    public static function sendEmail($type = 0, $code, $emailR = []){
+    public static function sendEmail($type = 0, $code=0, $emailR = [],$datos=0){
 
         self::newInstance();
         if(!$type){
@@ -66,6 +66,35 @@ Class EmailGenerator{
                 $message = Swift_Message::newInstance()
                   // Asunto
                   ->setSubject('RESTABLECER CONTRASEÑA: Trabaja con nosotros CNEL')
+                  // Remitente
+                  ->setFrom(['soportedevelopersd@gmail.com' => 'CNEL - SANTO DOMINGO'])
+                  // Destinatario/s
+                  ->setTo($emailR)
+                  // Body del mensaje
+                  ->setBody($mail_, 'text/html');
+            break;
+            
+            case 'aspirante-selected':
+                $mail = file_get_contents(URL.'views/Email/aspirante-selected.php');
+
+                $mail_ = str_replace('CONCURSOID_', $datos['CON_NOMB'], $mail);
+                $mail_ = str_replace('FECHACONCURSO_',$datos['CON_FINI'], $mail_);
+
+                $message = Swift_Message::newInstance()
+                  // Asunto
+                  ->setSubject('HAS SIDO ELEGIDO: Trabaja con nosotros CNEL')
+                  // Remitente
+                  ->setFrom(['soportedevelopersd@gmail.com' => 'CNEL - SANTO DOMINGO'])
+                  // Destinatario/s
+                  ->setTo($emailR)
+                  // Body del mensaje
+                  ->setBody($mail_, 'text/html');
+            break;
+              case 'perfil-aprobado':
+                $mail_ = file_get_contents(URL.'views/Email/perfil-aprobado.php');
+                $message = Swift_Message::newInstance()
+                  // Asunto
+                  ->setSubject('PERFIL APROBADO: Trabaja con nosotros CNEL')
                   // Remitente
                   ->setFrom(['soportedevelopersd@gmail.com' => 'CNEL - SANTO DOMINGO'])
                   // Destinatario/s
