@@ -825,6 +825,24 @@ public function perfil_aspirante(){
     }else
       echo json_encode(['Mensaje' => 'Datos incorrectos!']);
 }
-         
+
+public function change_password(){
+      $this->view->render($this, 'change_password');
+}
+   
+    public function update_user_pass(){
+     if(isset($_POST['PASS']))
+     {
+         $_POST['PASS']="'".md5($_POST['PASS'])."'";
+     if($this->model->update_password_user(Session::getValue("ID-ADMIN") ,$_POST['PASS']))
+     echo json_encode(['Mensaje' => 'Contraseña reestablecida']);
+     else    
+     echo json_encode(['Mensaje' => 'No se pudo reestablecer contraseña']);
+     }else {
+         echo json_encode(['Mensaje' => 'Error sistema']);
+     }
+     
+ }
+       
 }
 

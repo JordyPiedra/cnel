@@ -359,6 +359,5 @@ function create_usuario(){
 function create_usuario_response(response){
     var obj = JSON.parse(response);
     Materialize.toast(obj['Mensaje'], 2000);
-    delay
     
 }

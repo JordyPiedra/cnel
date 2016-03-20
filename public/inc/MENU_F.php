@@ -20,21 +20,20 @@
         <!--<li id="mreclutamiento"><a href="<?php echo URL; ?>Management/reclutamiento">&nbsp;&nbsp;&nbsp;&nbsp;Reclutamiento</a></li>
         <li id="mcalificaciones"><a href="<?php echo URL; ?>Management/calificaciones">&nbsp;&nbsp;&nbsp;&nbsp;Calificaciones</a></li>-->
         <li id="mreportes"><a href="<?php echo URL; ?>Management/reportes">&nbsp;&nbsp;&nbsp;&nbsp;Reportes&nbsp;&nbsp;</a></li>
-        <li><a href="logout">&nbsp;&nbsp;&nbsp;&nbsp;Salir&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        <li><a class="dropdown-button subMA" href="javascript:" data-activates="user"><i class="material-icons wite-text text-wite">more_vert</i></a></li>
       </ul>
 
       </div>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
-      </ul>
+     
     </div>
   </nav>
 </div>
 </header>
-
+    <ul id="user" class="dropdown-content">
+  <li><a href="<?=URL.'Management/change_password'?>">Cambiar contraseña</a></li>
+  <li class="divider"></li>
+  <li><a href="<?=URL.'Management/logout'?>">Cerrar sessión</a></li>
+</ul>
 <main>
   <div class="center-align blue darken-4 z-depth-1" style="margin-top: 0px;">
     <h5 class="center-align white-text light" style="margin-top: 0px;">ADMINISTRADOR - CNEL</h5>

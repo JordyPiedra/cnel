@@ -119,6 +119,8 @@ echo '<td data-field="name">
 </div>
 
     </body>
+
+
 <?php include_once SCRIPT_U; ?> 
 
     <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
