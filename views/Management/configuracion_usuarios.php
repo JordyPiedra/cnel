@@ -70,15 +70,26 @@
 <?php 
 var_dump($this->datos);
 foreach ($this->datos['Usuarios'] as $key => $value) {
+    if($value[3]=='H')
+    {
+        $color="green";
+        $estado='checked';
+    }
+    else {
+        $estado='';
+        $color="red";
+    }
 echo '<tr>
-<td data-field="id">N#.</td>
+<td data-field="id"> <i id="icon_'.$value[0].'" class="material-icons '.$color.'-text small" >face</i></td>
 <td data-field="price">'.$value[1].'</td>';
 if($value[2]=='D')
 echo '<td data-field="name">Director</td>';
 else 
 echo '<td data-field="name">Adminstrador</td>';
-echo '<td data-field="name"></td>
-</tr>                                            ';
+echo '<td data-field="name">
+ <a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Reestablecer contraseña" onclick="restore_password_('.$value[0].",'".$value[1]."'".')"><i class="material-icons red-text small" >autorenew</i></a>
+ <input onchange="user_estado(this,'.$value[0].",'".$value[1]."'".');" type="checkbox" '.$estado.' id="habilitado"><label for="habilitado" class="tooltipped " data-position="top" data-delay="50" data-tooltip="Habilitar"></label>
+ </td></tr>';
 }
 ?>
                                     </tbody>
@@ -95,47 +106,7 @@ echo '<td data-field="name"></td>
         </div>
 
 
- 
-
-
-<!-- Modal Alerta-->
-<div id="mensaje_cargo" class="modal">
-<div class="modal-content center-align">
-<h5>Seguro desea eliminar el cargo</h5>
-<h5 id="nombcargmsj"></h5>
-</div>
-<div class="modal-content center-align">
-<div class="row ">
-<div class="col  s12  m12 l12 ">
-<form id="frmCargo">
-
-<div class="center-align col l12 m6 s6">
-<div class="center-align col l6 m12 s12">
-<a class=" center-align waves-effect waves-light btn blue" id="elimina_C" >Guardar</a>
-
-</div> 
-<div class="center-align col l6 m12 s12">
-<a class=" center-align waves-effect waves-light btn blue" onclick=" $('#mensaje_cargo').closeModal()">Cancelar</a>
-
-</div>
-
-
-
-<br><br><br>
-
-</div>
-
-
-
-</form> 
-
-
-</div>
-
-</div>
-
-</div>
-</div>        
+     
 
  <div id="modalAPRO" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
   <div class="modal-content center-align">

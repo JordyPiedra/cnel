@@ -307,3 +307,43 @@ function actualizar_tabla_fases_response(response){
 
     
 }
+
+function restore_password_(id,nombre){
+      $('#mensajeAlert').html('¿Seguro desea reestablecer contraseña del usuario '+nombre+'<br>Una vez confirmado se asignará la contraseña por defecto : 12345');
+    $('#modalAPRO').openModal();
+    $('#accept').attr('onclick','restore_password('+id+');');
+}
+function restore_password(id){
+    fajax({'ID_USER': id}, URL+'Management/restaurar_pass', restore_password_response);
+}
+
+function restore_password_response(response){
+    var obj = JSON.parse(response);
+    $('#modalAPRO').closeModal();
+    Materialize.toast(obj['Mensaje'], 2000);
+}
+
+function user_estado(state,id,nombre){
+    if(state.checked) {
+           estado_mensaje="activar";
+           estado=1;
+           $('#icon_'+id).attr('class','material-icons green-text small');
+    }else{
+        estado_mensaje="desactivar";
+        estado=0;
+        $('#icon_'+id).attr('class','material-icons red-text small');
+    }
+     $('#mensajeAlert').html('¿Seguro desea '+estado_mensaje+' usuario '+nombre);
+    $('#modalAPRO').openModal();
+    $('#accept').attr('onclick','update_estado('+id+','+estado+');');
+}
+function update_estado(id,estado){
+
+  fajax({'ID_USER': id,'ESTADO_USER' : estado}, URL+'Management/update_estado_usuario', update_estado_response);   
+}
+
+function update_estado_response(response){
+    var obj = JSON.parse(response);
+    $('#modalAPRO').closeModal();
+    Materialize.toast(obj['Mensaje'], 2000);
+}

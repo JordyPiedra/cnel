@@ -245,11 +245,19 @@ Class Management_model extends Model {
 
             //VALIDA QUE EXISTA USUARIO Y CONTRASEÑA
     public function getusuario($USER,$PASS) {
-        return $this->db->select("USU_ID,USU_NOMB,USU_TIPO", 'SSP_USUARIOS', "USU_NOMB='$USER' AND USU_PASS= '$PASS'", PDO::FETCH_NUM);
+        return $this->db->select("USU_ID,USU_NOMB,USU_TIPO", 'SSP_USUARIOS', "USU_NOMB='$USER' AND USU_ESTA='H' AND USU_PASS= '$PASS'", PDO::FETCH_NUM);
     }
     
     public function getallusuario() {
-        return $this->db->select("USU_ID,USU_NOMB,USU_TIPO", 'SSP_USUARIOS',"", PDO::FETCH_NUM);
+        return $this->db->select("USU_ID,USU_NOMB,USU_TIPO,USU_ESTA", 'SSP_USUARIOS',"", PDO::FETCH_NUM);
+    }
+    
+     public function update_password_user($USU_ID,$PASSW="MD5('12345')") {
+        return $this->db->update('SSP_USUARIOS',['USU_PASS' => $PASSW],false,"USU_ID='$USU_ID'");
+    }
+    
+     public function update_state_user($USU_ID,$USU_ESTA) {
+        return $this->db->update('SSP_USUARIOS',['USU_ESTA' => "'".$USU_ESTA."'"],false,"USU_ID='$USU_ID'");
     }
 
 }

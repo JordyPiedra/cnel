@@ -235,7 +235,7 @@ public function proceso_concurso(){
             $_POST['USER'] = filter_var($_POST['USER'], FILTER_SANITIZE_STRING);
             $_POST['USER']=$this->Mayus( $_POST['USER']);
             $_POST['PASS'] = filter_var($_POST['PASS'], FILTER_SANITIZE_STRING);
-            $_POST['PASS']=sha1($_POST['PASS']);
+            $_POST['PASS']=md5($_POST['PASS']);
            //echo $_POST['USER'];
            // echo $_POST['PASS'];
             if($result= $this->model->getusuario($_POST['USER'],$_POST['PASS']))
@@ -778,6 +778,37 @@ public function perfil_aspirante(){
      
     $this->view->render($this, 'configuracion_usuarios');
     
+ }
+ public function restaurar_pass(){
+     $this->tipousuario('D');
+     if(isset($_POST['ID_USER']))
+     {
+     if($this->model->update_password_user($_POST['ID_USER']))
+     echo json_encode(['Mensaje' => 'Contraseña reestablecida']);
+     else    
+     echo json_encode(['Mensaje' => 'No se pudo reestablecer contraseña']);
+     }else {
+         echo json_encode(['Mensaje' => 'Error sistema']);
+     }
+     
+ }
+ 
+  public function update_estado_usuario(){
+      $this->tipousuario('D');
+     if(isset($_POST['ID_USER']) && isset($_POST['ESTADO_USER']) )
+     {
+         if($_POST['ESTADO_USER']==1)
+         $estado='H';
+         else
+         $estado='D';
+     if($this->model->update_state_user($_POST['ID_USER'],$estado))
+     echo json_encode(['Mensaje' => 'Estado Actualizado']);
+     else    
+     echo json_encode(['Mensaje' => 'No se pudo actualizar estado']);
+     }else {
+         echo json_encode(['Mensaje' => 'Error sistema']);
+     }
+     
  }
          
 }
