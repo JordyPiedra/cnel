@@ -257,7 +257,13 @@ Class Management_model extends Model {
     }
     
      public function update_state_user($USU_ID,$USU_ESTA) {
-        return $this->db->update('SSP_USUARIOS',['USU_ESTA' => "'".$USU_ESTA."'"],false,"USU_ID='$USU_ID'");
+        return $this->db->update('SSP_USUARIOS',['USU_ESTA' => $USU_ESTA ],false,"USU_ID='$USU_ID'");
+    }
+    public function insert_user($DATA) {
+         $check = $this->db->check('*', 'SSP_USUARIOS', "USU_NOMB = ".$DATA['USU_NOMB']);
+        if (!$check)
+        return $this->db->insert('SSP_USUARIOS',$DATA);
+        else return false;
     }
 
 }

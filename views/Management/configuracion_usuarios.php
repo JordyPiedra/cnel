@@ -28,21 +28,21 @@
                                     <h5 class="blue-text text-darken-2">Usuarios del Sistema</h5>
                                 </div>
                                   <div class="input-field col l6 m11 s11"> 
-                                   <input type="text" id="UNOMB" name="UNOMB">   
+                                   <input type="text" id="UNOMB" name="UNOMB" required>   
                                       <label for="UNOMB">Nombre de usuario</label>
                                    </div>  
                                     <div class="input-field col l4 m11 s11">
                                         
-                                        <select id="UTIPO" name="UTIPO" class="browser-default" required onchange ="dep_selected();" >
+                                        <select id="UTIPO" name="UTIPO" class="browser-default" required  >
                                             <option value="" disabled selected>Elija Nivel</option>
                                             <option value="D" >Director</option>
-                                            <option value="D" >Administrativo</option>
+                                            <option value="A" >Administrativo</option>
                                             
                                         </select>
 </div>  
                                   
                                    <div class="input-field col l2 m11 s11">
-                                     <a  id="dep_create" onclick="create_user();" class="btn tooltipped btn-large blue darken-3 right" data-position="bottom" data-delay="50" data-tooltip="Crear usuario" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">person_add</i> </a>
+                                     <a  id="usu_create" onclick="create_usuario();" class="btn tooltipped btn-large blue darken-3 right" data-position="bottom" data-delay="50" data-tooltip="Crear usuario" style="margin-top: 15px;height: 45px;"> <i class="large material-icons">person_add</i> </a>
                                    </div>
                                    <input type="submit" style="display:none;">
                         </div>
@@ -68,7 +68,6 @@
                                     <tbody id="CARGO">
   
 <?php 
-var_dump($this->datos);
 foreach ($this->datos['Usuarios'] as $key => $value) {
     if($value[3]=='H')
     {

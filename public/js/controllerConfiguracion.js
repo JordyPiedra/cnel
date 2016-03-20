@@ -347,3 +347,18 @@ function update_estado_response(response){
     $('#modalAPRO').closeModal();
     Materialize.toast(obj['Mensaje'], 2000);
 }
+
+function create_usuario(){
+    if(onclick_('#usuarios')){
+      var frmser = $('#usuarios :input').serialize();
+     fajax(frmser, URL+'Management/insert_usuario', create_usuario_response);   
+    }
+    
+}
+
+function create_usuario_response(response){
+    var obj = JSON.parse(response);
+    Materialize.toast(obj['Mensaje'], 2000);
+    delay
+    
+}

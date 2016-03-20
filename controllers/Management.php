@@ -810,5 +810,21 @@ public function perfil_aspirante(){
      }
      
  }
+ public function insert_usuario(){
+    if(isset($_POST['UNOMB']) && isset($_POST['UTIPO'])){
+        $_POST['UNOMB']=$this->Mayus($_POST['UNOMB']);
+         if($_POST['UTIPO']=='D')
+         $TIPO='D';
+         else
+         $TIPO='A';
+         $data=['USU_NOMB' =>  "'".$_POST['UNOMB']."'" , 'USU_PASS' =>"'".md5('12345')."'",'USU_TIPO'=>"'".$TIPO."'" ];
+                  if($this->model->insert_user($data)){
+                       echo json_encode(['Mensaje' => 'Usuario '.$_POST['UNOMB'].' creado exitosamente!']);
+                  }else
+                    echo json_encode(['Mensaje' => 'El usuario ya existe']);
+    }else
+      echo json_encode(['Mensaje' => 'Datos incorrectos!']);
+}
          
 }
+
