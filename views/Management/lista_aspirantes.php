@@ -105,6 +105,8 @@ echo'
   </div>
 </div>
 <script > var URL="<?php echo URL; ?>";</script>
+  <script src="<?php echo URL; ?>public/js/controllerApplicantResume.js"></script>
+  <script src="<?php echo URL; ?>public/js/controlleraprobarAspirante.js"></script>
 
   <script src="<?php echo URL; ?>public/js/globalJS.js"></script>
 

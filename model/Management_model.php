@@ -141,7 +141,7 @@ Class Management_model extends Model {
 
     //OBTENER LAS FASES DE UN CONCURSO
     public function getall_faseconcurso($DATOS, $BCO_ESTA="") {
-        return $this->db->select("BCO_ID,CON_ID,f.FMO_ID,BCO_VALO,BCO_FINI,BCO_FFIN,f.FMO_ID,FMO_NOMB,FMO_TFAS,FMO_TDES,BCO_ESTA,tokenGenerator(b.BCO_ID) TOKEN", 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID  AND CON_ID=' . $DATOS['CON_ID'].'AND b.BCO_ESTA LIKE "%'.$BCO_ESTA.'"', PDO::FETCH_NUM);
+        return $this->db->select("BCO_ID,CON_ID,f.FMO_ID,BCO_VALO,BCO_FINI,BCO_FFIN,f.FMO_ID,FMO_NOMB,FMO_TFAS,FMO_TDES,BCO_ESTA,tokenGenerator(b.BCO_ID) TOKEN, b.BCO_DESC", 'SSP_BASE_CONCURSO b, SSP_FASE_MO f', 'f.FMO_ID= b.FMO_ID  AND CON_ID=' . $DATOS['CON_ID'].'AND b.BCO_ESTA LIKE "%'.$BCO_ESTA.'"', PDO::FETCH_NUM);
     }
 
     //OBTENER LAS FASES 

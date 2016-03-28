@@ -44,8 +44,8 @@
                             if($key==0)
                             {
                                 echo '<li class="active">
-                                <div onclick="mostrar_menufa(' . $value[0] . ",'" . $value[11] ."'". ');" class="collapsible-header left-align active"><i class="material-icons">send</i>' . $value[7] . '</div>
-                                 <div class="collapsible-body"><p>Puntuación Máxima: ' . $value[3] . '</p></div>  </li>';
+                                <div onclick="mostrar_menufa(' . $value[0] . ",'" . $value[11] ."'". ');" class="collapsible-header left-align active"><i class="material-icons">send</i>' . $value[7] . ' - Puntuación Máxima: ' . $value[3] . '</div>
+                                 <div class="collapsible-body"><p>Descripción:' . $value[3] . '</p></div>  </li>';
                                 $BCO_IDinicial=$value[0];
                                 $IDBCONTOKENinicial=$value[11];
                             }
@@ -71,12 +71,12 @@
                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="agregar_calificacion();"><i class="material-icons left">done</i>Calificar  </a>
                         </div>
                          <div class="col l6 m12 s12 right-align">
-                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="$('#final_fase').openModal();"><i class="material-icons left">exit_to_app</i>Terminar  </a>
+                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="MSGfinFase();"><i class="material-icons left">exit_to_app</i>Terminar  </a>
                         </div>
            </div>   
 <?php
 // var_dump($this->data['AspirantesConcurso'] );
-
+$this->ncal=0;
 foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
   if($key1==0)
         echo '<form  name="aspfas'.$value1[0].'" id="aspfas'.$value1[0].'" >';
@@ -120,7 +120,8 @@ foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
     </table>
     </form>';
 }
-
+ if($value[8]==0 )
+    $this->ncal +=1;
 ?>   
 
                             
@@ -151,7 +152,17 @@ foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
 
                                     </div>
             </div>
-        </div>        
+        </div>  
+         <div id="modalAPRO" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+  <div class="modal-content center-align">
+    <p><i class="material-icons medium red-text">info</i></p>
+    <h5 id="mensajeAlert" class=" red-text"></h5>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
+    <a href="javascript:" class="modal-action modal-close waves-effect waves-red  red-text  btn-flat" id="accept">Aceptar</a>
+  </div>
+</div>      
         <?php include_once SCRIPT_U; ?> 
         <?php include_once JSPDF ?>
         <script type="text/javascript">
@@ -162,6 +173,7 @@ foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
  
          <script src="<?php echo URL; ?>/public/js/globalJS.js"></script>
          <script>
+  var Ncalcero=<?php echo $this->ncal; ?> ;
   var IDBCON=<?php echo $BCO_IDinicial; ?> ;
   var IDBCONTOKEN="<?php echo $IDBCONTOKENinicial; ?>";
   </script>

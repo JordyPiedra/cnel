@@ -44,7 +44,7 @@ $("#ResultadoAspirantes_").empty();
       fila += '<td>' + value[1] + '</td>';
       fila += '<td>' + value[2] +' ' + value[3] +' ' + value[4] +' '+ value[5] + '</td>';
       fila += '<td>'+ value[6] +'</td>';
-      fila += '<td><a onclick="ver_concurso(' +  value[0] + ')"> <i class="material-icons teal-text text-lighten-3  small">visibility</i></a>';
+      fila += '<td><a onclick="ver_CV(' +  value[0] + ')"> <i class="material-icons teal-text text-lighten-3  small">visibility</i></a>';
       fila += '<input type="checkbox" id="ch'+ value[0] + '" name="ch'+ value[0] + '"  value="'+ value[0] + '" />';
       fila += '<label for="ch' + value[0] + '"></label></td></tr>';
 $("#ResultadoAspirantes_").append(fila);

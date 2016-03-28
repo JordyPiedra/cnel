@@ -48,3 +48,20 @@ IDBCONTOKEN=IDBCONTOKEN_;
   location.reload();
   
   }
+
+function MSGfinFase(){
+    if(Ncalcero>=1)
+    MSGCalcero();
+    else
+   { $("#mensajeAlert").html('Una vez terminada la fase no se permite realizar cambios <br> Desea continuar?.');
+     $("#accept").attr('onclick','finaliza_fase();');
+      $("#modalAPRO").openModal();
+    }
+}
+
+
+function MSGCalcero(){
+    $("#mensajeAlert").html('¿La fase actual contiene registros con calificación cero "0" <br> Desea continuar?.');
+     $("#accept").attr('onclick','finaliza_fase();');
+      $("#modalAPRO").openModal();
+}
