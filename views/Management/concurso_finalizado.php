@@ -5,10 +5,19 @@
     </head>
     <body>
         <?php include_once MENU_F; ?>
-          <br>
-        <div class="row ">
+      <div class="row ">
+            <div class="container ">
+
+   <nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li ><a href="reportes">Reportes</a></li>
+        <li class="active"><a href="concurso_finalizado">Concursos</a></li>
+      </ul>
+    </div>
+  </nav>
                 <div class="col  s12  m12 l12 ">
-                    <div class="container z-depth-1" style="padding: 10px;">
                         <div class="col l12 m12 s12 center-align ">
                             <h5 class="blue-text text-darken-2">Concursos Finalizados</h5>
                         </div>

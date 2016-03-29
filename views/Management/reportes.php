@@ -5,18 +5,21 @@
     </head>
     <body>
         <?php include_once MENU_F; ?>
-          <br>
       <div class="row ">
             <div class="container ">
 
-                <div class="col  s12  m12 l12 z-depth-1">
-                 
-                        <div class="col l12 m12 s12 center-align ">
-                            <h5 class="blue-text text-darken-2">Reportes del sistema</h5>
-                        </div>
-                        <br>
-                        <br>
-
+   <nav class="blue darken-1">
+    <div class="nav-wrapper">
+     
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li class="active"><a href="configuracion">Reportes</a></li>
+        <li><a href="configuracion_departamentos">Aspirantes</a></li>
+        <li><a href="configuracion_fases">Concursos</a></li>
+        <li><a href="configuracion_usuarios">Usuarios</a></li>
+      </ul>
+    </div>
+  </nav>
+           
                         
 <div class="col l4 "> 
     <div class="card z-depth-2">

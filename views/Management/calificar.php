@@ -45,7 +45,7 @@
                             {
                                 echo '<li class="active">
                                 <div onclick="mostrar_menufa(' . $value[0] . ",'" . $value[11] ."'". ');" class="collapsible-header left-align active"><i class="material-icons">send</i>' . $value[7] . ' - Puntuación Máxima: ' . $value[3] . '</div>
-                                 <div class="collapsible-body"><p>Descripción:' . $value[3] . '</p></div>  </li>';
+                                 <div class="collapsible-body"><p>Descripción:' . $value[12] . '</p></div>  </li>';
                                 $BCO_IDinicial=$value[0];
                                 $IDBCONTOKENinicial=$value[11];
                             }
@@ -71,7 +71,7 @@
                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="agregar_calificacion();"><i class="material-icons left">done</i>Calificar  </a>
                         </div>
                          <div class="col l6 m12 s12 right-align">
-                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="MSGfinFase();"><i class="material-icons left">exit_to_app</i>Terminar  </a>
+                         <a id="terminabtn" class="waves-effect waves-light btn  light-blue darken-3 "   onclick="MSGfinFase();"><i class="material-icons left">exit_to_app</i>Terminar  </a>
                         </div>
            </div>   
 <?php

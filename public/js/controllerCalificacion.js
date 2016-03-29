@@ -35,8 +35,11 @@ IDBCONTOKEN=IDBCONTOKEN_;
 
   function save_calificacion_aspirante_response(response){
     var obj = JSON.parse(response);
+     $('#terminabtn').removeClass('disabled');
+     $('#terminabtn').attr('onclick','MSGfinFase();');
     Materialize.toast(obj['Mensaje'],3000);
     console.log(response);
+    location.reload();
 //console.log(obj);
   }
   
@@ -48,8 +51,18 @@ IDBCONTOKEN=IDBCONTOKEN_;
   location.reload();
   
   }
-
+$('#aspfas'+IDBCON).change(function(){
+    $('#terminabtn').addClass('disabled');
+    $('#terminabtn').attr('onclick','');
+});
 function MSGfinFase(){
+     var data1= $('#aspfas'+IDBCON).serializeArray();
+     Ncalcero=0;
+      $.each(data1, function (key, value) {
+         
+         if(value['value']==0)
+         Ncalcero ++;
+      });
     if(Ncalcero>=1)
     MSGCalcero();
     else
