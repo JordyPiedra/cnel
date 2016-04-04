@@ -84,7 +84,7 @@ echo '<tr>
 if($value[2]=='D')
 echo '<td data-field="name">Director</td>';
 else 
-echo '<td data-field="name">Adminstrador</td>';
+echo '<td data-field="name">Administrador</td>';
 echo '<td data-field="name">
  <a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Reestablecer contraseña" onclick="restore_password_('.$value[0].",'".$value[1]."'".')"><i class="material-icons red-text small" >autorenew</i></a>
  <input onchange="user_estado(this,'.$value[0].",'".$value[1]."'".');" type="checkbox" '.$estado.' id="habilitado"><label for="habilitado" class="tooltipped " data-position="top" data-delay="50" data-tooltip="Habilitar"></label>
