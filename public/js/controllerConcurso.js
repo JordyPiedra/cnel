@@ -41,17 +41,20 @@ function editar_concurso(id,token){
 //CREA CONCURSO
        function creaconcurso() {
             if(onclick_('#cabeceraConcurso')){
+                console.log($('#CFINI').val());
+                console.log($('#CFFIN').val());
               if($('#CFINI').val()<=$('#CFFIN').val())
                 {
                 var cabecera_concurso = $('#cabeceraConcurso :input').serialize();
                 console.log(cabecera_concurso);
                 fajax(cabecera_concurso, URL+'Management/insert_concurso', creaconcurso_response);
                 }
-            }else
+            else
            { Materialize.toast('La fecha inicial no puede ser mayor a la fecha final.',3000);
             $('#CFFIN').focus();
            }
         }
+    }
 
         function creaconcurso_response(response) {
             var obj = JSON.parse(response);
@@ -179,4 +182,10 @@ function anular_concurso(id,nombre,codigo,token){
  function eliminar_concurso(id,token)
   {
     fajax({'IDCON_':id,'CONTOKEN':token},URL+'Management/AnulaStateConcurso', function(response){console.log(response); location.reload();});
+  }
+  
+   function ver_concurso(id)
+  {
+       $("#IDCON_3").val(id);
+         $("#ver_c").trigger('click');
   }

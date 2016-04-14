@@ -99,6 +99,12 @@ echo '&nbsp;<a class="tooltipped right" data-position="top" data-delay="50" data
             <input type="hidden" name="CONTOKEN" id="token_" value=""> 
             <input type="submit" id="proceso" style="display: none;"> 
         </form>
+         <form target="_blank" action="<?php echo URL; ?>Reportes/base_concurso" method="POST"> 
+            <input type="hidden" name="IDCON_" id="IDCON_3" value=""> 
+            <input type="hidden" name="CONTOKEN" id="token_3" value=""> 
+            <input type="submit" id="ver_c" style="display: none;"> 
+        </form>
+
 
         <?php include_once SCRIPT_U; ?> 
 

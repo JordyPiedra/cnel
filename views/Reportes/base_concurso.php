@@ -115,18 +115,76 @@ function FancyTable($header,$data)
     // Cabecera
    
     $w = array(92, 92,92);
-    $h = array(10,10, 10,7 ,14);
+    $h = array(10,10, 10);
     foreach ($header['header'] as $key => $value) {
         $this->Cell($w[$key],$h[$key],$value,1,0,'C',true);
     }
-    $this->Cell(1,7,'',0,1);
-    $this->Cell(70,7,'',0,0);
-    $this->SetFillColor(83,141,213);
-    $this->SetFont('Arial','',8);
-     $this->Cell(1,7,'',0,1);
-    
+    // $this->Cell(1,7,'',0,1);
+    // $this->Cell(70,7,'',0,0);
+     $this->SetFillColor(83,141,213);
+     $this->SetFont('Arial','',8);
+    // 
+   $this->SetY(56);
+   $eltexto='';
+   $x = $this->GetX();
+   $xR=$x;
+    $this->SetXY($xR,56);
+   foreach ($data['R'] as $key => $value) {
+        $auxY=$this->GetY();
+        $this->SetXY($xR,$auxY);
+       $this->MultiCell(80,5,utf8_decode($value[7].' '.$value[12]),1,'L',true);
+       $eltexto=$value[7].' '.$value[12];
+       $exp = explode("\n", $eltexto);
+        $lineas =0;
+        foreach ($exp as $key1 => $value1) {
+        $lineas+= ceil(strlen($value1)/40);
+        }
+       $this->SetXY($xR+80,$auxY);
+        $this->Cell(12,(5*$lineas),$value[3].'%',1,0,'C',true);
+         $this->Ln();
+   }
+   $xP=$xR+92;
+    $this->SetXY($xP,56);
+     foreach ($data['P'] as $key => $value) {
+        //var_dump($value);
+        $auxY=$this->GetY();
+        $this->SetXY($xP,$auxY);
+        
+       $this->MultiCell(80,5,utf8_decode($value[7].' '.$value[12]),1,'L',true);
+       $eltexto=$value[7].' '.$value[12];
+       $exp = explode("\n", $eltexto);
+        $lineas =0;
+        foreach ($exp as $key1 => $value1) {
+        $lineas+= ceil(strlen($value1)/40);
+        }
+        $this->SetXY($xP+80,$auxY);
+        $this->Cell(12,(5*$lineas),$value[3].'%',1,0,'C',true);
+         $this->Ln();
+   }
+    $xE=$xP+92;
+    $this->SetXY($xE,56);
+     foreach ($data['E'] as $key => $value) {
+        //var_dump($value);
+        $auxY=$this->GetY();
+        $this->SetXY($xE,$auxY);
+        
+       $this->MultiCell(80,5,utf8_decode($value[7].' '.$value[12]),1,'L',true);
+       $eltexto=$value[7].' '.$value[12];
+       $exp = explode("\n", $eltexto);
+        $lineas =0;
+        
+        foreach ($exp as $key1 => $value1) {
+            echo strlen($value1);
+        $lineas+= ceil(strlen($value1)/40);
+        }
+        $this->SetXY($xE+80,$auxY);
+        $this->Cell(12,(5*$lineas),$value[3].'%',1,0,'C',true);
+         $this->Ln();
+   }
    
-    $this->Cell(10,7,'100%',1,0,'C',true);
+     
+      //$this->Cell(12,7,'100%',1,0,'C',true);
+    
     
         
      $this->Ln();
@@ -190,7 +248,7 @@ for ($i=1; $i <=1 ; $i++) {
 $pdf->AddPage();
 $pdf->Header1($headerData);
 $pdf->SetFont('Arial','B',9);
-$pdf->FancyTable($header, $this->data['fasesConcurso']);
+$pdf->FancyTable($header, $this->colMO);
 $pdf->AliasNbPages();
 $inicial+=17;
 }
