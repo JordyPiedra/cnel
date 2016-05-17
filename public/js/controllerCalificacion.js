@@ -39,7 +39,7 @@ IDBCONTOKEN=IDBCONTOKEN_;
      $('#terminabtn').attr('onclick','MSGfinFase();');
     Materialize.toast(obj['Mensaje'],3000);
     console.log(response);
-    location.reload();
+    //location.reload();
 //console.log(obj);
   }
   

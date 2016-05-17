@@ -76,7 +76,7 @@
         console.log(response);
         if (response==1)
         {
-            setTimeout(function(){ window.location.href = URL+"Management/index"; }, 3000);
+            setTimeout(function(){ window.location.href = URL+"Management/index"; }, 500);
                   $("#accountCircle").removeClass("red-text").addClass("green-text");
                   $("#contentLogin").empty().append('<h5 class="center-align">Iniciando...</h5>');
           }

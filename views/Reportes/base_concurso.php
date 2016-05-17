@@ -137,7 +137,7 @@ function FancyTable($header,$data)
        $exp = explode("\n", $eltexto);
         $lineas =0;
         foreach ($exp as $key1 => $value1) {
-        $lineas+= ceil(strlen($value1)/40);
+        $lineas+= ceil(strlen($value1)/44);
         }
        $this->SetXY($xR+80,$auxY);
         $this->Cell(12,(5*$lineas),$value[3].'%',1,0,'C',true);
@@ -155,7 +155,7 @@ function FancyTable($header,$data)
        $exp = explode("\n", $eltexto);
         $lineas =0;
         foreach ($exp as $key1 => $value1) {
-        $lineas+= ceil(strlen($value1)/40);
+        $lineas+= ceil(strlen($value1)/44);
         }
         $this->SetXY($xP+80,$auxY);
         $this->Cell(12,(5*$lineas),$value[3].'%',1,0,'C',true);
@@ -174,8 +174,7 @@ function FancyTable($header,$data)
         $lineas =0;
         
         foreach ($exp as $key1 => $value1) {
-            echo strlen($value1);
-        $lineas+= ceil(strlen($value1)/40);
+        $lineas+= ceil(strlen($value1)/44);
         }
         $this->SetXY($xE+80,$auxY);
         $this->Cell(12,(5*$lineas),$value[3].'%',1,0,'C',true);
@@ -218,12 +217,12 @@ function FancyTable($header,$data)
     //       if($key==$inicial+17)
     //            break;
     //     $this->Ln();
-    //     $fill = !$fill;
+    //    $fill = !$fill;
     // }
   
     
     // // Línea de cierre
-    // $this->Cell(array_sum($w),1,'','T');
+     $this->Cell(array_sum($w),1,'','T');
 }
 
 // Una tabla más completa

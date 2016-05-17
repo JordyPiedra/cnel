@@ -41,7 +41,13 @@ $this->view->data=$this->model->getallConcurso("CON_ESTA in ('I','P')"); //Devue
     }
     //Cargamos la vista gestion_aspirante
     public function gestion_aspirante() {
-        $this->view->data = ['Aspirantes' => $this->model->getAspirantestoAPRO("ASP_APRO='N' AND ASP_NOM1 != '' AND 1 <= (SELECT COUNT(*) FROM SSP_TITULO WHERE ASP_ID=TIT_FK_ASPI )")];
+                $this->view->data = ['Aspirantes' => $this->model->getAspirantestoAPRO("ASP_APRO='N' AND ASP_NOM1 != '' AND 1 <= (SELECT COUNT(*) FROM SSP_TITULO WHERE ASP_ID=TIT_FK_ASPI )")];
+
+                $this->castModel('Aspirante');
+            $this->view->data += ['Instruccion' => $this->Cmodel->getEducationLevel()];
+            $this->view->data += ['AreaEstudio' => $this->Cmodel->getStudyArea()];
+            $this->view->data += ['Experiencia' => $this->Cmodel->getWorkArea()];
+            $this->view->data += ['Discapacidad' => $this->Cmodel->getDisability()];
         $this->view->render($this, 'gestion_aspirante');
     }
     //Cargamos la vista gestion_aspirante
@@ -532,7 +538,9 @@ public function proceso_concurso(){
         $TotalWhere.= ' AND ASP_ID in ('.$WhereIDiscapacidad.')';
 
 
-        
+        if(isset($_POST['EST']))
+        echo json_encode(['Aspirantes' => $this->model->filter_getAspirantes($TotalWhere,'N',false)]);
+        else
         echo json_encode(['Aspirantes' => $this->model->filter_getAspirantes($TotalWhere)]);
 
     } 

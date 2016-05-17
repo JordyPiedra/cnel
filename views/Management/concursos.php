@@ -127,6 +127,12 @@ echo '&nbsp;<a class="tooltipped right" data-position="top" data-delay="50" data
 <script > var URL="<?php echo URL; ?>";</script>
   <script src="<?php echo URL; ?>public/js/globalJS.js"></script>
   <script src="<?php echo URL; ?>public/js/controllerConcurso.js"></script>
-
+<script>
+     $('document').ready(function(){
+  $(".button-collapse").sideNav();
+  $("#mconcursos").attr("class","active");
+    
+  });
+</script>
 
 

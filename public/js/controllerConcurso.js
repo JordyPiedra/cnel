@@ -12,10 +12,7 @@
       }else return true;
 }
    
-    $( document ).ready(function(){
-        $(".button-collapse").sideNav();
-        $("#mconcursos").attr("class","active");
-    })
+
 function alerta_iniciar(id,nombre,codigo,token){
     $("#mensajeAlert").html('Seguro desea inicializar el concurso '+nombre+' - '+codigo+' ?');
      $("#accept").attr('onclick','inicia_concurso('+id+",'"+token+"');");
@@ -133,14 +130,23 @@ function actualiza_tabla_fases() {
 function actualiza_tabla_fases_response(response) {
         var obj = JSON.parse(response);
         $("#detalle_fases").empty();
+        var merito=0;
+        var oposicion=0;
         $.each(obj, function (key, value) {
             if (value[8] == 'M')
-                registro = '<tr class="center-align"><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td>' + value[3] + '</td><td></td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small" >delete</i></a></td></tr>';
+             {  registro = '<tr class="center-align"><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td>' + value[3] + '</td><td></td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small red-text" >delete</i></a></td></tr>';
+                merito+=parseInt(value[3]);
+             }
             else
-                registro = '<tr><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td></td><td>' + value[3] + '</td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small" >delete</i></a></td></tr>';
+               {
+                    registro = '<tr><td>' + value[7] + '</td><td>' + value[4] + '</td><td>' + value[5] + '</td><td></td><td>' + value[3] + '</td><td><a onclick="eliminar_fase_concurso(' + value[2] + ')"><i class="material-icons small red-text" >delete</i></a></td></tr>';
+                    oposicion+=parseInt(value[3]);
+               }
             $("#detalle_fases").append(registro);
 
         });
+          registro = '<tr><td></td><td></td><th>Totales</th><th>'+merito +'</th><th> '+oposicion+'</th><td></td></tr>';
+           $("#detalle_fases").append(registro);
        
     }
 //Funcion para cargar las secciones de creacion de concurso

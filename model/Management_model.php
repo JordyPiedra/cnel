@@ -15,7 +15,7 @@ Class Management_model extends Model {
             if($this->db->insert('SSP_CONCURSO', $CONCURSO_DATOS['SSP_CONCURSO'])){
             $result1 = $this->db->select('CON_ID, tokenGenerator(CON_ID)', 'SSP_CONCURSO', "CON_CODI = " . $cabecera_concurso['CON_CODI'], PDO::FETCH_NUM);
             if (sizeof($result1) > 0)
-            return $data = ["Mensaje" => "Ingreso Correctamente", "IDCON" => $result1[0][0],"CONTOKEN" => $result1[0][1],"Actualizar"=>true];
+            return $data = ["Mensaje" =>"Concurso ".$cabecera_concurso['CON_CODI'] ." creado correctamente", "IDCON" => $result1[0][0],"CONTOKEN" => $result1[0][1],"Actualizar"=>true];
            }
             else 
              return $data = ["Mensaje" => "Error de ingreso"];
@@ -67,15 +67,16 @@ Class Management_model extends Model {
                 
                 if($SUMA>$pMAX)
                 {
-                   return $data = ["Mensaje" => "Sobrepasa el puntaje permitido"];
+                   return $data = ["Mensaje" => "Sobrepasa el puntaje mérito - oposición permitido"];
                 }else
                 {
                    $this->db->insert('SSP_BASE_CONCURSO', $base_concurso);
-                    return $data = ["Mensaje" => "Ingreso Correctamente2"];
+                   
+                    return $data = ["Mensaje" => '<i class="small material-icons" >done</i>Fase ingresada exitosamente! '];
                 }
                          
             }else
-            return $data = ["Mensaje" => "Ingreso Incorrecto registro existente.!"];
+            return $data = ["Mensaje" => '<i class="small material-icons" >error</i> Ingreso incorrecto! el registro ya existe!'];
             
     }
 
@@ -181,9 +182,12 @@ Class Management_model extends Model {
     }
     
     //Función complemenadora para la busqueda de aspirantes donde where es el filtro completo de busqueda
-     public function filter_getAspirantes($where) {
-    
-        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA', 'SSP_ASPIRANTE', "ASP_APRO='S' ".$where.' AND ASP_ID NOT IN (select ASP_ID from aspirantes_en_concurso)', PDO::FETCH_NUM);
+     public function filter_getAspirantes($where,$ASP_APRO='S',$vista=true) {
+        if ($vista)
+        $wereVista=' AND ASP_ID NOT IN (select ASP_ID from aspirantes_en_concurso)';
+        else
+        $wereVista = '';
+        return $this->db->select('ASP_ID,ASP_CEDU, ASP_NOM1, ASP_NOM2, ASP_APE1, ASP_APE2, ASP_FENA,ASP_GENE', 'SSP_ASPIRANTE', "ASP_APRO='$ASP_APRO' ".$where.$wereVista , PDO::FETCH_NUM);
     }
 
     //Función que inserta SSP_ASPIRANTE_CONCURSO

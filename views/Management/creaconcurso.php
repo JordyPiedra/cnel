@@ -204,17 +204,26 @@
                                     <tbody id="detalle_fases">
 <?php
 if ($concurso != "") {
+    $merito=0;
+    $oposicion=0;
     foreach ($this->DATA['fasesConcurso'] as $key => $value) {
         echo '
         <tr class="center-align"><td>' . $value[7] . '</td>
         <td>' . $value[4] . '</td><td>' . $value[5] . '</td>';
         if($value[8]=="M")
-        echo '<td>' . $value[3] . '</td><td></td>';
+        {
+            echo '<td>' . $value[3] . '</td><td></td>';
+            $merito+=$value[3];
+        }
         else
-        echo '<td></td><td>' . $value[3] . '</td>';
-        echo '<td><a onclick="eliminar_fase_concurso(' . $value[2] . ')"><i class="material-icons small" >delete</i></a></td>
+        {
+            echo '<td></td><td>' . $value[3] . '</td>';
+            $oposicion+=$value[3];
+        }
+        echo '<td><a onclick="eliminar_fase_concurso(' . $value[2] . ')"><i class="material-icons small red-text" >delete</i></a></td>
         </tr>';
     }
+    echo '<tr><td></td><td></td><th>Totales</th><th>'.$merito .'</th><th> '.$oposicion.'</th><td></td></tr>';
 }
 ?>  
 
@@ -275,7 +284,7 @@ if ($concurso != "") {
 //ELIMINAR FASE CONCURSO
         function eliminar_fase_concurso(ID) {
             param = {'CONID': CONCID_, "FASE": ID};
-            Materialize.toast('Elimado con Éxito', 2000);
+            Materialize.toast('<i class="small material-icons" >done_all</i>Fase eliminada exitosamente', 2000);
             fajax(param, '<?php echo URL; ?>Management/delete_faseConcurso', actualiza_tabla_fases);
         }
 
