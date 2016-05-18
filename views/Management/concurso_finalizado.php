@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="<?php echo URL; ?>public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+
+    <!-- DataTables CSS -->
+    <link href="<?php echo URL; ?>public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
         <?php include_once HEAD_U; ?>
+        
+
     </head>
     <body>
         <?php include_once MENU_F; ?>
@@ -21,37 +33,24 @@
                         <div class="col l12 m12 s12 center-align ">
                             <h5 class="blue-text text-darken-2">Concursos Finalizados</h5>
                         </div>
-                        <br>
-                                  <div class="input-field col l3 m4 s12">
-                                        <input id="BFINI" name="BFINI"  type="date" class="datepicker " required>
-                                        <label class="active" for="BFINI">Fecha Inicial</label>
-                                    </div>
-                                    <div class="input-field col l3 m4 s12">
-                                        <input id="BFFIN" name="BFFIN" type="date" class="datepicker" required>
-                                        <label class="active" for="BFFIN">Fecha Final</label>
-                                    </div>
-                                    <div class="input-field col l3 m4 s12">
-                                      <a class="waves-effect waves-light btn  light-blue darken-3"  onclick=""><i class="material-icons left">search</i>Buscar  </a>
-                                    </div>
-                        <br>
-                        <table class="striped highlight ">
-                            <thead>
-
-                                <tr >
-                                    <th data-field="id">#</th>
-                                    <th data-field="id">Código</th>
-                                    <th data-field="price">Nombre</th>
-                                    <th data-field="name">Estado</th>
-                                    <th data-field="date">Fecha Inicio</th>
-                                    <th data-field="date">Fecha Fin</th>
-                                    <th data-field="name"></th>
-
-
-                                </tr>
-                            </thead>
-
-                            <tbody >
-<?php
+   
+                        
+<div class="panel-body ">
+                            <div class="dataTable_wrapper ">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Código</th>
+                                            <th>Nombre</th>
+                                            <th>Estado</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                            <th></th>
+                                             
+                                    </thead>
+                                    <tbody>
+                                   <?php
 
 foreach ($this->data['Concursos'] as $key => $value) {
 
@@ -64,14 +63,22 @@ echo'
 <td>' . $value[10] . '</td>
 <td>' . $value[11] . '</td>
 <td>
-&nbsp;<a  class="tooltipped" data-position="top" data-delay="50" data-tooltip="Imprimir informe final" onclick="imprimir_informe(' . $value[0] .",'".$value[13]."'".');"><i class="material-icons small" >print</i></a></td>
+<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar concurso" onclick="ver_concurso(' . $value[0] . ')"> <i class="material-icons small">visibility</i></a>
+<a  class="tooltipped" data-position="top" data-delay="50" data-tooltip="Imprimir informe final" onclick="imprimir_informe(' . $value[0] .",'".$value[13]."'".');"><i class="material-icons small" >print</i></a></td>
 
 </tr>';
 }
 ?>   
-
-                            </tbody>
-                        </table>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                           
+                        </div>
+                        
+                        
+                        
                     </div>  
                 </div>
         </div> 
@@ -82,14 +89,20 @@ echo'
             <input type="hidden" name="CONTOKEN" id="CONTOKEN" value=""> 
             <input type="submit" id="informe" style="display: none;"> 
         </form>
-
-        <?php include_once SCRIPT_U; ?> 
+     <form target="_blank" action="<?php echo URL; ?>Reportes/base_concurso" method="POST"> 
+            <input type="hidden" name="IDCON_" id="IDCON_3" value=""> 
+            <input type="hidden" name="CONTOKEN" id="token_3" value=""> 
+            <input type="submit" id="ver_c" style="display: none;"> 
+        </form>
+       
 
       
     </body>
 
-</html>
 
+
+</html>
+ <?php include_once SCRIPT_U; ?> 
 <script type="text/javascript">
     $( document ).ready(function(){
         $(".button-collapse").sideNav();
@@ -102,4 +115,28 @@ function imprimir_informe (IDCONC,CONTOKEN){
      $("#informe").trigger("click");
 }
 </script>
+<!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo URL; ?>public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!-- Metis Menu Plugin JavaScript -->
+
+    <!-- DataTables JavaScript -->
+    <script src="<?php echo URL; ?>public/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo URL; ?>public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+       
+    });
+
+
+
+    </script>
+    <script src="<?php echo URL; ?>public/js/controllerConcurso.js"></script>
+    <style>
+        li.paginate_button.active{
+            background-color:#337ab7;
+        }
+    </style>

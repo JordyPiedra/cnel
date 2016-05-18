@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+            <!-- Bootstrap Core CSS -->
+    <link href="<?php echo URL; ?>public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+
+    <!-- DataTables CSS -->
+    <link href="<?php echo URL; ?>public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
         <?php include_once HEAD_U; ?>
     </head>
     <body>
@@ -141,22 +149,21 @@
 
         <p class="blue-text text-darken-2">Lista de Registrados</p>
            
-                            <table class="striped highlight mdl-data-table" id="aspirantestable">
-                                <thead>
+<div class="panel-body ">
+                            <div class="dataTable_wrapper ">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Cédula</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Género</th>
+                                            <th>Fecha Nacimiento</th>
+                                            <th></th>
+                                             
+                                    </thead>
 
-                                    <tr >
-                                    <th data-field="id">#</th>
-                                    <th data-field="id">Cédula</th>
-                                    <th data-field="price">Nombres</th>
-                                    <th data-field="price">Apellidos</th>
-                                    <th data-field="name">Género</th>
-                                    <th data-field="date">Fecha Nacimiento</th>
-                                    <th data-field="date"></th>
-                                   
-
-
-                                    </tr>
-                                </thead>
 
                                 <tbody id="aprobaciontable">
 <?php
@@ -167,26 +174,30 @@ echo'
 <tr class="center-align">
 <td>'.($key+1).'</td>
 <td>'.$value[1].'</td>
-<td>'.$value[2].' '.$value[3].'</td>
+<td style="width: 220px;">'.$value[2].' '.$value[3].'</td>
 <td> '.$value[4].' '.$value[5].'</td>
 <td>'.$value[7].'</td>
 <td>'.$value[6].'</td>
 
-<td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar C.V." onclick="ver_CV('.$value[0].')"> <i class="material-icons small">visibility</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('.$value[0].')"> <i class="material-icons small">assignment_ind</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar('.$value[0].",'".$value[1]."'".')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a></td></tr>';
+<td class="center"><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar C.V." onclick="ver_CV('.$value[0].')"> <i class="material-icons small">visibility</i></a>
+<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('.$value[0].')"> <i class="material-icons small">assignment_ind</i></a>
+<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar('.$value[0].",'".$value[1]."'".')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a>
+</td></tr>';
 }
 ?>   
-
-                                </tbody>
-                            </table>
- 
-      
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
                            
                         </div>
-                    </div>
-              
-         </div>
+                        
+                        
+                        
+                    </div>  
+                </div>
+        </div> 
+
 
 <!-- Modal Structure -->
   <div id="modal1" class="modal">
@@ -223,28 +234,38 @@ echo'
 
 
 <?php include_once JSPDF ?>
-<?php include_once SCRIPT_U; ?> 
+
 <script > var URL="<?php echo URL; ?>";</script>
   <script src="<?php echo URL; ?>public/js/globalJS.js"></script>
-  <script src="<?php echo URL; ?>public/js/controllerApplicantResume.js"></script>
-  <script src="<?php echo URL; ?>public/js/controlleraprobarAspirante.js"></script>
 
+ 
 
-
-
-
-
-    </body>
+    <!-- Metis Menu Plugin JavaScript -->
+<?php include_once SCRIPT_U; ?>  
+    <!-- DataTables JavaScript -->
+    <script src="<?php echo URL; ?>public/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     
+    <script src="<?php echo URL; ?>public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    </body>
+   
+    <script src="<?php echo URL; ?>public/js/controllerApplicantResume.js"></script>
+  <script src="<?php echo URL; ?>public/js/controlleraprobarAspirante.js"></script>
+  <script src="<?php echo URL; ?>public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </html>
 
-	
+    <style>
+        li.paginate_button.active{
+            background-color:#337ab7;
+        }
+    </style>
 
 <script>
     $('document').ready(function(){
   $(".button-collapse").sideNav();
   $("#maspirante").attr("class","active");
-    
+     $('#dataTables-example').DataTable({
+                responsive: true
+        });
   });
   
 </script>

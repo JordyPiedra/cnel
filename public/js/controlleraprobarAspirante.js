@@ -62,12 +62,12 @@ console.log(value);
   var fila = '<tr class="center-align">';
       fila += '<td>'+(key+1)+'</td>';
       fila += '<td>'+value[1]+'</td>';
-      fila += '<td>'+value[2]+' '+value[3]+'</td>';
+      fila += '<td style="width: 220px;">'+value[2]+' '+value[3]+'</td>';
       fila += '<td> '+value[4]+' '+value[5]+'</td>';
       fila += '<td>'+value[7]+'</td>';
       fila += '<td>'+value[6]+'</td>';
-      fila += '<td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar C.V." onclick="ver_CV('+value[0]+')"> <i class="material-icons small">visibility</i></a>&nbsp;&nbsp;&nbsp;&nbsp;';
-      fila += '<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('+value[0]+')"> <i class="material-icons small">assignment_ind</i></a>&nbsp;&nbsp;&nbsp;&nbsp;';
+      fila += '<td><a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar C.V." onclick="ver_CV('+value[0]+')"> <i class="material-icons small">visibility</i></a>';
+      fila += '<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Visualizar perfil" onclick="ver_perfil('+value[0]+')"> <i class="material-icons small">assignment_ind</i></a>';
       fila += '<a class="tooltipped " data-position="top" data-delay="50" data-tooltip="Aprobar" onclick="aprobar('+value[0]+",'"+value[1]+"'"+')"><i class="material-icons light-orange-text text-accent-3 small" >check</i></a></td></tr>';
 $("#aprobaciontable").append(fila);
 
