@@ -94,7 +94,7 @@ $(document).on("change", '#IFNSTR', function(){
       $("#contIF2").hide();
       $("#querycontIF1").empty();
 
-      $("#IFINST, #IFNOMB, #IFTIEM, #IFFGRA, #IFOINS").prop('required',false);
+      $("#IFINST, #IFNOMB, #IFTIEM, #IFFGRA, #IFOINS, IFAEST").prop('required',false);
       $("#IFNOMB1, #IFTIEM1").prop('required',true);
 
     }else if($('#IFNSTR option:selected').html() === 'SECUNDARIA'){
@@ -102,14 +102,14 @@ $(document).on("change", '#IFNSTR', function(){
       $("#contIF1").slideDown();
       $("#contIF2").hide();
 
-      $("#IFINST, #IFNOMB, #IFTIEM, #IFFGRA, #IFSENE", "#IFOINS").prop('required',false);
+      $("#IFINST, #IFNOMB, #IFTIEM, #IFFGRA, #IFSENE, #IFOINS, #IFAEST").prop('required',false);
       $("#IFNOMB1, #IFTIEM1").prop('required',true);
     }
     else{
       $("#contIF1").hide();
       $("#contIF2").slideDown();
       $("#IFNOMB1, #IFTIEM1").prop('required',false);
-      $("#IFINST, #IFNOMB, #IFTIEM, #IFFGRA").prop('required',true);
+      $("#IFINST, #IFNOMB, #IFTIEM, #IFFGRA, #IFAEST").prop('required',true);
     }
 });
 
@@ -230,6 +230,7 @@ var controllerAS = {
         }
 
         $(".triggerI").trigger("change");
+        controllerAS.idRow = controllerAS.idAction = '';
       });
     },
     submit:function(){
@@ -349,7 +350,7 @@ var controllerAS = {
                       controllerAS.idRow.find("td:eq(3)").html(d.IFSENE);
 
                       if(d.IFOINS){
-                        controllerAS.idRow.find("td:eq(1)").html(d.IFOINS);
+                        controllerAS.idRow.find("td:eq(1)").html(d.IFOINS);                 
                       }else{
                         instToString = $("select#IFINST").find("option[value="+d.IFINST+"]").html();
                         controllerAS.idRow.find("td:eq(1)").html(instToString);
@@ -461,7 +462,7 @@ var controllerAS = {
 
 
                   case 'instruccion-formal':
-
+                    $("select#IFNSTR").prop("disabled", true);
                     $("select#IFNSTR").find("option[value="+d.IFNSTR+"]").prop("selected",true);
                     $("#IFNSTR").trigger("change");
 
@@ -623,22 +624,6 @@ var controllerAS = {
   return {
     init: controllerAS.init
   };
-
-
-  return {
-    nameX: nameObject
-  };
-
-
-
-
-
-
-
-
-
-
-
 
 })();
 

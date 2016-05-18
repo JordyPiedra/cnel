@@ -404,15 +404,15 @@ Class Aspirante extends Controller{
 				];
 			break;
 
-			case 'instruccion-formal':
+			case 'instruccion-formal':			
 				if(!!$_POST["IFNOMB1"]){
 					$data = [
 						"TIT_NOMB"    => ["value"=>$this->Mayus($_POST["IFNOMB1"]), "type" => PDO::PARAM_STR], 
 						"TIT_TIEM"    => ["value"=>$this->Mayus($_POST["IFTIEM1"]), "type" => PDO::PARAM_INT], 
-						
-						"TIT_FK_ASPI" => ["value"=>Session::getValue("ID-ASPIRANTE"), "type" => PDO::PARAM_INT], 
-						"TIT_FK_NSTR" => ["value"=>$_POST["IFNSTR"], "type" => PDO::PARAM_INT]
+						"TIT_FK_ASPI" => ["value"=>Session::getValue("ID-ASPIRANTE"), "type" => PDO::PARAM_INT]
 					];
+					
+
 			
 				}else{
 
@@ -434,8 +434,6 @@ Class Aspirante extends Controller{
 
 						"TIT_FK_ASPI" => ["value"=>Session::getValue("ID-ASPIRANTE"), "type" => PDO::PARAM_INT], 						
 						"TIT_FK_INST" => ["value"=>$_POST["IFINST"], "type" => PDO::PARAM_INT], 
-						"TIT_FK_NSTR" => ["value"=>$_POST["IFNSTR"], "type" => PDO::PARAM_INT],
-
 						"TIT_SENE"    => ["value"=>$_POST["IFSENE"], "type" => PDO::PARAM_STR],
 						"TIT_FK_AEST" => ["value"=>$_POST["IFAEST"], "type" => PDO::PARAM_INT],
 						"TIT_OINS" 	  => ["value"=>$this->Mayus($_POST["IFOINS"]), "type" => PDO::PARAM_STR]
@@ -444,6 +442,11 @@ Class Aspirante extends Controller{
 					
 
 				}
+							
+				if($_POST["JV"] =! 'U'){
+					$data["TIT_FK_NSTR"] = 	["value"=>$_POST["IFNSTR"], "type" => PDO::PARAM_INT];
+				}
+				
 			break;
 
 			case 'idiomas':

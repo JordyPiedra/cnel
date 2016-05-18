@@ -69,7 +69,7 @@
         <div class="col l8 m6 s8" >
           <input name="ELSECT" type="radio" class="actR" id="ELSECT1" value="P"/>
           <label for="ELSECT1">Pública</label>
-          <input name="ELSECT" type="radio" class="actR" id="ELSECT2" value="R"/>
+          <input name="ELSECT" type="radio" class="actR" id="ELSECT2" value="R" checked/>
           <label for="ELSECT2">Privada</label>
         </div>
       </div>

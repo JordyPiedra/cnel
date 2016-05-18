@@ -101,7 +101,7 @@
 
           <div class="input-field col offset-l1 l2 m6 s12">
             <label class="lll">Área de estudios <span class="red-text">*</span></label>
-            <select name="IFAEST" id="IFAEST" class="actS browser-default" required>
+            <select name="IFAEST" id="IFAEST" class="actS browser-default">
               <option value="">Seleccione</option>
               <?php
                 $x = null;

@@ -80,7 +80,7 @@
 
         <div class="col offset-l1 l3 m4 offset-s4 s8">
             <h6>Contácto de emergencia <span class="red-text">*</span><br>
-              <input name="DFFEME" type="radio" class="actR" id="DFFEME1" value="S"/>
+              <input name="DFFEME" type="radio" class="actR" id="DFFEME1" value="S" checked/>
               <label for="DFFEME1">Si</label>
               <input name="DFFEME" type="radio" class="actR" id="DFFEME2" value="N"/>
               <label for="DFFEME2">No</label>
