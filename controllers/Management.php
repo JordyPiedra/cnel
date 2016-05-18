@@ -5,7 +5,7 @@ Class Management extends Controller {
     public function __construct() {
 
         parent:: __construct();
-		if(!Session::getValue("ID-ADMIN") && ($_SERVER["REQUEST_URI"] != '/Management/login' && $_SERVER["REQUEST_URI"] != '//Management/validate_login')){
+		if(!Session::getValue("ID-ADMIN") && ($_SERVER["REQUEST_URI"] != '/cnel/Management/login' && $_SERVER["REQUEST_URI"] != '//Management/validate_login')){
          
           //header('Location: '.URL.'Management/login');
            

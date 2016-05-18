@@ -12,10 +12,10 @@
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li class="active"><a href="configuracion">Reportes</a></li>
-        <li><a href="configuracion_departamentos">Aspirantes</a></li>
-        <li><a href="configuracion_fases">Concursos</a></li>
-        <li><a href="configuracion_usuarios">Usuarios</a></li>
+        <li class="active"><a href="reportes">Reportes</a></li>
+        <li><a href="<?= URL ?>/Reportes/aspirante_reporte">Aspirantes</a></li>
+        <li><a href="concurso_finalizado">Concursos finalizados</a></li>
+       
       </ul>
     </div>
   </nav>
