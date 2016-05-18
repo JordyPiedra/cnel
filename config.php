@@ -1,7 +1,17 @@
 <?php 
+    $location =explode(DIRECTORY_SEPARATOR, __FILE__);
+    $inicio = array_search('html', $location);
 
-	define('URL', 'http://localhost/');
-	define('LIBS', 'libs/');
+    if(!$inicio)
+    $inicio = array_search('htdocs', $location);    
+    
+    $url_="";
+     for ($i=($inicio+1); $i < (count($location)-1) ; $i++) { 
+         $url_ .= '/'.$location[$i];
+     }
+	define('URL', 'http://'.$_SERVER['SERVER_NAME'].$url_.'/');
+    
+		define('LIBS', 'libs/');
         
     define('HEAD_U', 'public/inc/HEAD_U.php');
     define('NAV_U', 'public/inc/NAV_U.php');
@@ -17,7 +27,6 @@
     define('FPDF','public/fpdf/fpdf.php');
 
     require_once 'vendor/autoload.php' ;
-
 
 
 

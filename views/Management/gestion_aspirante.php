@@ -7,9 +7,8 @@
 
             <?php include_once MENU_F; ?>
 
-    
-            <div class="row ">
-        <div class="col  s12  m12 l12 z-depth-1">
+<div class="row ">
+    <div class="container">
 <nav class="blue darken-1">
     <div class="nav-wrapper">
      
@@ -20,6 +19,12 @@
       </ul>
     </div>
   </nav>
+  
+  </div> 
+  </div>   
+            <div class="row ">
+        <div class="col  s12  m12 l12 z-depth-1">
+
         <div class="col l4 m12 s12 center-align ">
           
                      <!-- Opciones de filtro -->

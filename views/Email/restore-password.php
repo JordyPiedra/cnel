@@ -1,7 +1,7 @@
 
 <table>
 	<tr>
-		<td><img src="http://www.cnel.gob.ec/planillas/images/logo.png" style="width: 100%;"></td>
+		<td><img src="http://146.148.37.96/public/images/logo.png" style="width: 100%;"></td>
 		<!--<td style="background-color: #275FAA;width: 100%;color:white"></td>-->
 	</tr>	
 </table>

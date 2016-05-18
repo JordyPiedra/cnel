@@ -18,11 +18,12 @@
     
   });
   //////////View- CALIFICAR
-  function mostrar_menufa(IDBCON_,IDBCONTOKEN_){
+  function mostrar_menufa(IDBCON_,IDBCONTOKEN_,NOMBRE){
 $('form').hide();
 $('#aspfas'+IDBCON_).show();
 IDBCON=IDBCON_;
 IDBCONTOKEN=IDBCONTOKEN_;
+$('#TITULOFASE').html(NOMBRE);
   }
   
   function agregar_calificacion(){

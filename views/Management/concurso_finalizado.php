@@ -22,6 +22,17 @@
                             <h5 class="blue-text text-darken-2">Concursos Finalizados</h5>
                         </div>
                         <br>
+                                  <div class="input-field col l3 m4 s12">
+                                        <input id="BFINI" name="BFINI"  type="date" class="datepicker " required>
+                                        <label class="active" for="BFINI">Fecha Inicial</label>
+                                    </div>
+                                    <div class="input-field col l3 m4 s12">
+                                        <input id="BFFIN" name="BFFIN" type="date" class="datepicker" required>
+                                        <label class="active" for="BFFIN">Fecha Final</label>
+                                    </div>
+                                    <div class="input-field col l3 m4 s12">
+                                      <a class="waves-effect waves-light btn  light-blue darken-3"  onclick=""><i class="material-icons left">search</i>Buscar  </a>
+                                    </div>
                         <br>
                         <table class="striped highlight ">
                             <thead>

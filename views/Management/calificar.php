@@ -30,10 +30,10 @@
 
                 <div class="col l4 m12 s12 center-align ">
 
-                  <ul class="collapsible" data-collapsible="accordion">
+                  <ul class="collapsible" data-collapsible="accordion" style="font-size:12px;">
    
         
-                        <p class="blue-text text-darken-2">Fases</p>
+                        <p class="blue-text text-darken-2">Fases del concurso</p>
 
 
                         <?php
@@ -44,16 +44,20 @@
                             if($key==0)
                             {
                                 echo '<li class="active">
-                                <div onclick="mostrar_menufa(' . $value[0] . ",'" . $value[11] ."'". ');" class="collapsible-header left-align active"><i class="material-icons">send</i>' . $value[7] . ' - Puntuación Máxima: ' . $value[3] . '</div>
-                                 <div class="collapsible-body"><p>Descripción:' . $value[12] . '</p></div>  </li>';
+                                <div onclick="mostrar_menufa(' . $value[0] . ",'" . $value[11] ."','".$value[7]."'". ');" class="collapsible-header left-align active"><i class="material-icons">send</i>' . $value[7] .'</div>
+                                 <div class="collapsible-body">
+                                  Puntuación Máxima: ' . $value[3] . 
+                                 '<p>Descripción:' . $value[12] . '</p></div>  </li>';
                                 $BCO_IDinicial=$value[0];
                                 $IDBCONTOKENinicial=$value[11];
                             }
                             else 
                             {
                                 echo '<li>
-                                <div onclick="mostrar_menufa(' . $value[0] . ",'".$value[11] ."'". ');" class="collapsible-header left-align"><i class="material-icons">send</i>' . $value[7] . '</div>
-                                <div class="collapsible-body"><p>Puntuación Máxima: ' . $value[3] . '</p></div>   </li> ';
+                                <div onclick="mostrar_menufa(' . $value[0] . ",'".$value[11] ."','".$value[7]."'". ');" class="collapsible-header left-align"><i class="material-icons">send</i>' .  $value[7] . '</div>
+                                 <div class="collapsible-body">
+                                  Puntuación Máxima: ' . $value[3] . 
+                                 '<p>Descripción:' . $value[12] . '</p></div>  </li>';
                             }
                             
                         }
@@ -67,8 +71,10 @@
                 <div class="col l8 m12 s12 center-align ">
                     <p class="blue-text text-darken-2">Poceso de Calificación</p>
                         <div class="col l12 m12 s12 right-align">
+                                
                         <div class="col l6 m12 s12 left-align">
                         <a class="waves-effect waves-light btn  light-blue darken-3"  onclick="agregar_calificacion();"><i class="material-icons left">done</i>Calificar  </a>
+                        <p id='TITULOFASE' class="blue-text"><?=$this->data['fasesConcurso'][0][7]?></p>
                         </div>
                          <div class="col l6 m12 s12 right-align">
                          <a id="terminabtn" class="waves-effect waves-light btn  light-blue darken-3 "   onclick="MSGfinFase();"><i class="material-icons left">exit_to_app</i>Terminar  </a>
