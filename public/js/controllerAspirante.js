@@ -355,6 +355,8 @@ var controllerAS = {
                         instToString = $("select#IFINST").find("option[value="+d.IFINST+"]").html();
                         controllerAS.idRow.find("td:eq(1)").html(instToString);
                       }
+                      
+                      $("select#IFNSTR").prop("disabled", false);
                   break;
 
                   case 'idiomas':
