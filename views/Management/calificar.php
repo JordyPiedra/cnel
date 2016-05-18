@@ -162,7 +162,7 @@ foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
          <div id="modalAPRO" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
   <div class="modal-content center-align">
     <p><i class="material-icons medium red-text">info</i></p>
-    <h5 id="mensajeAlert" class=" red-text"></h5>
+    <h5 id="mensajeAlert" class=" blue-text text-darken-4"></h5>
   </div>
   <div class="modal-footer">
     <a href="javascript:" class="modal-action modal-close waves-effect waves-green blue-text btn-flat" id="cancel">Cancelar</a>
@@ -188,7 +188,26 @@ foreach ($this->data['fasesConcurso'] as $key1 => $value1) {
                 $( document ).ready(function(){
         $(".button-collapse").sideNav();
         $("#mprocess").attr("class","active");
-    })
+        
+        $( "input[type=number]" ).on('input', function() {
+   // Check input( $( this ).val() ) for validity here
+  $(this).attr('style','height: 20px; padding-top: 10px; color:red;');
+  console.log($(this).val());
+  console.log($(this).attr('max'));
+
+  if(parseFloat($(this).val())<0 )
+    {
+      $(this).val(0);
+    }
+  if(parseFloat($(this).val())>parseFloat($(this).attr('max')))
+    {
+      $(this).val($(this).attr('max'));
+    }
+});
+
+        })
+
+
 
         </script>
     </body>

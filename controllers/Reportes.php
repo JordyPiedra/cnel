@@ -41,14 +41,14 @@ Class Reportes extends Controller {
         $selectROW ="";
         $stringMeritos="";
         foreach ($meritos as $key => $value) {
-           $stringMeritos.=" ,calificacion_ASP_BCO(ASP_ID,".$value[2].")";
+           $stringMeritos.=" , truncate(calificacion_ASP_BCO(ASP_ID,".$value[2]."),2)";
         }
-        $selectROW .="nomb_aspbyID(ASP_ID)". $stringMeritos .',fobtsummerops(ASP_ID,CON_ID,"M")';
+        $selectROW .="nomb_aspbyID(ASP_ID)". $stringMeritos .', truncate(fobtsummerops(ASP_ID,CON_ID,"M"),2)';
         $stringOposicion="";
         foreach ($oposicion as $key => $value) {
-           $stringOposicion.=" ,calificacion_ASP_BCO(ASP_ID,".$value[2].")";
+           $stringOposicion.=" ,truncate (calificacion_ASP_BCO(ASP_ID,".$value[2]."),2)";
         }
-        $selectROW .= $stringOposicion .',fobtsummerops(ASP_ID,CON_ID,"O") ,fobtsummerops(ASP_ID,CON_ID,"%") ';
+        $selectROW .= $stringOposicion .',truncate(fobtsummerops(ASP_ID,CON_ID,"O"),2) ,truncate(fobtsummerops(ASP_ID,CON_ID,"%"),2) ';
         
         
         array_push($meritos,array('Subtotal',50));

@@ -141,7 +141,7 @@
 
         <p class="blue-text text-darken-2">Lista de Registrados</p>
            
-                            <table class="striped highlight ">
+                            <table class="striped highlight mdl-data-table" id="aspirantestable">
                                 <thead>
 
                                     <tr >
@@ -220,17 +220,25 @@ echo'
     <a href="javascript:" class="modal-action modal-close waves-effect waves-red  red-text  btn-flat" id="accept">Aceptar</a>
   </div>
 </div>
-<?php include_once SCRIPT_U; ?> 
+
 
 <?php include_once JSPDF ?>
+<?php include_once SCRIPT_U; ?> 
 <script > var URL="<?php echo URL; ?>";</script>
   <script src="<?php echo URL; ?>public/js/globalJS.js"></script>
   <script src="<?php echo URL; ?>public/js/controllerApplicantResume.js"></script>
   <script src="<?php echo URL; ?>public/js/controlleraprobarAspirante.js"></script>
 
+
+
+
+
+
     </body>
     
 </html>
+
+	
 
 <script>
     $('document').ready(function(){

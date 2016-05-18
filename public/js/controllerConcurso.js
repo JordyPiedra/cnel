@@ -24,7 +24,8 @@ function alerta_iniciar(id,nombre,codigo,token){
   }
 
 function inicia_concurso_response(){
-    location.reload();
+     setTimeout(function(){ location.reload();}, 800);
+    
 }  
 
 function editar_concurso(id,token){
@@ -187,7 +188,7 @@ function anular_concurso(id,nombre,codigo,token){
 }
  function eliminar_concurso(id,token)
   {
-    fajax({'IDCON_':id,'CONTOKEN':token},URL+'Management/AnulaStateConcurso', function(response){console.log(response); location.reload();});
+    fajax({'IDCON_':id,'CONTOKEN':token},URL+'Management/AnulaStateConcurso', function(response){console.log(response);setTimeout(function(){ location.reload();}, 800);});
   }
   
    function ver_concurso(id)

@@ -15,7 +15,7 @@ Class Management_model extends Model {
             if($this->db->insert('SSP_CONCURSO', $CONCURSO_DATOS['SSP_CONCURSO'])){
             $result1 = $this->db->select('CON_ID, tokenGenerator(CON_ID)', 'SSP_CONCURSO', "CON_CODI = " . $cabecera_concurso['CON_CODI'], PDO::FETCH_NUM);
             if (sizeof($result1) > 0)
-            return $data = ["Mensaje" =>"Concurso ".$cabecera_concurso['CON_CODI'] ." creado correctamente", "IDCON" => $result1[0][0],"CONTOKEN" => $result1[0][1],"Actualizar"=>true];
+            return $data = ["Mensaje" => '<i class="small material-icons" >done</i>Concurso '.$cabecera_concurso['CON_CODI'] ." creado correctamente", "IDCON" => $result1[0][0],"CONTOKEN" => $result1[0][1],"Actualizar"=>true];
            }
             else 
              return $data = ["Mensaje" => "Error de ingreso"];
@@ -134,7 +134,7 @@ Class Management_model extends Model {
     //Ingreso de una fase
     public function update_sspfasemo($FMO_DATOS,$FMO_ID) {
         if ($this->db->update('SSP_FASE_MO',$FMO_DATOS,false,"FMO_ID='$FMO_ID'"))
-            return $data = ["Mensaje" => "Fase " . $FMO_DATOS['FMO_NOMB'] . " actualizado correctamente"];
+            return $data = ["Mensaje" =>  '<i class="small material-icons" >done</i>Fase ' . $FMO_DATOS['FMO_NOMB'] . " actualizado correctamente"];
         else
             return $data = ["Mensaje" => "No existieron cambios"];
          
@@ -155,7 +155,7 @@ Class Management_model extends Model {
 
 
         $this->db->update('SSP_PUESTO_TRABAJO', $PTR_DATOS, false,"PTR_ID=" . $PTR_DATOS['PTR_ID']);
-        return $data = ["Mensaje" => "uPDATE Correctamente"];
+        return $data = ["Mensaje" => '<i class="small material-icons" >done</i> Departamento actualizado exitosamente!.'];
     }
 
     //Consulta los cargos de un departamento

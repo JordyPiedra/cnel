@@ -64,7 +64,7 @@ function Header1($data)
     $this->SetFont('Arial','B',9);
     $this->Cell(20,$t,'Proceso: ',0,0,'L');
     $this->SetFont('Arial','',9);
-    $this->Cell(100,$t,$data[0][1],0,0,'L');
+    $this->Cell(100,$t,utf8_decode($data[0][1]),0,0,'L');
     $this->SetFont('Arial','B',9);
     $this->Cell(25,$t,utf8_decode('P.Código: '),0,0,'L');
     $this->SetFont('Arial','',9);
@@ -166,7 +166,11 @@ function FancyTable($header, $data,$Cmo,$inicial)
             $ww=$w[4];
             else 
             $ww=$w[$key1+1];
-            
+            if($key1==0) // Nombre de aspirante tamaño letra menor
+            $this->SetFont('Arial','',7);
+            else {
+                $this->SetFont('Arial','',8);
+            }
              $this->Cell($ww,6,utf8_decode($value),'LR',0,'L',$fill);
                
         }

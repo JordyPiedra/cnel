@@ -389,9 +389,9 @@ public function proceso_concurso(){
                 "CON_FFIN" => "'" . $_POST["CFFIN"] . "'",
             ];        
                 if($this->model->update_estadoConcurso($_POST['IDCON_'], $cabecera_concurso))
-                 echo json_encode(['Mensaje' => 'Concurso actualizado correctamente']);   
+                 echo json_encode(['Mensaje' => '<i class="small material-icons" >done</i>  Concurso actualizado correctamente']);   
                  else 
-                 echo json_encode(['Mensaje' => 'No existen cambios']);
+                 echo json_encode(['Mensaje' => '<i class="small material-icons" >close</i> No existen cambios']);
             }else 
                  echo json_encode(['Mensaje' => 'Complete los datos correctamente']);
       }else 
@@ -538,7 +538,7 @@ public function proceso_concurso(){
 
 
         if(isset($_POST['EST']))
-        echo json_encode(['Aspirantes' => $this->model->filter_getAspirantes($TotalWhere,'N',false)]);
+        echo json_encode(['Aspirantes' => $this->model->filter_getAspirantes($TotalWhere." AND ASP_APRO='N' AND ASP_NOM1 != '' AND 1 <= (SELECT COUNT(*) FROM SSP_TITULO WHERE ASP_ID=TIT_FK_ASPI )",'N',false)]);
         else
         echo json_encode(['Aspirantes' => $this->model->filter_getAspirantes($TotalWhere)]);
 
@@ -575,7 +575,7 @@ public function proceso_concurso(){
                    else
                    $errores++;     
             }
-            $strMensaje= "".$insertados.' Registros Insertados - '.$errores.' Errores';
+            $strMensaje= '<i class="small material-icons" >done</i> '.$insertados.' Aspirantes insertados <i class="small material-icons" >person</i>';
             $datos= ["Mensaje" => $strMensaje];
          echo json_encode($datos);
         }
@@ -614,7 +614,7 @@ public function proceso_concurso(){
         )
        {
         if($this->model->delete_aspirante_concurso(['CON_ID' => $_POST['IDCON_'] , 'ASP_ID' =>$_POST['IDASP']]))
-             echo json_encode(['Mensaje' => 'Registro Eliminado']);
+             echo json_encode(['Mensaje' => '<i class="small material-icons" >close</i> Aspirante eliminado del concurso <i class="small material-icons" >person</i>']);
          else
             echo json_encode(['Mensaje' => 'Error al Eliminar']);
        }
@@ -734,7 +734,7 @@ public function proceso_concurso(){
                 }else
                 $errores++;  
             }
-            echo json_encode(['Mensaje' => $correcto.' Registros insertados - '.$errores.' Sin cambios']);
+            echo json_encode(['Mensaje' => '<i class="small material-icons" >done</i>'.$correcto.' calificaciones actualizadas - '.$errores.' Sin cambios ']);
         }
         else
             $this->index_management();

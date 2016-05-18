@@ -30,6 +30,8 @@ $('#TITULOFASE').html(NOMBRE);
 
     var data= $('#aspfas'+IDBCON).serializeArray();
     console.log(data);
+ 
+    $('#aspfas'+IDBCON+' input[type=number]').attr('style','height: 20px; padding-top: 10px; color:blue;');
     fajax({'IDCON_': IDCONC , 'CONTOKEN':CONTOKEN,'IDBCON':IDBCON,'IDBCONTOKEN':IDBCONTOKEN, 'data': data}, URL+"/Management/save_calificacion_aspirante", save_calificacion_aspirante_response);
 
   }
@@ -49,22 +51,27 @@ $('#TITULOFASE').html(NOMBRE);
   }
   function finaliza_fase_response(response){
   if(response==1)
-  location.reload();
+ setTimeout(function(){ location.reload();}, 800);
   
   }
-$('#aspfas'+IDBCON).change(function(){
-    $('#terminabtn').addClass('disabled');
-    $('#terminabtn').attr('onclick','');
-});
+
 function MSGfinFase(){
      var data1= $('#aspfas'+IDBCON).serializeArray();
      Ncalcero=0;
+     sinGuardar=0;
+      $.each( $('input[type=number]'), function (key, value) {
+         
+            if($(value).attr('style')=='height: 20px; padding-top: 10px; color:red;')
+           sinGuardar ++;
+      });
       $.each(data1, function (key, value) {
          
          if(value['value']==0)
          Ncalcero ++;
       });
-    if(Ncalcero>=1)
+    if(sinGuardar>=1)
+    Materialize.toast('<i class="small material-icons red-text" >info</i> Existen calificaciones pendientes',2000);
+    else if(Ncalcero>=1)
     MSGCalcero();
     else
    { $("#mensajeAlert").html('Una vez terminada la fase no se permite realizar cambios <br> Desea continuar?.');
