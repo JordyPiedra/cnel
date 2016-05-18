@@ -17,12 +17,14 @@ Class Aspirante extends Controller{
 
 	public function perfil(){
 		$guest = false;
+		$mi = Session::getValue("MODAL-INIT");
 
 		if (Session::getValue("GUEST")) {
 			$guest = "JVJP";
+			$mi = 0;
 		}
 
-		$this->view->data = ["MODAL-INIT" => Session::getValue("MODAL-INIT"), "GUEST" => $guest];
+		$this->view->data = ["MODAL-INIT" => $mi, "GUEST" => $guest];
 
 		$this->view->render($this, 'perfil');
 		Session::SetValue("MODAL-INIT", 0);
