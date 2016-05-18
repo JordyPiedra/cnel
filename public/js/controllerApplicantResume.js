@@ -64,7 +64,7 @@ try {
   pdf.text(60, 28, 'Datos personales');
 
   pdf.setLineWidth(1);
-  pdf.line(62, 30, 62, 57);
+  pdf.line(64, 30, 64, 57);
 
   pdf.text(65, 34, 'Año de nacimiento:');
   pdf.text(110, 34, d.c[8]);
@@ -81,9 +81,11 @@ try {
   pdf.text(65, 50, 'Teléfono (s):');
   pdf.text(110, 50, d.c[14] + " " + d.c[15]);
 
-  pdf.text(65, 54, 'Provincia / Cantón / Parroquia:');
-  pdf.text(110, 54, d.c[35][0][0] + "/ " + d.c[35][0][1] + "/ " + d.c[35][0][2]);
-
+  pdf.text(65, 54, 'Provincia / Cantón');
+  pdf.text(110, 54, d.c[35][0][0] + "/ " + d.c[35][0][1]);
+  
+  pdf.text(65, 58, 'Parroquia:');
+  pdf.text(110, 58, d.c[35][0][2]);
 
   pdf.setFontSize(10);
   pdf.setFontType("bold");
@@ -120,9 +122,24 @@ try {
     }
 
     if (d.c["fe"][i][3]) {
-      pdf.text(62, y+4, d.c["fe"][i][3]);
+      
+      if(d.c["fe"][i][3] == null){
+        pdf.text(82, y+4, " ");
+      }else if(d.c["fe"][i][3].length > 56){
+        pdf.text(82, y+4, d.c["fe"][i][3].substr(0,56) + "...");
+      }else{
+        pdf.text(82, y+4, d.c["fe"][i][3]);
+      }
     }else{
-      pdf.text(62, y+4, " " + d.c["fe"][i][5]);
+      
+      if(d.c["fe"][i][5] == null){
+        pdf.text(82, y+4, " ");
+      }else if(d.c["fe"][i][5].length > 56){
+        pdf.text(82, y+4, " " + d.c["fe"][i][5].substr(0,56) + "...");
+      }else{
+        pdf.text(82, y+4, " " + d.c["fe"][i][5]);
+      }
+      
     }
     
     pdf.text(x, y+4, d.c["fe"][i][6]);
