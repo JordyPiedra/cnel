@@ -125,15 +125,34 @@ function FancyTable($header, $data,$Cmo,$inicial)
     $this->Cell(1,7,'',0,1);
     $this->Cell(70,7,'',0,0);
     $this->SetFillColor(83,141,213);
-    $this->SetFont('Arial','',8);
+    $this->SetFont('Arial','',6.5);
     foreach ($header['meritos'] as $key => $value) {
-        $this->Cell($ColMO,7,utf8_decode($value[0]),1,0,'C',true);
+        $yy=$this->GetY();
+        $xx=$this->GetX();
+        $charNew= explode(' ',$value[0]);
+        if(count($charNew)>1)
+        {
+        $this->Cell($ColMO,7,utf8_decode($charNew[0]),1,0,'C',true);
+        $this->Text($xx+4,$yy+6,utf8_decode($charNew[1]));
+        }else {
+             $this->Cell($ColMO,7,utf8_decode($value[0]),1,0,'C',true);
+        }
     }
     foreach ($header['oposicion'] as $key => $value) {
-        $this->Cell($ColMO,7,utf8_decode($value[0]),1,0,'C',true);
+         $yy=$this->GetY();
+        $xx=$this->GetX();
+       $charNew= explode(' ',$value[0]);
+        if(count($charNew)>1)
+        {
+        $this->Cell($ColMO,7,utf8_decode($charNew[0]),1,0,'C',true);
+        $this->Text($xx+4,$yy+6,utf8_decode($charNew[1]));
+        }else {
+             $this->Cell($ColMO,7,utf8_decode($value[0]),1,0,'C',true);
+        }
     }
      $this->Cell(1,7,'',0,1);
     $this->Cell(70,7,'',0,0);
+    $this->SetFont('Arial','',8);
     foreach ($header['meritos'] as $key => $value) {
         $this->Cell($ColMO,7,$value[1].'%',1,0,'C',true);
     }
