@@ -222,7 +222,7 @@ function FancyTable($header,$data)
   
     
     // // Línea de cierre
-     $this->Cell(array_sum($w),1,'','T');
+    // $this->Cell(array_sum($w),1,'','T');
 }
 
 // Una tabla más completa

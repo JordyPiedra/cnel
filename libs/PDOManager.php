@@ -260,6 +260,12 @@ class PDOManager extends PDO{
 		     var_dump($e);
 		}
 	}
+	
+	public function query($sql,$fetchMode = PDO::FETCH_ASSOC){
+		$result = $this->prepare($sql);
+        $result->execute();    
+        return $result->fetchAll($fetchMode);
+	}
         
 }
 ?>

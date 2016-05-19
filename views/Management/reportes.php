@@ -12,9 +12,9 @@
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li class="active"><a href="reportes">Reportes</a></li>
-        <li><a href="<?= URL ?>/Reportes/aspirante_reporte">Aspirantes</a></li>
-        <li><a href="concurso_finalizado">Concursos finalizados</a></li>
+        <li class="active"><a href="<?= URL ?>Management/reportes">Reportes</a></li>
+        <li><a href="<?= URL ?>Reportes/aspirante_reporte">Aspirantes</a></li>
+        <li><a href="<?= URL ?>Management/concurso_finalizado">Concursos finalizados</a></li>
        
       </ul>
     </div>
@@ -27,7 +27,7 @@
         <i class="large     material-icons ">person</i>
         </div>
         <div class="card-content" style="padding-top: 0px;">
-        <a target="_blank" href="<?= URL.'reportes/reporte_aspirantes' ?>">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <a target="_blank" href="<?= URL ?>Reportes/aspirante_reporte">Reporte de aspirantes<i class="material-icons">open_in_new</i></a><span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
         <p>Aspirantes inscritos</p>
         </div>
         <div class="card-reveal">

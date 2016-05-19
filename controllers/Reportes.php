@@ -7,6 +7,34 @@ Class Reportes extends Controller {
         parent:: __construct();
  
     }
+    
+    public function chart(){
+        $out="";
+        $select ="select 'R'";
+        $where ="";
+        $from=' from ssp_aspirante';
+        $add="";
+        if(isset($_POST['CHKAPRA'])){
+            $select .=", ASP_APRO,count(ASP_APRO) ";
+            $add .=' group by  ASP_APRO';
+            
+        }
+         if(isset($_POST['CHKSEXH'])){
+            $select .=", ASP_GENE,count(ASP_GENE) ";
+            if($add=="")
+            $add .=' group by ASP_GENE';
+            else
+             $add .=' ,ASP_GENE';
+            
+        }
+        $sql=$select.$from.$where.$add.';';
+        //echo $sql;
+        $out=$this->model->executeReport($sql);
+        $this->view->data=['R'=>$out];
+          $this->view->render($this, 'chart');
+        
+        
+    }
 //________________________VISTAS RENDERIZADAS___________________________//
     //Cargamos la vista reportes de aspirantes
     public function aspirante_reporte() {

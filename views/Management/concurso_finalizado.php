@@ -24,11 +24,14 @@
     <div class="nav-wrapper">
      
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li ><a href="reportes">Reportes</a></li>
-        <li class="active"><a href="concurso_finalizado">Concursos</a></li>
+        <li ><a href="<?= URL ?>Management/reportes">Reportes</a></li>
+        <li ><a href="<?= URL ?>Reportes/aspirante_reporte">Aspirantes</a></li>
+        <li class="active"><a href="<?= URL ?>Management/concurso_finalizado">Concursos finalizados</a></li>
+       
       </ul>
     </div>
   </nav>
+         
                 <div class="col  s12  m12 l12 ">
                         <div class="col l12 m12 s12 center-align ">
                             <h5 class="blue-text text-darken-2">Concursos Finalizados</h5>

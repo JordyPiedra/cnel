@@ -445,7 +445,7 @@ Class Aspirante extends Controller{
 
 				}
 							
-				if($_POST["JV"] =! 'U'){
+				if(isset($_POST["IFNSTR"])){
 					$data["TIT_FK_NSTR"] = 	["value"=>$_POST["IFNSTR"], "type" => PDO::PARAM_INT];
 				}
 				

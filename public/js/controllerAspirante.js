@@ -561,6 +561,7 @@ var controllerAS = {
 
 
       if($("#IFNSTR").length){
+        $("#IFNSTR").prop('disabled',false);
         $("#IFNSTR").trigger("change");
       }
 

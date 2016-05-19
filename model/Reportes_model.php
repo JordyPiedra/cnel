@@ -12,6 +12,9 @@ Class Reportes_model extends Model {
     public function calificacionProcesada($selectROW,$CON_ID) {
         return $this->db->select("$selectROW", 'ssp_aspirante_concurso', "CON_ID='$CON_ID'", PDO::FETCH_NUM);
     }
-
+    
+    public function executeReport($sql){
+        return $this->db->query($sql, PDO::FETCH_NUM);
+    }    
     
 }
